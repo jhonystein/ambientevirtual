@@ -25,6 +25,10 @@ public class Tutor {
 	@JoinColumn(name="ID_USUARIO", nullable=false)
 	private Usuario usuario;
 
+	public Tutor() {
+		this.usuario = new Usuario();
+	}
+	
 	public Long getId() {
 		return id;
 	}

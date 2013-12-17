@@ -32,15 +32,52 @@
 					<h:outputText id="id" value="#{tutorEditMB.bean.id}" />
 					<p:message for="id" />
 					
+					<h:outputLabel value="#{messages['tutor.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{tutorEditMB.bean.usuario.nome}"
+						title="#{messages['tutor.alt.nome']}" />
+					<p:message for="nome" maxlength="100" />
+					
+					<h:outputLabel value="#{messages['tutor.label.email']}: " for="email" styleClass="text-input" />
+					<h:inputText id="email" value="#{tutorEditMB.bean.usuario.email}"
+						title="#{messages['tutor.alt.email']}" />
+					<p:message for="email" maxlength="100" />
+					
+					<h:outputLabel value="#{messages['tutor.label.telefone']}: " for="telefone" styleClass="text-input" />
+					<h:inputText id="telefone" value="#{tutorEditMB.bean.usuario.telefone}"
+						title="#{messages['tutor.alt.telefone']}" />
+					<p:message for="telefone" maxlength="20" />
+					
+					<h:outputLabel value="#{messages['tutor.label.sexo']}: " for="sexo" styleClass="text-input" />
+					<h:selectOneMenu id="sexo" value="#{tutorEditMB.bean.usuario.sexo}" title="#{messages['tutor.alt.sexo']}">
+						<f:selectItems value="#{tutorEditMB.sexoValues}" var="s" 
+    						itemValue="#{s}" itemLabel="#{s}"/>
+					</h:selectOneMenu>
+					<p:message for="sexo" />
+					
+					<h:outputLabel value="#{messages['tutor.label.rg']}: " for="rg" styleClass="text-input" />
+					<h:inputText id="rg" value="#{tutorEditMB.bean.usuario.rg}"
+						title="#{messages['tutor.alt.rg']}" maxlength="30" />
+					<p:message for="rg" />
+					
+					<h:outputLabel value="#{messages['tutor.label.cpf']}: " for="cpf" styleClass="text-input" />
+					<h:inputText id="cpf" value="#{tutorEditMB.bean.usuario.cpf}"
+						title="#{messages['tutor.alt.cpf']}" maxlength="30" />
+					<p:message for="cpf" />					
+					
 					<h:outputLabel value="#{messages['tutor.label.nucleo']}: " for="nucleo" styleClass="text-input" />
 					<h:inputText id="nucleo" value="#{tutorEditMB.bean.nucleo}"
-						title="#{messages['tutor.alt.nucleo']}" />
+						title="#{messages['tutor.alt.nucleo']}" maxlength="100"/>
 					<p:message for="nucleo" />
 					
-					<h:outputLabel value="#{messages['tutor.label.usuario']}: " for="usuario" styleClass="text-input" />
-					<h:inputText id="usuario" value="#{tutorEditMB.bean.usuario}"
-						title="#{messages['tutor.alt.usuario']}" />
-					<p:message for="usuario" />
+					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
+					<h:inputText id="login" value="#{tutorEditMB.bean.usuario.login}"
+						title="#{messages['usuario.alt.login']}" maxlength="20" />
+					<p:message for="login" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+					<h:inputSecret id="senha" value="#{tutorEditMB.bean.usuario.senha}"
+						title="#{messages['usuario.alt.senha']}" maxlength="20" />
+					<p:message for="senha" />
 					
 				</h:panelGrid>
 			</p:fieldset>

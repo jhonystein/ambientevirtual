@@ -37,25 +37,15 @@
 						title="#{messages['turma.alt.curso']}" />
 					<p:message for="curso" />
 					
+					<h:outputLabel value="#{messages['turma.label.curso']}: " for="curso" styleClass="text-input" />
+					<h:inputText id="curso" value="#{turmaEditMB.bean.curso}"
+						title="#{messages['turma.alt.curso']}" />
+					<p:message for="curso" />
+					
 					<h:outputLabel value="#{messages['turma.label.semestre']}: " for="semestre" styleClass="text-input" />
 					<h:inputText id="semestre" value="#{turmaEditMB.bean.semestre}"
 						title="#{messages['turma.alt.semestre']}" />
 					<p:message for="semestre" />
-					
-					<h:outputLabel value="#{messages['turma.label.alunos']}: " for="alunos" styleClass="text-input" />
-					<h:inputText id="alunos" value="#{turmaEditMB.bean.alunos}"
-						title="#{messages['turma.alt.alunos']}" />
-					<p:message for="alunos" />
-					
-					<h:outputLabel value="#{messages['turma.label.tutores']}: " for="tutores" styleClass="text-input" />
-					<h:inputText id="tutores" value="#{turmaEditMB.bean.tutores}"
-						title="#{messages['turma.alt.tutores']}" />
-					<p:message for="tutores" />
-					
-					<h:outputLabel value="#{messages['turma.label.grupos']}: " for="grupos" styleClass="text-input" />
-					<h:inputText id="grupos" value="#{turmaEditMB.bean.grupos}"
-						title="#{messages['turma.alt.grupos']}" />
-					<p:message for="grupos" />
 					
 				</h:panelGrid>
 			</p:fieldset>
