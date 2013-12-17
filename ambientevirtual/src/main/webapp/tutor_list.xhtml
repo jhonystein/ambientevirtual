@@ -33,18 +33,26 @@
 					<h:outputText value="#{bean.id}" />
 				</p:column>
 						
-				<p:column sortBy="#{bean.nucleo}">
-					<f:facet name="header">#{messages['tutor.label.nucleo']}</f:facet>
+				<p:column sortBy="#{bean.usuario.nome}">
+					<f:facet name="header">#{messages['tutor.label.nome']}</f:facet>
 					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
-						<h:outputText value="#{bean.nucleo}" />
+						<h:outputText value="#{bean.usuario.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.usuario}">
-					<f:facet name="header">#{messages['tutor.label.usuario']}</f:facet>
+				<p:column sortBy="#{bean.usuario.telefone}">
+					<f:facet name="header">#{messages['tutor.label.telefone']}</f:facet>
 					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
-						<h:outputText value="#{bean.usuario}" />
+						<h:outputText value="#{bean.usuario.telefone}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				
+				<p:column sortBy="#{bean.usuario.email}">
+					<f:facet name="header">#{messages['tutor.label.email']}</f:facet>
+					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
+						<h:outputText value="#{bean.usuario.email}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
