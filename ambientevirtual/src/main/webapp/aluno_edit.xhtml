@@ -1,0 +1,54 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.insert}"
+						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.update}"
+						rendered="#{alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{alunoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{alunoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['aluno.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['aluno.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{alunoEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['aluno.label.matricula']}: " for="matricula" styleClass="text-input" />
+					<h:inputText id="matricula" value="#{alunoEditMB.bean.matricula}"
+						title="#{messages['aluno.alt.matricula']}" />
+					<p:message for="matricula" />
+					
+					<h:outputLabel value="#{messages['aluno.label.usuario']}: " for="usuario" styleClass="text-input" />
+					<h:inputText id="usuario" value="#{alunoEditMB.bean.usuario}"
+						title="#{messages['aluno.alt.usuario']}" />
+					<p:message for="usuario" />
+					
+					<h:outputLabel value="#{messages['aluno.label.acompanhamentos']}: " for="acompanhamentos" styleClass="text-input" />
+					<h:inputText id="acompanhamentos" value="#{alunoEditMB.bean.acompanhamentos}"
+						title="#{messages['aluno.alt.acompanhamentos']}" />
+					<p:message for="acompanhamentos" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

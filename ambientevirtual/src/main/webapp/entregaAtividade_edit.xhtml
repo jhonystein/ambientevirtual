@@ -1,0 +1,60 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{entregaAtividadeEditMB.insert}"
+						rendered="#{!entregaAtividadeEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{entregaAtividadeEditMB.update}"
+						rendered="#{entregaAtividadeEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{entregaAtividadeEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{entregaAtividadeEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['entregaAtividade.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['entregaAtividade.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{entregaAtividadeEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['entregaAtividade.label.entrega']}: " for="entrega" styleClass="text-input" />
+					<p:calendar id="entrega" value="#{entregaAtividadeEditMB.bean.entrega}"
+					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+					   locale="#{currentLocale}" title="#{messages['entregaAtividade.alt.entrega']}" />
+					   <p:message for="entrega" />
+								
+					<h:outputLabel value="#{messages['entregaAtividade.label.resolucao']}: " for="resolucao" styleClass="text-input" />
+					<h:inputText id="resolucao" value="#{entregaAtividadeEditMB.bean.resolucao}"
+						title="#{messages['entregaAtividade.alt.resolucao']}" />
+					<p:message for="resolucao" />
+					
+					<h:outputLabel value="#{messages['entregaAtividade.label.atividade']}: " for="atividade" styleClass="text-input" />
+					<h:inputText id="atividade" value="#{entregaAtividadeEditMB.bean.atividade}"
+						title="#{messages['entregaAtividade.alt.atividade']}" />
+					<p:message for="atividade" />
+					
+					<h:outputLabel value="#{messages['entregaAtividade.label.aluno']}: " for="aluno" styleClass="text-input" />
+					<h:inputText id="aluno" value="#{entregaAtividadeEditMB.bean.aluno}"
+						title="#{messages['entregaAtividade.alt.aluno']}" />
+					<p:message for="aluno" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

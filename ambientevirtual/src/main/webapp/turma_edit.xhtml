@@ -1,0 +1,64 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{turmaEditMB.insert}"
+						rendered="#{!turmaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{turmaEditMB.update}"
+						rendered="#{turmaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{turmaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{turmaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['turma.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					
+					<h:outputLabel value="#{messages['turma.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{turmaEditMB.bean.id}" />
+					<p:message for="id" />
+					
+					<h:outputLabel value="#{messages['turma.label.curso']}: " for="curso" styleClass="text-input" />
+					<h:inputText id="curso" value="#{turmaEditMB.bean.curso}"
+						title="#{messages['turma.alt.curso']}" />
+					<p:message for="curso" />
+					
+					<h:outputLabel value="#{messages['turma.label.semestre']}: " for="semestre" styleClass="text-input" />
+					<h:inputText id="semestre" value="#{turmaEditMB.bean.semestre}"
+						title="#{messages['turma.alt.semestre']}" />
+					<p:message for="semestre" />
+					
+					<h:outputLabel value="#{messages['turma.label.alunos']}: " for="alunos" styleClass="text-input" />
+					<h:inputText id="alunos" value="#{turmaEditMB.bean.alunos}"
+						title="#{messages['turma.alt.alunos']}" />
+					<p:message for="alunos" />
+					
+					<h:outputLabel value="#{messages['turma.label.tutores']}: " for="tutores" styleClass="text-input" />
+					<h:inputText id="tutores" value="#{turmaEditMB.bean.tutores}"
+						title="#{messages['turma.alt.tutores']}" />
+					<p:message for="tutores" />
+					
+					<h:outputLabel value="#{messages['turma.label.grupos']}: " for="grupos" styleClass="text-input" />
+					<h:inputText id="grupos" value="#{turmaEditMB.bean.grupos}"
+						title="#{messages['turma.alt.grupos']}" />
+					<p:message for="grupos" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,14 @@
+package br.edu.senai.ambientevirtual.business;
+
+import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.template.DelegateCrud;
+
+import br.edu.senai.ambientevirtual.domain.Acompanhamento;
+import br.edu.senai.ambientevirtual.persistence.AcompanhamentoDAO;
+
+@BusinessController
+public class AcompanhamentoBC extends DelegateCrud<Acompanhamento, Long, AcompanhamentoDAO> {
+	
+	private static final long serialVersionUID = 1L;
+	
+}
