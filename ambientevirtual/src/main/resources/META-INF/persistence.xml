@@ -8,6 +8,15 @@
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>java:jboss/datasources/ExampleDS</non-jta-data-source>
 
+		<class>br.edu.senai.ambientevirtual.domain.Acompanhamento</class>
+		<class>br.edu.senai.ambientevirtual.domain.Aluno</class>
+		<class>br.edu.senai.ambientevirtual.domain.Atividade</class>
+		<class>br.edu.senai.ambientevirtual.domain.EntregaAtividade</class>
+		<class>br.edu.senai.ambientevirtual.domain.Grupo</class>
+		<class>br.edu.senai.ambientevirtual.domain.Turma</class>
+		<class>br.edu.senai.ambientevirtual.domain.Tutor</class>
+		<class>br.edu.senai.ambientevirtual.domain.Usuario</class>
+
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
