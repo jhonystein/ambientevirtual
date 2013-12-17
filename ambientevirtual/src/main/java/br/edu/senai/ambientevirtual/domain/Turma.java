@@ -1,5 +1,6 @@
 package br.edu.senai.ambientevirtual.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -40,6 +41,12 @@ public class Turma {
 	@OneToMany
 	@JoinColumn(name="ID_TURMA", nullable=false)
 	private List<Grupo> grupos;
+	
+	public Turma() {
+		tutores = new ArrayList<Tutor>();
+		alunos = new ArrayList<Aluno>();
+		grupos = new ArrayList<Grupo>();
+	}
 	
 	public Long getId() {
 		return id;

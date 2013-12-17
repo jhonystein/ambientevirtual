@@ -22,11 +22,15 @@ public class Aluno {
 	private Long id;
 	@Column(name="NR_MATRICULA", length=20)
 	private String matricula;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_USUARIO", nullable=false)
 	private Usuario usuario;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="aluno")
 	private List<Acompanhamento> acompanhamentos;
+	
+	public Aluno() {
+		usuario = new Usuario();
+	}
 	
 	public Long getId() {
 		return id;
