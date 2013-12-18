@@ -1,12 +1,17 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.List;
+
 import javax.inject.Inject;
+
+import br.edu.senai.ambientevirtual.business.AtividadeBC;
+import br.edu.senai.ambientevirtual.business.TutorBC;
+import br.edu.senai.ambientevirtual.domain.Atividade;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.edu.senai.ambientevirtual.business.AtividadeBC;
-import br.edu.senai.ambientevirtual.domain.Atividade;
 
 @ViewController
 @PreviousView("./atividade_list.jsf")
@@ -17,6 +22,13 @@ public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 	@Inject
 	private AtividadeBC atividadeBC;
 	
+	@Inject
+	private TutorBC tutorBC;
+	
+	public List<Tutor> getGetListTutores() {
+		return tutorBC.findAll();
+	}
+
 	@Override
 	@Transactional
 	public String delete() {
