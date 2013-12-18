@@ -14,11 +14,19 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 public class TutorDAO extends JPACrud<Tutor, Long> {
 
 	private static final long serialVersionUID = 1L;
-	
-	public List<Tutor> filtrarQuery(Map<String, String> params) {
-		// TODO Auto-generated method stub
+
+	public List<Tutor> filtrarQuery(String tpFiltro, Map<String, String> params) {
+		String query = "Select t from Tutor t where t.usuario.nome = :nome";
 		
-		Query filtro = createQuery("Select t from Tutor t where t.usuario.nome = :nome");
+		if ("email".equals(tpFiltro)) {
+			query = "Select t from Tutor t where t.usuario.email = :email";
+		}
+		
+		if ("nucleo".equals(tpFiltro)) {
+			query = "Select t from Tutor t where t.nucleo = :nucleo";
+		}		
+		
+		Query filtro = createQuery(query);
 		
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator.hasNext();) {
 			String chave = iterator.next();
@@ -27,5 +35,4 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 		
 		return (List<Tutor>) filtro.getResultList();
 	}
-	
 }

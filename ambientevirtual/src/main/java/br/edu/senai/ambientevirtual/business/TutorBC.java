@@ -13,8 +13,8 @@ public class TutorBC extends DelegateCrud<Tutor, Long, TutorDAO> {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public List<Tutor> filtrarQuery(Map<String, String> params) {
-		return getDelegate().filtrarQuery(params);
+	public List<Tutor> filtrarQuery(String filtro, Map<String, String> params) {
+		return getDelegate().filtrarQuery(filtro, params);
 	}
 		
 }

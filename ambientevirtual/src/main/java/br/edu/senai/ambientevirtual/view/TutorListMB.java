@@ -50,7 +50,7 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 		
 		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null && !tipoFiltro.isEmpty()) {
 			params.put(tipoFiltro, filtro);			
-			return this.tutorBC.filtrarQuery(params);
+			return this.tutorBC.filtrarQuery(tipoFiltro, params);
 		}
 		
 		return this.tutorBC.findAll();
