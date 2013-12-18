@@ -18,15 +18,14 @@
 						icon="ui-icon-trash" onclick="confirmation.show()" type="button"
 						immediate="true" ajax="false" />
 
-
 					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
 						for="filtro" styleClass="text-input" />
-					<h:inputText id="nome" value="#{tutorListMB.filtro}"
+					<h:inputText id="filtro" value="#{atividadeListMB.filtro}"
 						title="#{messages['tutor.alt.filtro']}" />
 
 					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
 						for="tipoFiltro" styleClass="text-input" />
-					<h:selectOneMenu id="tipoFiltro" value="#{tutorListMB.tipoFiltro}"
+					<h:selectOneMenu id="tipoFiltro" value="#{atividadeListMB.tipoFiltro}"
 						title="#{messages['tutor.alt.tipofiltro']}">
 						<f:selectItem itemValue="" itemLabel="Todos" />
 						<f:selectItem itemValue="nome" itemLabel="Nome" />
