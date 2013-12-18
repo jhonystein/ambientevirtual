@@ -1,28 +1,48 @@
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
 
 	<ui:define name="body">
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{tutorListMB.getNextView}"
+					<p:commandButton title="#{messages['button.new']}"
+						icon="ui-icon-document" action="#{tutorListMB.getNextView}"
 						actionListener="#{tutorListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-						
-					<h:outputLabel value="#{messages['tutor.label.filtro']}: " for="filtro" styleClass="text-input"/>
+					<p:commandButton title="#{messages['button.delete']}"
+						icon="ui-icon-trash" onclick="confirmation.show()" type="button"
+						immediate="true" ajax="false" />
+
+					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
+						for="filtro" styleClass="text-input" />
 					<h:inputText id="nome" value="#{tutorListMB.filtro}"
 						title="#{messages['tutor.alt.filtro']}" />
 
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tutorListMB.deleteSelection}"
+
+
+					<p:commandButton title="#{messages['button.new']}"
+						icon="ui-icon-document" 
+						actionListener="#{tutorListMB.list()}" ajax="false" />
+
+
+
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert"
+						widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{tutorListMB.deleteSelection}"
 							actionListener="#{tutorListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -31,36 +51,39 @@
 				<p:column style="width:1%;">
 					<h:selectBooleanCheckbox value="#{tutorListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
-				
+
 				<p:column style="width:5%;" sortBy="#{bean.id}">
 					<f:facet name="header">#{messages['tutor.label.id']}</f:facet>
 					<h:outputText value="#{bean.id}" />
 				</p:column>
-						
+
 				<p:column sortBy="#{bean.usuario.nome}">
 					<f:facet name="header">#{messages['tutor.label.nome']}</f:facet>
-					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
+					<h:commandLink action="#{tutorListMB.getNextView}"
+						actionListener="#{tutorListMB.clear}">
 						<h:outputText value="#{bean.usuario.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-						
+
 				<p:column sortBy="#{bean.usuario.telefone}">
 					<f:facet name="header">#{messages['tutor.label.telefone']}</f:facet>
-					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
+					<h:commandLink action="#{tutorListMB.getNextView}"
+						actionListener="#{tutorListMB.clear}">
 						<h:outputText value="#{bean.usuario.telefone}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-				
+
 				<p:column sortBy="#{bean.usuario.email}">
 					<f:facet name="header">#{messages['tutor.label.email']}</f:facet>
-					<h:commandLink action="#{tutorListMB.getNextView}" actionListener="#{tutorListMB.clear}">
+					<h:commandLink action="#{tutorListMB.getNextView}"
+						actionListener="#{tutorListMB.clear}">
 						<h:outputText value="#{bean.usuario.email}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-						
+
 			</p:dataTable>
 		</h:form>
 

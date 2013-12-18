@@ -1,13 +1,14 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.TutorBC;
 import br.edu.senai.ambientevirtual.domain.Tutor;
-import br.edu.senai.ambientevirtual.persistence.TutorDAO;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -23,8 +24,9 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 
 	@Inject
 	private TutorBC tutorBC;
-	
 	private String filtro;
+	
+	private Map<String, String> params = new HashMap<String, String>();
 
 	public String getFiltro() {
 		return filtro;
@@ -37,12 +39,9 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 	@Override
 	protected List<Tutor> handleResultList() {
 		
-		
-		
-		//if (myString != null && !myString.isEmpty()) {
-		
-		if(!"".equals(filtro)) {
-			//return this.tutorDAO.;
+		if (filtro != null && !filtro.isEmpty()) {
+			params.put("nome", filtro);			
+			return this.tutorBC.filtrarQuery(params);
 		}
 		
 		return this.tutorBC.findAll();
