@@ -16,12 +16,12 @@
 					<h:outputLabel value="Filtrar" for="tipoFiltro" />
 			        <p:selectOneMenu id="tipoFiltro" value="#{alunoListMB.tipoFiltro}">  
 			            <f:selectItem itemLabel="Todos" itemValue="" />  
-			            <f:selectItem itemLabel="Nome" itemValue="NM_ALUNO" />  
-			            <f:selectItem itemLabel="Matrícula" itemValue="NR_MATRICULA" />  
-			            <f:selectItem itemLabel="E-mail" itemValue="DS_EMAIL" />  
+			            <f:selectItem itemLabel="Nome" itemValue="nome" />  
+			            <f:selectItem itemLabel="Matrícula" itemValue="matricula" />  
+			            <f:selectItem itemLabel="E-mail" itemValue="email" />  
 			        </p:selectOneMenu>
 			        <h:inputText id="valorFiltro" value="#{alunoListMB.valorFiltro}" styleClass="text-input" />
-					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="#{alunoListMB.filtrar()}"
+					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="null"
 						actionListener="#{alunoListMB.clear()}" ajax="false" />
 					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"

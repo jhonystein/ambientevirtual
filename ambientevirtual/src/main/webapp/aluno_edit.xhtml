@@ -42,6 +42,16 @@
 					<h:inputText id="nome" value="#{alunoEditMB.bean.usuario.nome}"
 						title="#{messages['usuario.label.nome']}" />
 					<p:message for="nome" />
+
+					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
+					<h:inputText id="login" value="#{alunoEditMB.bean.usuario.login}"
+						title="#{messages['usuario.alt.login']}" />
+					<p:message for="login" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+					<h:inputSecret id="senha" value="#{alunoEditMB.bean.usuario.senha}"
+						title="#{messages['usuario.alt.senha']}" />
+					<p:message for="senha" />
 					
 					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
 					<h:inputText id="email" value="#{alunoEditMB.bean.usuario.email}"
