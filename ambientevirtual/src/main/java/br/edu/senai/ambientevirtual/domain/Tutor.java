@@ -1,5 +1,6 @@
 package br.edu.senai.ambientevirtual.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Tutor {
 	private Long id;
 	@Column(name="NM_NUCLEO", length=100, nullable=false)
 	private String nucleo;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ID_USUARIO", nullable=false)
 	private Usuario usuario;
 

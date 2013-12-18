@@ -12,6 +12,10 @@
 
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
+						
+					<h:outputLabel value="#{messages['tutor.label.filtro']}: " for="filtro" styleClass="text-input"/>
+					<h:inputText id="nome" value="#{tutorListMB.filtro}"
+						title="#{messages['tutor.alt.filtro']}" />
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">

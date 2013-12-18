@@ -18,7 +18,7 @@ public class TutorEditMB extends AbstractEditPageBean<Tutor, Long> {
 
 	@Inject
 	private TutorBC tutorBC;
-
+	
 	public Sexo[] getSexoValues() {
 		return Sexo.values();
 	}

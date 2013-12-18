@@ -2,7 +2,9 @@ package br.edu.senai.ambientevirtual.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -20,16 +22,17 @@ public class TurmaListMB extends AbstractListPageBean<Turma, Long> {
 
 	@Inject
 	private TurmaBC turmaBC;
-	
+
 	@Override
 	protected List<Turma> handleResultList() {
 		return this.turmaBC.findAll();
 	}
-	
+
 	@Transactional
 	public String deleteSelection() {
 		boolean delete;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter
+				.hasNext();) {
 			Long id = iter.next();
 			delete = getSelection().get(id);
 			if (delete) {

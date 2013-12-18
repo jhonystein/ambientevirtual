@@ -2,14 +2,17 @@ package br.edu.senai.ambientevirtual.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import br.edu.senai.ambientevirtual.business.TutorBC;
+import br.edu.senai.ambientevirtual.domain.Tutor;
+import br.edu.senai.ambientevirtual.persistence.TutorDAO;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.edu.senai.ambientevirtual.business.TutorBC;
-import br.edu.senai.ambientevirtual.domain.Tutor;
 
 @ViewController
 @NextView("./tutor_edit.jsf")
@@ -21,8 +24,27 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 	@Inject
 	private TutorBC tutorBC;
 	
+	private String filtro;
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+	
 	@Override
 	protected List<Tutor> handleResultList() {
+		
+		
+		
+		//if (myString != null && !myString.isEmpty()) {
+		
+		if(!"".equals(filtro)) {
+			//return this.tutorDAO.;
+		}
+		
 		return this.tutorBC.findAll();
 	}
 	
