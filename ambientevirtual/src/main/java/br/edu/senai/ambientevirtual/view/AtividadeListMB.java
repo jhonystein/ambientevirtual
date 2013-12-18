@@ -1,8 +1,12 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -21,8 +25,35 @@ public class AtividadeListMB extends AbstractListPageBean<Atividade, Long> {
 	@Inject
 	private AtividadeBC atividadeBC;
 	
+	private String filtro;
+	private String tipoFiltro;
+	
+	private Map<String, String> params = new HashMap<String, String>();
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+	
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+	
 	@Override
 	protected List<Atividade> handleResultList() {
+		
+		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null && !tipoFiltro.isEmpty()) {
+			params.put(tipoFiltro, filtro);			
+			return this.atividadeBC.filtrarQuery(tipoFiltro, params);
+		}
+		
 		return this.atividadeBC.findAll();
 	}
 	
@@ -38,6 +69,6 @@ public class AtividadeListMB extends AbstractListPageBean<Atividade, Long> {
 			}
 		}
 		return getPreviousView();
-	}
+	}	
 
 }
