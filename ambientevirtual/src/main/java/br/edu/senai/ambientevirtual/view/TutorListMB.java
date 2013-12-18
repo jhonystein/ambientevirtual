@@ -25,6 +25,7 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 	@Inject
 	private TutorBC tutorBC;
 	private String filtro;
+	private String tipoFiltro;
 	
 	private Map<String, String> params = new HashMap<String, String>();
 
@@ -36,11 +37,19 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 		this.filtro = filtro;
 	}
 	
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+
 	@Override
 	protected List<Tutor> handleResultList() {
 		
-		if (filtro != null && !filtro.isEmpty()) {
-			params.put("nome", filtro);			
+		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null && !tipoFiltro.isEmpty()) {
+			params.put(tipoFiltro, filtro);			
 			return this.tutorBC.filtrarQuery(params);
 		}
 		

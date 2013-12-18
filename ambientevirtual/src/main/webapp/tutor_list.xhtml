@@ -23,12 +23,19 @@
 					<h:inputText id="nome" value="#{tutorListMB.filtro}"
 						title="#{messages['tutor.alt.filtro']}" />
 
-
-
+					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: " for="tipoFiltro"
+						styleClass="text-input" />						
+					<h:selectOneMenu id="tipoFiltro" value="#{tutorListMB.tipoFiltro}"
+						title="#{messages['tutor.alt.tipofiltro']}">
+						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItem itemValue="nome" itemLabel="Nome" />
+						<f:selectItem itemValue="email" itemLabel="Email" />
+						<f:selectItem itemValue="nucleo" itemLabel="Nucleo" />
+					</h:selectOneMenu>
 
 					<p:commandButton title="#{messages['button.new']}"
-						icon="ui-icon-document" 
-						actionListener="#{tutorListMB.list()}" ajax="false" />
+						icon="ui-icon-document" actionListener="#{tutorListMB.list()}"
+						ajax="false" />
 
 
 
