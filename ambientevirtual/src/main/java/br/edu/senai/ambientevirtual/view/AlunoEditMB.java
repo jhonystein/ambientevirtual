@@ -1,12 +1,20 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+
+import org.apache.log4j.Logger;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
+import br.edu.senai.ambientevirtual.domain.Sexo;
 
 @ViewController
 @PreviousView("./aluno_list.jsf")
@@ -16,6 +24,14 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 
 	@Inject
 	private AlunoBC alunoBC;
+
+	private List<SelectItem> sexos;
+	
+	public AlunoEditMB() {
+		sexos = new ArrayList<SelectItem>();
+		sexos.add(new SelectItem(Sexo.FEMININO, "Feminino"));
+		sexos.add(new SelectItem(Sexo.MASCULINO, "Masculino"));
+	}
 	
 	@Override
 	@Transactional
@@ -27,6 +43,8 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		System.out.println("MB");
+		Logger.getLogger(AlunoEditMB.class).info("log MB");
 		this.alunoBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -43,4 +61,13 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		setBean(this.alunoBC.load(getId()));
 	}
 
+	public List<SelectItem> getSexos() {
+		return sexos;
+	}
+
+	public void setSexos(List<SelectItem> sexos) {
+		this.sexos = sexos;
+	}
+
+	
 }

@@ -18,6 +18,9 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;
 
+	private String tipoFiltro;
+	private String valorFiltro;
+	
 	@Inject
 	private AlunoBC alunoBC;
 	
@@ -40,4 +43,25 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 		return getPreviousView();
 	}
 
+	public String filtrar() {
+		
+		return getPreviousView();
+	}
+	
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+
+	public String getValorFiltro() {
+		return valorFiltro;
+	}
+
+	public void setValorFiltro(String valorFiltro) {
+		this.valorFiltro = valorFiltro;
+	}
+	
 }
