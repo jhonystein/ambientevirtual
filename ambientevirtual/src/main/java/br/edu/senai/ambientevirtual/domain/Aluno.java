@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -19,6 +21,7 @@ public class Aluno {
 
 	@Id
 	@Column(name="ID_ALUNO")
+	@GeneratedValue(generator="AlunoGen", strategy=GenerationType.TABLE)
 	private Long id;
 	@Column(name="NR_MATRICULA", length=20)
 	private String matricula;
@@ -26,6 +29,7 @@ public class Aluno {
 	@JoinColumn(name="ID_USUARIO", nullable=false)
 	private Usuario usuario;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="aluno")
+	@Column(name="ID_ACOMPANHAMENTO", nullable=true)
 	private List<Acompanhamento> acompanhamentos;
 	
 	public Aluno() {

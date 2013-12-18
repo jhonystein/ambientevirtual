@@ -6,15 +6,13 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
-
+import br.edu.senai.ambientevirtual.business.AlunoBC;
+import br.edu.senai.ambientevirtual.domain.Aluno;
+import br.edu.senai.ambientevirtual.domain.Sexo;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.edu.senai.ambientevirtual.business.AlunoBC;
-import br.edu.senai.ambientevirtual.domain.Aluno;
-import br.edu.senai.ambientevirtual.domain.Sexo;
 
 @ViewController
 @PreviousView("./aluno_list.jsf")
@@ -43,8 +41,6 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Override
 	@Transactional
 	public String insert() {
-		System.out.println("MB");
-		Logger.getLogger(AlunoEditMB.class).info("log MB");
 		this.alunoBC.insert(getBean());
 		return getPreviousView();
 	}

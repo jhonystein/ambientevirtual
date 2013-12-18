@@ -26,6 +26,10 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 	
 	@Override
 	protected List<Aluno> handleResultList() {
+		System.out.println("tipo" + tipoFiltro + ", valor" + valorFiltro);
+		if (valorFiltro != null) {
+			return alunoBC.filtrar(tipoFiltro, valorFiltro);
+		}
 		return this.alunoBC.findAll();
 	}
 	
@@ -43,11 +47,6 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 		return getPreviousView();
 	}
 
-	public String filtrar() {
-		
-		return getPreviousView();
-	}
-	
 	public String getTipoFiltro() {
 		return tipoFiltro;
 	}
