@@ -12,7 +12,18 @@
 
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
-
+					
+					<h:outputLabel value="Filtrar" for="tipoFiltro" />
+			        <p:selectOneMenu id="tipoFiltro" value="#{alunoListMB.tipoFiltro}">  
+			            <f:selectItem itemLabel="Todos" itemValue="" />  
+			            <f:selectItem itemLabel="Nome" itemValue="NM_ALUNO" />  
+			            <f:selectItem itemLabel="Matrícula" itemValue="NR_MATRICULA" />  
+			            <f:selectItem itemLabel="E-mail" itemValue="DS_EMAIL" />  
+			        </p:selectOneMenu>
+			        <h:inputText id="valorFiltro" value="#{alunoListMB.valorFiltro}" styleClass="text-input" />
+					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="#{alunoListMB.filtrar()}"
+						actionListener="#{alunoListMB.clear()}" ajax="false" />
+					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 
@@ -40,15 +51,71 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
+				
+				<p:column sortBy="#{bean.usuario.login}">
+					<f:facet name="header">#{messages['usuario.label.login']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.login}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
 						
-				<p:column sortBy="#{bean.usuario}">
-					<f:facet name="header">#{messages['aluno.label.usuario']}</f:facet>
-					<h:commandLink action="#{alunoListMB.getNextView}" actionListener="#{alunoListMB.clear}">
-						<h:outputText value="#{bean.usuario}" />
+				<p:column sortBy="#{bean.usuario.senha}">
+					<f:facet name="header">#{messages['usuario.label.senha']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.senha}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario.nome}">
+					<f:facet name="header">#{messages['usuario.label.nome']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.nome}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario.email}">
+					<f:facet name="header">#{messages['usuario.label.email']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.email}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario.telefone}">
+					<f:facet name="header">#{messages['usuario.label.telefone']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.telefone}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario.sexo}">
+					<f:facet name="header">#{messages['usuario.label.sexo']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.sexo}" />
+						<f:param name="id" value="#{bean.usuario.id}" />
+					</h:commandLink>
+				</p:column>
+						
+				<p:column sortBy="#{bean.usuario.rg}">
+					<f:facet name="header">#{messages['usuario.label.rg']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.rg}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
+				<p:column sortBy="#{bean.usuario.cpf}">
+					<f:facet name="header">#{messages['usuario.label.cpf']}</f:facet>
+					<h:commandLink action="#{usuarioListMB.getNextView}" actionListener="#{usuarioListMB.clear}">
+						<h:outputText value="#{bean.usuario.cpf}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				
 				<p:column sortBy="#{bean.acompanhamentos}">
 					<f:facet name="header">#{messages['aluno.label.acompanhamentos']}</f:facet>
 					<h:commandLink action="#{alunoListMB.getNextView}" actionListener="#{alunoListMB.clear}">

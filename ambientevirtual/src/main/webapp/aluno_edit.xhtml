@@ -5,6 +5,7 @@
 
 	<ui:define name="body">
 		<h:form prependId="false">
+			<p:messages />
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
@@ -37,15 +38,45 @@
 						title="#{messages['aluno.alt.matricula']}" />
 					<p:message for="matricula" />
 					
-					<h:outputLabel value="#{messages['aluno.label.usuario']}: " for="usuario" styleClass="text-input" />
-					<h:inputText id="usuario" value="#{alunoEditMB.bean.usuario}"
-						title="#{messages['aluno.alt.usuario']}" />
-					<p:message for="usuario" />
+					<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{alunoEditMB.bean.usuario.nome}"
+						title="#{messages['usuario.label.nome']}" />
+					<p:message for="nome" />
 					
+					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
+					<h:inputText id="email" value="#{alunoEditMB.bean.usuario.email}"
+						title="#{messages['usuario.alt.email']}" />
+					<p:message for="email" />
+					
+					<h:outputLabel value="#{messages['usuario.label.telefone']}: " for="telefone" styleClass="text-input" />
+					<h:inputText id="telefone" value="#{alunoEditMB.bean.usuario.telefone}"
+						title="#{messages['usuario.alt.telefone']}" />
+					<p:message for="telefone" />
+					
+					<h:outputLabel value="#{messages['usuario.label.sexo']}: " for="sexo" styleClass="text-input" />
+			        <p:selectOneRadio id="sexo" value="#{alunoEditMB.bean.usuario.sexo}" title="#{messages['usuario.alt.sexo']}">  
+			            <f:selectItems value="#{alunoEditMB.sexos}" var="sexo"
+                                   itemLabel="#{sexo.label}" 
+                                   itemValue="#{sexo.value}" />
+			        </p:selectOneRadio>  
+					<p:message for="sexo" />
+					
+					<h:outputLabel value="#{messages['usuario.label.rg']}: " for="rg" styleClass="text-input" />
+					<h:inputText id="rg" value="#{alunoEditMB.bean.usuario.rg}"
+						title="#{messages['usuario.alt.rg']}" />
+					<p:message for="rg" />
+					
+					<h:outputLabel value="#{messages['usuario.label.cpf']}: " for="cpf" styleClass="text-input" />
+					<h:inputText id="cpf" value="#{alunoEditMB.bean.usuario.cpf}"
+						title="#{messages['usuario.alt.cpf']}" />
+					<p:message for="cpf" />
+					
+					<!-- 
 					<h:outputLabel value="#{messages['aluno.label.acompanhamentos']}: " for="acompanhamentos" styleClass="text-input" />
 					<h:inputText id="acompanhamentos" value="#{alunoEditMB.bean.acompanhamentos}"
 						title="#{messages['aluno.alt.acompanhamentos']}" />
 					<p:message for="acompanhamentos" />
+					-->
 					
 				</h:panelGrid>
 			</p:fieldset>
