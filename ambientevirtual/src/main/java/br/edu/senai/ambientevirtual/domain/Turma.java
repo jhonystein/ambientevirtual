@@ -24,6 +24,8 @@ public class Turma {
 	@Column(name="ID_TURMA")
 	@GeneratedValue(generator="TurmaGen", strategy=GenerationType.TABLE)
 	private Long id;
+	@Column(name="DS_CODIGO", length=50, nullable=false)
+	private String codigo;
 	@Column(name="NM_CURSO", length=50, nullable=false)
 	private String curso;
 	@Column(name="NR_SEMESTRE", nullable=false)
