@@ -20,9 +20,16 @@ public class AcompanhamentoListMB extends AbstractListPageBean<Acompanhamento, L
 
 	@Inject
 	private AcompanhamentoBC acompanhamentoBC;
+
+	private String tipoFiltro;
+	
+	private String filtro;
 	
 	@Override
 	protected List<Acompanhamento> handleResultList() {
+		if (filtro != null) {
+			return this.acompanhamentoBC.filtrar(tipoFiltro, filtro);
+		}
 		return this.acompanhamentoBC.findAll();
 	}
 	
@@ -38,6 +45,22 @@ public class AcompanhamentoListMB extends AbstractListPageBean<Acompanhamento, L
 			}
 		}
 		return getPreviousView();
+	}
+
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 }

@@ -36,6 +36,14 @@ public class Aluno {
 		usuario = new Usuario();
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Aluno [id=" + id + ", matricula=" + matricula + ", usuario="
+				+ usuario + ", acompanhamentos=" + acompanhamentos + "]";
+	}
+
+
 	public Long getId() {
 		return id;
 	}

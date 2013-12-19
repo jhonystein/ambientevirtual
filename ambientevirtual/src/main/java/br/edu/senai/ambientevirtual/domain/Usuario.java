@@ -44,6 +44,14 @@ public class Usuario implements Serializable {
 	@Column(name="NR_CPF", length=30)
 	private String cpf;
 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", login=" + login + ", senha=" + senha
+				+ ", nome=" + nome + ", email=" + email + ", telefone="
+				+ telefone + ", sexo=" + sexo + ", rg=" + rg + ", cpf=" + cpf
+				+ "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +36,9 @@ public class Acompanhamento {
 	private Date ocorrencia;
 	@Column(name="DS_ACOMPANHAMENTO", length=250 ,nullable=false)
 	private String acompanhamento;
-
+	@Enumerated(EnumType.STRING)
+	private Situacao situacao;
+	
 	public Long getId() {
 		return id;
 	}
@@ -73,6 +77,14 @@ public class Acompanhamento {
 
 	public void setAcompanhamento(String acompanhamento) {
 		this.acompanhamento = acompanhamento;
+	}
+
+	public Situacao getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
 }

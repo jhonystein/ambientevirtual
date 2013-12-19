@@ -19,16 +19,16 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 	private static final long serialVersionUID = 1L;
 
 	private String tipoFiltro;
-	private String valorFiltro;
+	private String filtro;
 	
 	@Inject
 	private AlunoBC alunoBC;
 	
 	@Override
 	protected List<Aluno> handleResultList() {
-		System.out.println("tipo" + tipoFiltro + ", valor" + valorFiltro);
-		if (valorFiltro != null) {
-			return alunoBC.filtrar(tipoFiltro, valorFiltro);
+		System.out.println("tipo" + tipoFiltro + ", valor" + filtro);
+		if (filtro != null) {
+			return alunoBC.filtrar(tipoFiltro, filtro);
 		}
 		return this.alunoBC.findAll();
 	}
@@ -55,12 +55,12 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 		this.tipoFiltro = tipoFiltro;
 	}
 
-	public String getValorFiltro() {
-		return valorFiltro;
+	public String getFiltro() {
+		return filtro;
 	}
 
-	public void setValorFiltro(String valorFiltro) {
-		this.valorFiltro = valorFiltro;
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
-	
+
 }
