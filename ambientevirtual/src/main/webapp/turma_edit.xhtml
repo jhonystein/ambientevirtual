@@ -34,18 +34,16 @@
 					
 					<h:outputLabel value="#{messages['turma.label.curso']}: " for="curso" styleClass="text-input" />
 					<h:inputText id="curso" value="#{turmaEditMB.bean.curso}"
-						title="#{messages['turma.alt.curso']}" />
-					<p:message for="curso" />
-					
-					<h:outputLabel value="#{messages['turma.label.curso']}: " for="curso" styleClass="text-input" />
-					<h:inputText id="curso" value="#{turmaEditMB.bean.curso}"
-						title="#{messages['turma.alt.curso']}" />
+						title="#{messages['turma.alt.curso']}" required="true"/>
 					<p:message for="curso" />
 					
 					<h:outputLabel value="#{messages['turma.label.semestre']}: " for="semestre" styleClass="text-input" />
-					<h:inputText id="semestre" value="#{turmaEditMB.bean.semestre}"
-						title="#{messages['turma.alt.semestre']}" />
+					<p:spinner id="semestre"   
+                    value="#{turmaEditMB.bean.semestre}" title="#{messages['turma.alt.semestre']}"
+                    min="1" max="2" required="true"/>	
 					<p:message for="semestre" />
+					
+					
 					
 				</h:panelGrid>
 			</p:fieldset>

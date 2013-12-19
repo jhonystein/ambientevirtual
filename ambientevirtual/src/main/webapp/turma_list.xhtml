@@ -13,11 +13,25 @@
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
 						
-					<p:commandButton title="#{messages['button.add.turma.tutor']}" icon="ui-icon-person" 
-						type="button" immediate="true" ajax="false" />	
+					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
+						for="filtro" styleClass="text-input" />
+					<h:inputText id="filtro" value="#{turmaListMB.filtro}"
+						title="#{messages['tutor.alt.filtro']}" />
+
+					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
+						for="tipoFiltro" styleClass="text-input" />
+					<h:selectOneMenu id="tipoFiltro" value="#{turmaListMB.tipoFiltro}"
+						title="#{messages['tutor.alt.tipofiltro']}">
+						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItem itemValue="curso" itemLabel="Curso" />
+						<f:selectItem itemValue="semestre" itemLabel="Semestre" />
+					</h:selectOneMenu>
+					
+					<p:commandButton title="#{messages['button.search']}"
+						icon="ui-icon-search" actionListener="#{turmaListMB.list()}"
+						ajax="false" />
 						
-					<p:commandButton title="#{messages['button.add.turma.aluno']}" icon="ui-icon-pencil" 
-						type="button" immediate="true" ajax="false" />
+						
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
@@ -51,6 +65,19 @@
 					<f:facet name="header">#{messages['turma.label.semestre']}</f:facet>
 					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
 						<h:outputText value="#{bean.semestre}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				
+				<p:column style="width:30px;">
+					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
+					<h:commandLink actionListener="#{tutorListMB.clear}">
+						<span class="ui-icon ui-icon-person" style="float:left;" title="#{messages['button.add.turma.tutor']}"></span>
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+					
+					<h:commandLink actionListener="#{tutorListMB.clear}">
+						<span class="ui-icon ui-icon-pencil" style="float:left;" title="#{messages['button.add.turma.aluno']}"></span>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
