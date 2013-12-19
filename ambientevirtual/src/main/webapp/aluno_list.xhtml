@@ -13,17 +13,25 @@
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
 					
-					<h:outputLabel value="Filtrar" for="tipoFiltro" />
-			        <p:selectOneMenu id="tipoFiltro" value="#{alunoListMB.tipoFiltro}">  
-			            <f:selectItem itemLabel="Todos" itemValue="" />  
-			            <f:selectItem itemLabel="Nome" itemValue="nome" />  
-			            <f:selectItem itemLabel="Matrícula" itemValue="matricula" />  
-			            <f:selectItem itemLabel="E-mail" itemValue="email" />  
-			        </p:selectOneMenu>
-			        <h:inputText id="valorFiltro" value="#{alunoListMB.valorFiltro}" styleClass="text-input" />
-					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="#{alunoListMB.clear()}"
-						actionListener="#{alunoListMB.clear()}" ajax="false" />
-					
+					<h:outputLabel value="#{messages['aluno.label.filtro']}: "
+						for="filtro" styleClass="text-input" />
+					<h:inputText id="nome" value="#{alunoListMB.filtro}"
+						title="#{messages['aluno.alt.filtro']}" />
+
+					<h:outputLabel value="#{messages['aluno.label.tipofitro']}: " for="tipoFiltro"
+						styleClass="text-input" />						
+					<h:selectOneMenu id="tipoFiltro" value="#{alunoListMB.tipoFiltro}"
+						title="#{messages['aluno.alt.tipofiltro']}">
+			            <f:selectItem itemLabel="Todos" itemValue="" />
+			            <f:selectItem itemLabel="Nome" itemValue="nome" />
+			            <f:selectItem itemLabel="Matrícula" itemValue="matricula" />
+			            <f:selectItem itemLabel="E-mail" itemValue="email" />
+					</h:selectOneMenu>
+
+					<p:commandButton title="#{messages['button.search']}"
+						icon="ui-icon-search" actionListener="#{acompanhamentoListMB.list()}"
+						ajax="false" />
+										
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 

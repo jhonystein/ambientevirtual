@@ -32,6 +32,7 @@
 					<h:outputText id="id" value="#{acompanhamentoEditMB.bean.id}" />
 					<p:message for="id" />
 					
+					<!--
 					<h:outputLabel value="#{messages['acompanhamento.label.turma']}: " for="turma" styleClass="text-input" />
 					<h:inputText id="turma" value="#{acompanhamentoEditMB.bean.turma}"
 						title="#{messages['acompanhamento.alt.turma']}" />
@@ -41,19 +42,24 @@
 					<h:inputText id="aluno" value="#{acompanhamentoEditMB.bean.aluno}"
 						title="#{messages['acompanhamento.alt.aluno']}" />
 					<p:message for="aluno" />
+					-->
+					<h:outputLabel value="#{messages['acompanhamento.alt.situacao']}" for="situacao" styleClass="text-input" />
+					<p:selectOneMenu id="situacao" value="#{acompanhamentoEditMB.bean.situacao}">
+						<f:selectItems value="#{acompanhamentoEditMB.situacoes}" var="situacao" 
+							itemLabel="#{situacao.label}" itemValue="#{situacao.value}" />
+					</p:selectOneMenu>
+					<p:message for="situacao" />
 					
 					<h:outputLabel value="#{messages['acompanhamento.label.ocorrencia']}: " for="ocorrencia" styleClass="text-input" />
 					<p:calendar id="ocorrencia" value="#{acompanhamentoEditMB.bean.ocorrencia}"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
 					   locale="#{currentLocale}" title="#{messages['acompanhamento.alt.ocorrencia']}" />
-					   <p:message for="ocorrencia" />
-								
-					<h:outputLabel value="#{messages['acompanhamento.label.acompanhamento']}: " for="acompanhamento" styleClass="text-input" />
-					<h:inputText id="acompanhamento" value="#{acompanhamentoEditMB.bean.acompanhamento}"
-						title="#{messages['acompanhamento.alt.acompanhamento']}" />
-					<p:message for="acompanhamento" />
-					
+				    <p:message for="ocorrencia" />
+				    
 				</h:panelGrid>
+					<h:outputLabel value="#{messages['acompanhamento.label.acompanhamento']}: " for="acompanhamento" styleClass="text-input" />
+					<p:editor id="acompanhamento" value="#{acompanhamentoEditMB.bean.acompanhamento}" width="600"/>
+					<p:message for="acompanhamento" />
 			</p:fieldset>
 		</h:form>
 	</ui:define>
