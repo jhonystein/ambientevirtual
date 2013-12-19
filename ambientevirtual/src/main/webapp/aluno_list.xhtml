@@ -21,7 +21,7 @@
 			            <f:selectItem itemLabel="E-mail" itemValue="email" />  
 			        </p:selectOneMenu>
 			        <h:inputText id="valorFiltro" value="#{alunoListMB.valorFiltro}" styleClass="text-input" />
-					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="null"
+					<h:commandButton title="#{messages['button.filter']}" value="Filtrar" action="#{alunoListMB.clear()}"
 						actionListener="#{alunoListMB.clear()}" ajax="false" />
 					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
