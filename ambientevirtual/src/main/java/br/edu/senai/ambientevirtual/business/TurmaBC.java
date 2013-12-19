@@ -3,11 +3,10 @@ package br.edu.senai.ambientevirtual.business;
 import java.util.List;
 import java.util.Map;
 
-import br.gov.frameworkdemoiselle.stereotype.BusinessController;
-import br.gov.frameworkdemoiselle.template.DelegateCrud;
-import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.edu.senai.ambientevirtual.persistence.TurmaDAO;
+import br.gov.frameworkdemoiselle.stereotype.BusinessController;
+import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
 public class TurmaBC extends DelegateCrud<Turma, Long, TurmaDAO> {

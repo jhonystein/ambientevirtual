@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -29,6 +30,12 @@ public class Grupo {
 		joinColumns={@JoinColumn(referencedColumnName="ID_GRUPO")}, 
 		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_ALUNO")})
 	private List<Aluno> alunos;
+	@ManyToOne
+	@JoinColumn(name="ID_TUTOR", nullable=false)
+	private Tutor tutor;
+	@ManyToOne
+	@JoinColumn(name="ID_TURMA", nullable=false)
+	private Turma turma;	
 
 	public Long getId() {
 		return id;
@@ -52,6 +59,22 @@ public class Grupo {
 	
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
+	}
+
+	public Tutor getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 	
 }

@@ -1,12 +1,19 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.List;
+
 import javax.inject.Inject;
+
+import br.edu.senai.ambientevirtual.business.GrupoBC;
+import br.edu.senai.ambientevirtual.business.TurmaBC;
+import br.edu.senai.ambientevirtual.business.TutorBC;
+import br.edu.senai.ambientevirtual.domain.Grupo;
+import br.edu.senai.ambientevirtual.domain.Turma;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.edu.senai.ambientevirtual.business.GrupoBC;
-import br.edu.senai.ambientevirtual.domain.Grupo;
 
 @ViewController
 @PreviousView("./grupo_list.jsf")
@@ -16,6 +23,20 @@ public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 
 	@Inject
 	private GrupoBC grupoBC;
+
+	@Inject
+	private TutorBC tutorBC;
+	
+	@Inject
+	private TurmaBC turmaBC;	
+	
+	public List<Tutor> getTutores() {
+		return tutorBC.findAll();
+	}
+	
+	public List<Turma> getTurmas() {
+		return turmaBC.findAll();
+	}
 	
 	@Override
 	@Transactional
