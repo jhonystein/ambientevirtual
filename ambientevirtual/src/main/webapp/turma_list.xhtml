@@ -71,7 +71,7 @@
 				
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<h:commandLink actionListener="#{tutorListMB.clear}">
+					<h:commandLink action="turma_add_tutor.jsf">
 						<span class="ui-icon ui-icon-person" style="float:left;" title="#{messages['button.add.turma.tutor']}"></span>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>

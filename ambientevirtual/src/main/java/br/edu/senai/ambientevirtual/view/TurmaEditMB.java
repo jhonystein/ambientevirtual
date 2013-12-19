@@ -1,12 +1,17 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.List;
+
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
+import br.edu.senai.ambientevirtual.business.TutorBC;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 
 @ViewController
 @PreviousView("./turma_list.jsf")
@@ -16,6 +21,13 @@ public class TurmaEditMB extends AbstractEditPageBean<Turma, Long> {
 
 	@Inject
 	private TurmaBC turmaBC;
+	
+	@Inject
+	private TutorBC tutorBC;
+	
+	public List<Tutor> getTutores() {
+		return tutorBC.findAll();
+	}
 	
 	@Override
 	@Transactional

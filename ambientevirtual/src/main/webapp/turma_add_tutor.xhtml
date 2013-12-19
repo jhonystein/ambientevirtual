@@ -1,0 +1,51 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{turmaAddTutorMB.update}"
+						rendered="#{turmaAddTutorMB.updateMode}" ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['turmaaddtutor.label']}" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+
+					<h:outputLabel value="#{messages['turma.label.id']}: " for="id"
+						styleClass="text-input" />
+					<h:outputText id="id" value="#{turmaAddTutorMB.bean.id}" />
+					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['turma.label.curso']}: " for="curso"
+						styleClass="text-input" />
+					<h:outputText id="curso" value="#{turmaAddTutorMB.bean.curso}" />
+					<p:message for="curso" />
+					
+					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
+						for="tutor" styleClass="text-input" />
+					<p:selectCheckboxMenu id="tutor" style="width:350px;"
+						label="Selecione Tutores" filter="true" filterText="Filter"
+						filterMatchMode="startsWith" panelStyle="width:300px"
+						value="#{turmaAddTutorMB.bean.tutores}" converter="tutorConverter">
+						<f:selectItems value="#{turmaAddTutorMB.tutores}" var="tutor"
+							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
+					</p:selectCheckboxMenu>
+					<p:message for="tutor" />
+
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
