@@ -27,6 +27,8 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 	private String filtro;
 	private String tipoFiltro;
 	
+	private String firstname;
+	
 	private Map<String, String> params = new HashMap<String, String>();
 
 	public String getFiltro() {
@@ -68,6 +70,14 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 			}
 		}
 		return getPreviousView();
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 }

@@ -1,18 +1,23 @@
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
 
 	<ui:define name="body">
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{turmaListMB.getNextView}"
+					<p:commandButton title="#{messages['button.new']}"
+						icon="ui-icon-document" action="#{turmaListMB.getNextView}"
 						actionListener="#{turmaListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-						
+					<p:commandButton title="#{messages['button.delete']}"
+						icon="ui-icon-trash" onclick="confirmation.show()" type="button"
+						immediate="true" ajax="false" />
+
 					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
 						for="filtro" styleClass="text-input" />
 					<h:inputText id="filtro" value="#{turmaListMB.filtro}"
@@ -26,19 +31,23 @@
 						<f:selectItem itemValue="curso" itemLabel="Curso" />
 						<f:selectItem itemValue="semestre" itemLabel="Semestre" />
 					</h:selectOneMenu>
-					
+
 					<p:commandButton title="#{messages['button.search']}"
 						icon="ui-icon-search" actionListener="#{turmaListMB.list()}"
 						ajax="false" />
-						
-						
 
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{turmaListMB.deleteSelection}"
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert"
+						widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{turmaListMB.deleteSelection}"
 							actionListener="#{turmaListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -47,43 +56,46 @@
 				<p:column style="width:1%;">
 					<h:selectBooleanCheckbox value="#{turmaListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
-				
+
 				<p:column style="width:5%;" sortBy="#{bean.id}">
 					<f:facet name="header">#{messages['turma.label.id']}</f:facet>
 					<h:outputText value="#{bean.id}" />
 				</p:column>
-						
+
 				<p:column sortBy="#{bean.curso}">
 					<f:facet name="header">#{messages['turma.label.curso']}</f:facet>
-					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
+					<h:commandLink action="#{turmaListMB.getNextView}"
+						actionListener="#{turmaListMB.clear}">
 						<h:outputText value="#{bean.curso}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-						
+
 				<p:column sortBy="#{bean.semestre}">
 					<f:facet name="header">#{messages['turma.label.semestre']}</f:facet>
-					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
+					<h:commandLink action="#{turmaListMB.getNextView}"
+						actionListener="#{turmaListMB.clear}">
 						<h:outputText value="#{bean.semestre}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-				
+
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
 					<h:commandLink action="turma_add_tutor.jsf">
-						<span class="ui-icon ui-icon-person" style="float:left;" title="#{messages['button.add.turma.tutor']}"></span>
+						<span class="ui-icon ui-icon-person" style="float: left;"
+							title="#{messages['button.add.turma.tutor']}"></span>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
-					
+
 					<h:commandLink actionListener="#{tutorListMB.clear}">
-						<span class="ui-icon ui-icon-pencil" style="float:left;" title="#{messages['button.add.turma.aluno']}"></span>
+						<span class="ui-icon ui-icon-pencil" style="float: left;"
+							title="#{messages['button.add.turma.aluno']}"></span>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-						
+
 			</p:dataTable>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
