@@ -40,8 +40,7 @@ public class Turma {
 		joinColumns={@JoinColumn(referencedColumnName="ID_TURMA")}, 
 		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_TUTOR")})
 	private List<Tutor> tutores;
-	@OneToMany
-	@JoinColumn(name="ID_TURMA", nullable=false)
+	@OneToMany(mappedBy="turma")
 	private List<Grupo> grupos;
 	
 	public Turma() {
