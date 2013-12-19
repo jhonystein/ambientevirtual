@@ -12,6 +12,12 @@
 
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />
+						
+					<p:commandButton title="#{messages['button.add.turma.tutor']}" icon="ui-icon-person" 
+						type="button" immediate="true" ajax="false" />	
+						
+					<p:commandButton title="#{messages['button.add.turma.aluno']}" icon="ui-icon-pencil" 
+						type="button" immediate="true" ajax="false" />
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
@@ -45,30 +51,6 @@
 					<f:facet name="header">#{messages['turma.label.semestre']}</f:facet>
 					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
 						<h:outputText value="#{bean.semestre}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-				<p:column sortBy="#{bean.alunos}">
-					<f:facet name="header">#{messages['turma.label.alunos']}</f:facet>
-					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
-						<h:outputText value="#{bean.alunos}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-				<p:column sortBy="#{bean.tutores}">
-					<f:facet name="header">#{messages['turma.label.tutores']}</f:facet>
-					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
-						<h:outputText value="#{bean.tutores}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-						
-				<p:column sortBy="#{bean.grupos}">
-					<f:facet name="header">#{messages['turma.label.grupos']}</f:facet>
-					<h:commandLink action="#{turmaListMB.getNextView}" actionListener="#{turmaListMB.clear}">
-						<h:outputText value="#{bean.grupos}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
