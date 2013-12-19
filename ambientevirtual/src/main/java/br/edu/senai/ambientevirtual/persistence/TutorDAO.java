@@ -33,6 +33,8 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 			filtro.setParameter(chave, params.get(chave));
 		}
 		
+		params.clear();
+		
 		return (List<Tutor>) filtro.getResultList();
 	}
 }

@@ -90,6 +90,15 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
+				
+				<p:column sortBy="#{bean.nucleo}">
+					<f:facet name="header">#{messages['tutor.label.nucleo']}</f:facet>
+					<h:commandLink action="#{tutorListMB.getNextView}"
+						actionListener="#{tutorListMB.clear}">
+						<h:outputText value="#{bean.nucleo}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
 
 			</p:dataTable>
 		</h:form>

@@ -30,6 +30,8 @@ public class AtividadeDAO extends JPACrud<Atividade, Long> {
 			filtro.setParameter(chave, params.get(chave));
 		}
 		
+		params.clear();
+		
 		return (List<Atividade>) filtro.getResultList();
 	}
 
