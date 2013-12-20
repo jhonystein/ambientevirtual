@@ -30,11 +30,12 @@
 
 					<h:outputLabel value="#{messages['turma.label.tutores']}: "
 						for="tutores" styleClass="text-input" />
-					<h:selectManyMenu id="tutores" value="#{turmaAddTutorMB.tutor}"
-						style="height:100px; width:200px;" converter="tutorConverter">
+					<h:selectManyListbox id="tutores" value="#{turmaAddTutorMB.tutoresSel}"
+						style="height:100px; width:200px;" converter="tutorConverter" required="true">
 						<f:selectItems value="#{turmaAddTutorMB.tutores}" var="tutor"
-							itemValue="#{tutor}" itemLabel="#{tutor.usuario.nome}" />
-					</h:selectManyMenu>
+							itemValue="#{tutor}" itemLabel="#{tutor.usuario.nome}"/>
+					</h:selectManyListbox>
+					<p:message for="tutores" />
 
 				</h:panelGrid>
 			</p:fieldset>

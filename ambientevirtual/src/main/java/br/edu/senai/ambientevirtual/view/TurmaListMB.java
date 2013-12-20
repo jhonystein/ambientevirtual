@@ -14,6 +14,7 @@ import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 
 @ViewController
 @NextView("./turma_edit.jsf")
@@ -26,7 +27,7 @@ public class TurmaListMB extends AbstractListPageBean<Turma, Long> {
 	private TurmaBC turmaBC;
 	private String filtro;
 	private String tipoFiltro;
-	
+
 	private Map<String, String> params = new HashMap<String, String>();
 
 	public String getFiltro() {
@@ -36,7 +37,7 @@ public class TurmaListMB extends AbstractListPageBean<Turma, Long> {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
-	
+
 	public String getTipoFiltro() {
 		return tipoFiltro;
 	}
@@ -47,12 +48,13 @@ public class TurmaListMB extends AbstractListPageBean<Turma, Long> {
 
 	@Override
 	protected List<Turma> handleResultList() {
-		
-		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null && !tipoFiltro.isEmpty()) {
-			params.put(tipoFiltro, filtro);			
+
+		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null
+				&& !tipoFiltro.isEmpty()) {
+			params.put(tipoFiltro, filtro);
 			return this.turmaBC.filtrarQuery(tipoFiltro, params);
 		}
-		
+
 		return this.turmaBC.findAll();
 	}
 

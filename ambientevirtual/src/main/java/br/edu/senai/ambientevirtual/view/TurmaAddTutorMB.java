@@ -21,13 +21,18 @@ public class TurmaAddTutorMB {
 	
 	@Inject
 	private TutorBC tutorBC;
-	
-	private List<Tutor> tutor = new ArrayList<Tutor>();
-	
 	private String parametro;
-	
+	private List<Tutor> tutoresSel = new ArrayList<Tutor>();
 	Turma turma = new Turma();
-	
+
+	public List<Tutor> getTutoresSel() {
+		return tutoresSel;
+	}
+
+	public void setTutoresSel(List<Tutor> tutoresSel) {
+		this.tutoresSel = tutoresSel;
+	}
+
 	public Turma getTurma() {
 		return turma;
 	}
@@ -46,23 +51,21 @@ public class TurmaAddTutorMB {
 
 	public String outcome(){
 		turma = turmaBC.load(Long.valueOf(parametro));
+
+		//marca os tutores adcionados na turma - william
+		List<Tutor> lTutoresTurma = turma.getTutores();		
+		for (Tutor tutor : lTutoresTurma) {
+			tutoresSel.add(tutor);
+		}
 		return "turma_add_tutor";
 	}
 	
-	public List<Tutor> getTutor() {
-		return tutor;
-	}
-
-	public void setTutor(List<Tutor> tutor) {
-		this.tutor = tutor;
-	}
-
 	public List<Tutor> getTutores() {
 		return tutorBC.findAll();
 	}
 	
 	public String salve() {		
-		turma.setTutores(tutor);
+		turma.setTutores(tutoresSel);
 		turmaBC.update(turma);
 		return "turma_list";
 	}
