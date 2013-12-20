@@ -59,7 +59,7 @@
 					<f:facet name="header">#{messages['turma.label.id']}</f:facet>
 					<h:outputText value="#{bean.id}" />
 				</p:column>
-				
+
 				<p:column sortBy="#{bean.codigo}">
 					<f:facet name="header">#{messages['turma.label.codigo']}</f:facet>
 					<h:commandLink action="#{turmaListMB.getNextView}"
@@ -93,9 +93,9 @@
 						<span class="ui-icon ui-icon-person" style="float: left;"
 							title="#{messages['button.add.turma.tutor']}"></span>
 						<f:param name="id" value="#{bean.id}" />
-						
-						<f:setPropertyActionListener
-							target="#{turmaAddTutorMB.parametro}" value="#{bean.id}" />
+
+						<f:setPropertyActionListener target="#{turmaAddTutorMB.parametro}"
+							value="#{bean.id}" />
 					</h:commandLink>
 
 					<h:commandLink actionListener="#{tutorListMB.clear}">
@@ -107,5 +107,13 @@
 
 			</p:dataTable>
 		</h:form>
+
+		<p:commandButton id="img" value="Basic" type="button" />
+
+		<p:overlayPanel id="imgPanel" for="img" showEffect="blind"
+			hideEffect="explode" showEvent="mouseover" hideEvent="mousedown"
+			dismissable="false" showCloseIcon="true" style="width:300px;height:188px;">
+		</p:overlayPanel>
+
 	</ui:define>
 </ui:composition>
