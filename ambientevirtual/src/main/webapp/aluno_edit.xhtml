@@ -7,25 +7,6 @@
 		<h:form prependId="false">
 			<p:messages />
 
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.insert}"
-						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.update}"
-						rendered="#{alunoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{alunoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{alunoEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
-
-			<br />
-
 			<p:fieldset legend="#{messages['aluno.label']}" toggleable="true" toggleSpeed="500">
 				<h:panelGrid id="fields" columns="3">
 					
@@ -90,6 +71,26 @@
 					
 				</h:panelGrid>
 			</p:fieldset>
+			
+			<br />
+			
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.insert}"
+						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.update}"
+						rendered="#{alunoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{alunoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{alunoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
 		</h:form>
 	</ui:define>
 </ui:composition>
