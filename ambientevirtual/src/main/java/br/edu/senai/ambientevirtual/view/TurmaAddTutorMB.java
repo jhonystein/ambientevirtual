@@ -26,6 +26,16 @@ public class TurmaAddTutorMB {
 	
 	private String parametro;
 	
+	Turma turma = new Turma();
+	
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+
 	public String getParametro() {
 		return parametro;
 	}
@@ -35,6 +45,7 @@ public class TurmaAddTutorMB {
 	}
 
 	public String outcome(){
+		turma = turmaBC.load(Long.valueOf(parametro));
 		return "turma_add_tutor";
 	}
 	
@@ -51,7 +62,6 @@ public class TurmaAddTutorMB {
 	}
 	
 	public String salve() {		
-		Turma turma = turmaBC.load(Long.valueOf(parametro));
 		turma.setTutores(tutor);
 		turmaBC.update(turma);
 		return "turma_list";

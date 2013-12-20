@@ -36,8 +36,6 @@
 						icon="ui-icon-search" actionListener="#{turmaListMB.list()}"
 						ajax="false" />
 
-
-
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert"
@@ -60,6 +58,15 @@
 				<p:column style="width:5%;" sortBy="#{bean.id}">
 					<f:facet name="header">#{messages['turma.label.id']}</f:facet>
 					<h:outputText value="#{bean.id}" />
+				</p:column>
+				
+				<p:column sortBy="#{bean.codigo}">
+					<f:facet name="header">#{messages['turma.label.codigo']}</f:facet>
+					<h:commandLink action="#{turmaListMB.getNextView}"
+						actionListener="#{turmaListMB.clear}">
+						<h:outputText value="#{bean.codigo}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
 				</p:column>
 
 				<p:column sortBy="#{bean.curso}">
