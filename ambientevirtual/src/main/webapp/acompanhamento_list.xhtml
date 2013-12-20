@@ -63,7 +63,7 @@
 				<p:column sortBy="#{bean.aluno}">
 					<f:facet name="header">#{messages['acompanhamento.label.aluno']}</f:facet>
 					<h:commandLink action="#{acompanhamentoListMB.getNextView}" actionListener="#{acompanhamentoListMB.clear}">
-						<h:outputText value="#{bean.aluno}" />
+						<h:outputText value="#{bean.aluno}" converter="alunoConverter" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

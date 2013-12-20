@@ -8,7 +8,7 @@ import javax.faces.convert.FacesConverter;
 
 import br.edu.senai.ambientevirtual.domain.Aluno;
 
-@FacesConverter(forClass=Aluno.class)
+@FacesConverter(forClass=Aluno.class, value = "alunoConverter")
 public class AlunoConverter implements Converter{
 
 

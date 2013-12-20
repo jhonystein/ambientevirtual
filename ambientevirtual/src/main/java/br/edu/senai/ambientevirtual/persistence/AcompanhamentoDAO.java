@@ -1,5 +1,7 @@
 package br.edu.senai.ambientevirtual.persistence;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +40,7 @@ public class AcompanhamentoDAO extends JPACrud<Acompanhamento, Long> {
 		aluno.setMatricula("PRONATEC M1");
 		alunoDAO.insert(aluno);
 		Turma turma = new Turma();
+		turma.setCodigo("PRONATEC2014_M1");
 		turma.setCurso("PRONATEC Programação");
 		turma.setSemestre(1);
 		turmaDAO.insert(turma);
@@ -51,28 +54,40 @@ public class AcompanhamentoDAO extends JPACrud<Acompanhamento, Long> {
 		TypedQuery<Acompanhamento> busca;
 		if (tipoFiltro.equals("ocorrencia")) {
 			busca = getEntityManager().createQuery(
-					"select a from Acompanhamento"
+					"select a from Acompanhamento a"
 					+ " where a.ocorrencia = :valor", getBeanClass());
-			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				busca.setParameter("valor", sdf.parse(valorFiltro));
+			} catch (ParseException e) {
+				busca.setParameter("valor", null);
+				e.printStackTrace();
+			}
 		} else if (tipoFiltro.equals("aluno")) {
 			busca = getEntityManager().createQuery(
 					"select a from Acompanhamento a"
 					+ " where a.aluno.usuario.nome like :valor", getBeanClass());
-			
+			busca.setParameter("valor", "%"+valorFiltro+"%");
 		} else if (tipoFiltro.equals("turma")) {
 			busca = getEntityManager().createQuery(
 					"select a from Acompanhamento a"
 					+ " where a.turma.codigo like :valor", getBeanClass());
-			
+			busca.setParameter("valor", "%"+valorFiltro+"%");
 		} else {
 			busca = getEntityManager().createQuery(
 					"select a from Acompanhamento a"
 					+ " where a.ocorrencia = :data or"
 					+ " a.aluno.usuario.nome like :valor or"
 					+ " a.turma.codigo like :valor", getBeanClass());
-			busca.setParameter("data", valorFiltro);
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+				busca.setParameter("data", sdf.parse(valorFiltro));
+			} catch (ParseException e) {
+				busca.setParameter("data", null);
+				e.printStackTrace();
+			}
+			busca.setParameter("valor", "%"+valorFiltro+"%");
 		}
-		busca.setParameter("valor", valorFiltro);
 		return busca.getResultList();
 	}
 }
