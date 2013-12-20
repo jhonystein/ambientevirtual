@@ -57,6 +57,14 @@ public class Turma {
 		this.id = id;
 	}
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	public String getCurso() {
 		return curso;
 	}
@@ -89,12 +97,12 @@ public class Turma {
 		this.tutores = tutores;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public List<Grupo> getGrupos() {
+		return grupos;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 	
 }
