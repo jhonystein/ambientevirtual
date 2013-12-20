@@ -24,8 +24,6 @@ public class TurmaListMB extends AbstractListPageBean<Turma, Long> {
 
 	@Inject
 	private TurmaBC turmaBC;
-	
-	
 	private String filtro;
 	private String tipoFiltro;
 	
