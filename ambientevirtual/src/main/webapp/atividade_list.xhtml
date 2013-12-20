@@ -89,6 +89,14 @@
 					</h:commandLink>
 				</p:column>
 
+				<p:column style="width:1%;">
+					<f:facet name="header">#{messages['atividade.label.entregarAtividade']}</f:facet>
+					<p:commandButton title="#{messages['atividade.button.entregaAtividade']}"
+						icon="ui-icon-search" actionListener="#{atividadeListMB.clear}"
+						action="#{entregaAtividadeEditMB.encerrar(bean)}"
+						ajax="false">
+					</p:commandButton>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 

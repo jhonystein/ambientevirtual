@@ -6,6 +6,7 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.edu.senai.ambientevirtual.business.EntregaAtividadeBC;
+import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.EntregaAtividade;
 
 @ViewController
@@ -27,6 +28,7 @@ public class EntregaAtividadeEditMB extends AbstractEditPageBean<EntregaAtividad
 	@Override
 	@Transactional
 	public String insert() {
+		System.out.println(getBean().getAtividade());
 		this.entregaAtividadeBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -43,4 +45,8 @@ public class EntregaAtividadeEditMB extends AbstractEditPageBean<EntregaAtividad
 		setBean(this.entregaAtividadeBC.load(getId()));
 	}
 
+	public String encerrar(Atividade atividade) {
+		getBean().setAtividade(atividade);
+		return "entregaAtividade_edit.jsf";
+	}
 }

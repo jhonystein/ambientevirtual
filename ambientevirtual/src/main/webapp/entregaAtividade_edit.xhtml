@@ -22,7 +22,7 @@
 					 
 					<h:outputLabel value="#{messages['entregaAtividade.label.atividade']}: " for="atividade" styleClass="text-input" />
 					<h:inputText id="atividade" value="#{entregaAtividadeEditMB.bean.atividade}"
-						title="#{messages['entregaAtividade.alt.atividade']}" readonly="true" />
+						title="#{messages['entregaAtividade.alt.atividade']}" readonly="true" converter="atividadeConverter" />
 					<p:message for="atividade" />
 					
 					<!-- Entregar pelo grupo -->

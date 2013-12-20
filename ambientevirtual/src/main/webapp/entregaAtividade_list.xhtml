@@ -44,7 +44,9 @@
 				<p:column sortBy="#{bean.resolucao}">
 					<f:facet name="header">#{messages['entregaAtividade.label.resolucao']}</f:facet>
 					<h:commandLink action="#{entregaAtividadeListMB.getNextView}" actionListener="#{entregaAtividadeListMB.clear}">
-						<h:outputText value="#{bean.resolucao}" />
+						<h:outputText value="#{bean.resolucao}">
+							<f:convertDateTime dateStyle="medium"/>
+						</h:outputText>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
@@ -52,7 +54,7 @@
 				<p:column sortBy="#{bean.atividade}">
 					<f:facet name="header">#{messages['entregaAtividade.label.atividade']}</f:facet>
 					<h:commandLink action="#{entregaAtividadeListMB.getNextView}" actionListener="#{entregaAtividadeListMB.clear}">
-						<h:outputText value="#{bean.atividade}" />
+						<h:outputText value="#{bean.atividade}" converter="atividadeConverter" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

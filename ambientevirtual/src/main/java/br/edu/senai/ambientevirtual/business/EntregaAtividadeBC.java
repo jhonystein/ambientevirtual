@@ -11,4 +11,8 @@ public class EntregaAtividadeBC extends DelegateCrud<EntregaAtividade, Long, Ent
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Override
+	public void insert(EntregaAtividade bean) {
+		getDelegate().insert(bean);
+	}
 }
