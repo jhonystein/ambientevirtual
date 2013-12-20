@@ -88,5 +88,13 @@ public class Turma {
 	public void setTutores(List<Tutor> tutores) {
 		this.tutores = tutores;
 	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	
 }

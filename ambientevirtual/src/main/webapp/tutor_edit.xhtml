@@ -1,86 +1,112 @@
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
 
 	<ui:define name="body">
 		<h:form prependId="false">
 
+			<p:fieldset legend="#{messages['tutor.label']}" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+
+					<h:outputLabel value="#{messages['tutor.label.id']}: " for="id"
+						styleClass="text-input" />
+					<h:outputText id="id" value="#{tutorEditMB.bean.id}" />
+					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['tutor.label.nome']}: " for="nome"
+						styleClass="text-input" />
+					<h:inputText id="nome" value="#{tutorEditMB.bean.usuario.nome}"
+						title="#{messages['tutor.alt.nome']}" required="true" />
+					<p:message for="nome" maxlength="100" />
+
+					<h:outputLabel value="#{messages['tutor.label.email']}: "
+						for="email" styleClass="text-input" />
+					<h:inputText id="email" value="#{tutorEditMB.bean.usuario.email}"
+						title="#{messages['tutor.alt.email']}" required="true" />
+					<p:message for="email" maxlength="100" />
+
+					<h:outputLabel value="#{messages['tutor.label.telefone']}: "
+						for="telefone" styleClass="text-input" />
+					<h:inputText id="telefone"
+						value="#{tutorEditMB.bean.usuario.telefone}"
+						title="#{messages['tutor.alt.telefone']}" />
+					<p:message for="telefone" maxlength="20" required="true" />
+
+					<h:outputLabel value="#{messages['tutor.label.sexo']}: " for="sexo"
+						styleClass="text-input" />
+					<h:selectOneMenu id="sexo" value="#{tutorEditMB.bean.usuario.sexo}"
+						title="#{messages['tutor.alt.sexo']}" required="true">
+						<f:selectItems value="#{tutorEditMB.sexoValues}" var="s"
+							itemValue="#{s}" itemLabel="#{s}" />
+					</h:selectOneMenu>
+					<p:message for="sexo" />
+
+					<h:outputLabel value="#{messages['tutor.label.rg']}: " for="rg"
+						styleClass="text-input" />
+					<h:inputText id="rg" value="#{tutorEditMB.bean.usuario.rg}"
+						title="#{messages['tutor.alt.rg']}" maxlength="30" />
+					<p:message for="rg" />
+
+					<h:outputLabel value="#{messages['tutor.label.cpf']}: " for="cpf"
+						styleClass="text-input" />
+					<h:inputText id="cpf" value="#{tutorEditMB.bean.usuario.cpf}"
+						title="#{messages['tutor.alt.cpf']}" maxlength="30" />
+					<p:message for="cpf" />
+
+					<h:outputLabel value="#{messages['tutor.label.nucleo']}: "
+						for="nucleo" styleClass="text-input" />
+					<h:inputText id="nucleo" value="#{tutorEditMB.bean.nucleo}"
+						title="#{messages['tutor.alt.nucleo']}" maxlength="100"
+						required="true" />
+					<p:message for="nucleo" />
+
+					<h:outputLabel value="#{messages['usuario.label.login']}: "
+						for="login" styleClass="text-input" />
+					<h:inputText id="login" value="#{tutorEditMB.bean.usuario.login}"
+						title="#{messages['usuario.alt.login']}" maxlength="20"
+						required="true" />
+					<p:message for="login" />
+
+					<h:outputLabel value="#{messages['usuario.label.senha']}: "
+						for="senha" styleClass="text-input" />
+					<h:inputSecret id="senha" value="#{tutorEditMB.bean.usuario.senha}"
+						title="#{messages['usuario.alt.senha']}" maxlength="20"
+						required="true" />
+					<p:message for="senha" />
+
+				</h:panelGrid>
+			</p:fieldset>
+
+			<br />
+
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{tutorEditMB.insert}"
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{tutorEditMB.insert}"
 						rendered="#{!tutorEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{tutorEditMB.update}"
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{tutorEditMB.update}"
 						rendered="#{tutorEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{tutorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tutorEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					<p:commandButton value="#{messages['button.delete']}"
+						onclick="confirmation.show()" rendered="#{tutorEditMB.updateMode}"
+						type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert"
+						widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{tutorEditMB.delete}" immediate="true" ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<br />
-
-			<p:fieldset legend="#{messages['tutor.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					
-					<h:outputLabel value="#{messages['tutor.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{tutorEditMB.bean.id}" />
-					<p:message for="id" />
-					
-					<h:outputLabel value="#{messages['tutor.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{tutorEditMB.bean.usuario.nome}"
-						title="#{messages['tutor.alt.nome']}" required="true"/>
-					<p:message for="nome" maxlength="100" />
-					
-					<h:outputLabel value="#{messages['tutor.label.email']}: " for="email" styleClass="text-input" />
-					<h:inputText id="email" value="#{tutorEditMB.bean.usuario.email}"
-						title="#{messages['tutor.alt.email']}" required="true"/>
-					<p:message for="email" maxlength="100" />
-					
-					<h:outputLabel value="#{messages['tutor.label.telefone']}: " for="telefone" styleClass="text-input" />
-					<h:inputText id="telefone" value="#{tutorEditMB.bean.usuario.telefone}"
-						title="#{messages['tutor.alt.telefone']}" />
-					<p:message for="telefone" maxlength="20" required="true"/>
-					
-					<h:outputLabel value="#{messages['tutor.label.sexo']}: " for="sexo" styleClass="text-input" />
-					<h:selectOneMenu id="sexo" value="#{tutorEditMB.bean.usuario.sexo}" title="#{messages['tutor.alt.sexo']}" required="true">
-						<f:selectItems value="#{tutorEditMB.sexoValues}" var="s" 
-    						itemValue="#{s}" itemLabel="#{s}"/>
-					</h:selectOneMenu>
-					<p:message for="sexo" />
-					
-					<h:outputLabel value="#{messages['tutor.label.rg']}: " for="rg" styleClass="text-input" />
-					<h:inputText id="rg" value="#{tutorEditMB.bean.usuario.rg}"
-						title="#{messages['tutor.alt.rg']}" maxlength="30" />
-					<p:message for="rg" />
-					
-					<h:outputLabel value="#{messages['tutor.label.cpf']}: " for="cpf" styleClass="text-input" />
-					<h:inputText id="cpf" value="#{tutorEditMB.bean.usuario.cpf}"
-						title="#{messages['tutor.alt.cpf']}" maxlength="30" />
-					<p:message for="cpf" />					
-					
-					<h:outputLabel value="#{messages['tutor.label.nucleo']}: " for="nucleo" styleClass="text-input" />
-					<h:inputText id="nucleo" value="#{tutorEditMB.bean.nucleo}"
-						title="#{messages['tutor.alt.nucleo']}" maxlength="100" required="true"/>
-					<p:message for="nucleo" />
-					
-					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
-					<h:inputText id="login" value="#{tutorEditMB.bean.usuario.login}"
-						title="#{messages['usuario.alt.login']}" maxlength="20" required="true"/>
-					<p:message for="login" />
-					
-					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
-					<h:inputSecret id="senha" value="#{tutorEditMB.bean.usuario.senha}"
-						title="#{messages['usuario.alt.senha']}" maxlength="20" required="true"/>
-					<p:message for="senha" />
-					
-				</h:panelGrid>
-			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>
