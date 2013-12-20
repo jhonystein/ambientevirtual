@@ -58,6 +58,7 @@
 					<p:commandButton value="#{messages['button.delete']}"
 						onclick="confirmation.show()" rendered="#{grupoEditMB.updateMode}"
 						type="button" immediate="true" ajax="false" />
+					<p:button value="#{messages['button.back']}" outcome="grupo_list" />					
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert"

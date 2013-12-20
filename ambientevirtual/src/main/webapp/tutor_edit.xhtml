@@ -95,6 +95,10 @@
 					<p:commandButton value="#{messages['button.delete']}"
 						onclick="confirmation.show()" rendered="#{tutorEditMB.updateMode}"
 						type="button" immediate="true" ajax="false" />
+						
+					<p:button value="#{messages['button.back']}" 
+						outcome="tutor_list" />	
+						
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert"

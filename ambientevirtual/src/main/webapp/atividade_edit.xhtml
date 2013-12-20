@@ -63,6 +63,7 @@
 						onclick="confirmation.show()"
 						rendered="#{atividadeEditMB.updateMode}" type="button"
 						immediate="true" ajax="false" />
+					<p:button value="#{messages['button.back']}" outcome="atividade_list" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert"

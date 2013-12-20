@@ -50,7 +50,9 @@
 						rendered="#{turmaEditMB.updateMode}" ajax="false" />
 					<p:commandButton value="#{messages['button.delete']}"
 						onclick="confirmation.show()" rendered="#{turmaEditMB.updateMode}"
-						type="button" immediate="true" ajax="false" />
+						type="button" immediate="true" ajax="false" />						
+					<p:button value="#{messages['button.back']}" 
+						outcome="turma_list" />	
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert"
