@@ -26,9 +26,7 @@
 					<h:outputLabel value="#{messages['turma.label.curso']}: "
 						for="curso" styleClass="text-input" />
 					<h:outputText id="curso" value="#{turmaAddTutorMB.turma.curso}" />
-					<p:message for="curso" />
-
-					
+					<p:message for="curso" />					
 					
 					<h:outputLabel value="#{messages['turma.label.alunos']}: "
 						for="alunos" styleClass="text-input" />
@@ -38,9 +36,6 @@
 							itemValue="#{aluno}" itemLabel="#{aluno.usuario.nome}"/>
 					</h:selectManyListbox>
 					<p:message for="alunos" />
-					
-					
-					
 
 				</h:panelGrid>
 			</p:fieldset>
