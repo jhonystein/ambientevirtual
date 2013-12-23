@@ -1,29 +1,35 @@
 package br.edu.senai.ambientevirtual.view.converters;
 
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 
-@FacesConverter(forClass=Aluno.class, value = "alunoConverter")
-public class AlunoConverter implements Converter{
-
-
+@FacesConverter(value = "alunoConverter")
+public class AlunoConverter implements Converter {
+private AlunoBC alunoBC = new AlunoBC();
+	
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		// TODO Auto-generated method stub
-		System.out.println("AlunoConv" + value);
+	public Object getAsObject(FacesContext arg0, UIComponent arg1, String id) {
+		try {
+			return this.alunoBC.load(Long.parseLong(id));
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component,
-			Object value) {
-		return ((Aluno)value).getUsuario().getNome();
+	public String getAsString(FacesContext arg0, UIComponent arg1, Object obj) {
+		try {
+			Aluno a = (Aluno) obj;
+			return a.getId() != null ? String.valueOf(a.getId()) : null;
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return null;
 	}
-	
 }
