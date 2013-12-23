@@ -55,7 +55,7 @@
 				<p:column sortBy="#{bean.turma}">
 					<f:facet name="header">#{messages['acompanhamento.label.turma']}</f:facet>
 					<h:commandLink action="#{acompanhamentoListMB.getNextView}" actionListener="#{acompanhamentoListMB.clear}">
-						<h:outputText value="#{bean.turma}" />
+						<h:outputText value="#{bean.turma.codigo}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
@@ -63,7 +63,7 @@
 				<p:column sortBy="#{bean.aluno}">
 					<f:facet name="header">#{messages['acompanhamento.label.aluno']}</f:facet>
 					<h:commandLink action="#{acompanhamentoListMB.getNextView}" actionListener="#{acompanhamentoListMB.clear}">
-						<h:outputText value="#{bean.aluno}" converter="alunoConverter" />
+						<h:outputText value="#{bean.aluno.usuario.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
@@ -71,7 +71,9 @@
 				<p:column sortBy="#{bean.ocorrencia}">
 					<f:facet name="header">#{messages['acompanhamento.label.ocorrencia']}</f:facet>
 					<h:commandLink action="#{acompanhamentoListMB.getNextView}" actionListener="#{acompanhamentoListMB.clear}">
-						<h:outputText value="#{bean.ocorrencia}" />
+						<h:outputText value="#{bean.ocorrencia}">
+							<f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+						</h:outputText>
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

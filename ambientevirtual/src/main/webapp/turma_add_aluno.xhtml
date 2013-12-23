@@ -9,23 +9,23 @@
 	<ui:define name="body">
 		<h:form prependId="false">
 
-			<p:fieldset legend="#{messages['turmaaddtutor.label']}"
+			<p:fieldset legend="#{messages['turmaaddaluno.label']}"
 				toggleable="true" toggleSpeed="500">
 				<h:panelGrid id="fields" columns="3">
 
 					<h:outputLabel value="#{messages['turma.label.id']}: " for="id"
 						styleClass="text-input" />
-					<h:outputText id="id" value="#{turmaAddTutorMB.turma.id}" />
+					<h:outputText id="id" value="#{turmaAddAlunoMB.turma.id}" />
 					<p:message for="id" />
 
 					<h:outputLabel value="#{messages['turma.label.codigo']}: "
 						for="codigo" styleClass="text-input" />
-					<h:outputText id="codigo" value="#{turmaAddTutorMB.turma.codigo}" />
+					<h:outputText id="codigo" value="#{turmaAddAlunoMB.turma.codigo}" />
 					<p:message for="codigo" />
 
 					<h:outputLabel value="#{messages['turma.label.curso']}: "
 						for="curso" styleClass="text-input" />
-					<h:outputText id="curso" value="#{turmaAddTutorMB.turma.curso}" />
+					<h:outputText id="curso" value="#{turmaAddAlunoMB.turma.curso}" />
 					<p:message for="curso" />					
 					
 					<h:outputLabel value="#{messages['turma.label.alunos']}: "
@@ -43,7 +43,7 @@
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}"
-						action="#{turmaAddTutorMB.salve()}" ajax="false" />
+						action="#{turmaAddAlunoMB.salve()}" ajax="false" />
 						
 					<p:button value="#{messages['button.back']}" 
 						outcome="turma_list" />	
