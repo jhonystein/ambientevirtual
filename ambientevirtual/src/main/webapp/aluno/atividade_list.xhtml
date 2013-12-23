@@ -1,0 +1,76 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/aluno/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
+						for="filtro" styleClass="text-input" />
+					<h:inputText id="filtro" value="#{atividadeListMB.filtro}"
+						title="#{messages['tutor.alt.filtro']}" />
+
+					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
+						for="tipoFiltro" styleClass="text-input" />
+					<h:selectOneMenu id="tipoFiltro"
+						value="#{atividadeListMB.tipoFiltro}"
+						title="#{messages['tutor.alt.tipofiltro']}">
+						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItem itemValue="nome" itemLabel="Nome" />
+						<f:selectItem itemValue="tutor" itemLabel="Tutor" />
+					</h:selectOneMenu>
+
+					<p:commandButton title="#{messages['button.search']}"
+						icon="ui-icon-search" actionListener="#{atividadeListMB.list()}"
+						ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:dataTable id="list" var="bean"
+				value="#{atividadeListMB.resultList}">
+				<f:facet name="header">#{messages['atividade.list.table.title']}</f:facet>
+				<p:column style="width:1%;">
+					<h:selectBooleanCheckbox
+						value="#{atividadeListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
+
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['atividade.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+
+				<p:column sortBy="#{bean.nome}">
+					<f:facet name="header">#{messages['atividade.label.nome']}</f:facet>
+					<h:commandLink action="#{atividadeListMB.getNextView}"
+						actionListener="#{atividadeListMB.clear}">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.descricao}">
+					<f:facet name="header">#{messages['atividade.label.descricao']}</f:facet>
+					<h:commandLink action="#{atividadeListMB.getNextView}"
+						actionListener="#{atividadeListMB.clear}">
+						<h:outputText value="#{bean.descricao}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.tutor}">
+					<f:facet name="header">#{messages['atividade.label.tutor']}</f:facet>
+					<h:commandLink action="#{atividadeListMB.getNextView}"
+						actionListener="#{atividadeListMB.clear}">
+						<h:outputText value="#{bean.tutor.usuario.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
