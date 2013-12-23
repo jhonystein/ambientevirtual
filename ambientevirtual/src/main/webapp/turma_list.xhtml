@@ -98,10 +98,13 @@
 							value="#{bean.id}" />
 					</h:commandLink>
 
-					<h:commandLink actionListener="#{tutorListMB.clear}">
+					<h:commandLink action="#{turmaAddAlunoMB.outcome}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
 							title="#{messages['button.add.turma.aluno']}"></span>
 						<f:param name="id" value="#{bean.id}" />
+						
+						<f:setPropertyActionListener target="#{turmaAddAlunoMB.parametro}"
+							value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 
