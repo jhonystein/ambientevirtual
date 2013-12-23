@@ -7,20 +7,31 @@
 	<h:form>
 		<p:menubar>
 			<p:submenu label="#{messages['menu.atividade']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}"
+					url="/tutor/atividade_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}"
-					url="/aluno/atividade_list.jsf"></p:menuitem>
+					url="/tutor/atividade_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.grupo']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}"
+					url="/tutor/grupo_edit.jsf"></p:menuitem>					
 				<p:menuitem value="#{messages['menu.menuitem.list']}"
-					url="/aluno/grupo_list.jsf"></p:menuitem>
+					url="/tutor/grupo_list.jsf"></p:menuitem>
+			</p:submenu>
+			
+			<p:submenu label="#{messages['menu.acompanhamento']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}"
+					url="/tutor/acompanhamento_edit.jsf"></p:menuitem>					
+				<p:menuitem value="#{messages['menu.menuitem.list']}"
+					url="/tutor/acompanhamento_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.mensagens']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}"
-					url="/aluno/mensagens_edit.jsf"></p:menuitem>
+					url="/tutor/mensagens_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}"
-					url="/aluno/mensagens_list.jsf"></p:menuitem>
+					url="/tutor/mensagens_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:menuitem value="#{messages['menu.menuitem.quit']}"

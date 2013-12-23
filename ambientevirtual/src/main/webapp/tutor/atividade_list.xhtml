@@ -4,12 +4,20 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/aluno/template/main.xhtml">
+	template="/tutor/template/main.xhtml">
 
 	<ui:define name="body">
 		<h:form>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}"
+						icon="ui-icon-document" action="#{atividadeListMB.getNextView}"
+						actionListener="#{atividadeListMB.clear}" ajax="false" />
+
+					<p:commandButton title="#{messages['button.delete']}"
+						icon="ui-icon-trash" onclick="confirmation.show()" type="button"
+						immediate="true" ajax="false" />
+
 					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
 						for="filtro" styleClass="text-input" />
 					<h:inputText id="filtro" value="#{atividadeListMB.filtro}"
@@ -17,17 +25,28 @@
 
 					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
 						for="tipoFiltro" styleClass="text-input" />
-					<h:selectOneMenu id="tipoFiltro"
-						value="#{atividadeListMB.tipoFiltro}"
+					<h:selectOneMenu id="tipoFiltro" value="#{atividadeListMB.tipoFiltro}"
 						title="#{messages['tutor.alt.tipofiltro']}">
 						<f:selectItem itemValue="" itemLabel="Todos" />
 						<f:selectItem itemValue="nome" itemLabel="Nome" />
 						<f:selectItem itemValue="tutor" itemLabel="Tutor" />
 					</h:selectOneMenu>
-
+					
 					<p:commandButton title="#{messages['button.search']}"
 						icon="ui-icon-search" actionListener="#{atividadeListMB.list()}"
 						ajax="false" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert"
+						widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{atividadeListMB.deleteSelection}"
+							actionListener="#{atividadeListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 			<p:dataTable id="list" var="bean"
@@ -69,29 +88,6 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-
-
-				<p:column style="width:30px;">
-					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<h:commandLink action="#{turmaAddAlunoMB.outcome}">
-						<span class="ui-icon ui-icon-zoomin" style="float: left;"
-							title="#{messages['button.det.atividade']}"></span>
-						<f:param name="id" value="#{bean.id}" />
-
-						<f:setPropertyActionListener target="#{turmaAddAlunoMB.parametro}"
-							value="#{bean.id}" />
-					</h:commandLink>
-					<h:commandLink action="#{turmaAddTutorMB.outcome}">
-						<span class="ui-icon ui-icon-pencil" style="float: left;"
-							title="#{messages['button.add.solucao.atividade']}"></span>
-						<f:param name="id" value="#{bean.id}" />
-
-						<f:setPropertyActionListener target="#{turmaAddTutorMB.parametro}"
-							value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-
-
 			</p:dataTable>
 		</h:form>
 

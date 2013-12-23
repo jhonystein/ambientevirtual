@@ -1,0 +1,80 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/tutor/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:fieldset legend="#{messages['atividade.label']}" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+
+					<h:outputLabel value="#{messages['atividade.label.id']}: " for="id"
+						styleClass="text-input" />
+					<h:outputText id="id" value="#{atividadeEditMB.bean.id}" />
+					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['atividade.label.nome']}: "
+						for="nome" styleClass="text-input" />
+					<h:inputText id="nome" value="#{atividadeEditMB.bean.nome}"
+						title="#{messages['atividade.alt.nome']}" required="true" />
+					<p:message for="nome" />
+
+					<h:outputLabel value="#{messages['atividade.label.descricao']}: "
+						for="descricao" styleClass="text-input" />
+
+					<h:inputTextarea id="descricao"
+						value="#{atividadeEditMB.bean.descricao}"
+						title="#{messages['atividade.alt.descricao']}" cols="60"
+						required="true" />
+					<p:message for="descricao" />
+
+					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
+						for="tutor" styleClass="text-input" />
+					<h:selectOneMenu id="tutor" value="#{atividadeEditMB.bean.tutor}"
+						title="#{messages['atividade.alt.tutor']}"
+						label="Selecione Tutores" required="true"
+						converter="tutorConverter">
+
+						<f:selectItem itemLabel="Selecione Tutor" itemValue="" />
+
+						<f:selectItems value="#{atividadeEditMB.getListTutores}"
+							var="tutor" itemLabel="#{tutor.usuario.nome}"
+							itemValue="#{tutor}" />
+
+					</h:selectOneMenu>
+					<p:message for="tutor" />
+
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{atividadeEditMB.insert}"
+						rendered="#{!atividadeEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{atividadeEditMB.update}"
+						rendered="#{atividadeEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}"
+						onclick="confirmation.show()"
+						rendered="#{atividadeEditMB.updateMode}" type="button"
+						immediate="true" ajax="false" />
+					<p:button value="#{messages['button.back']}" outcome="atividade_list" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert"
+						widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{atividadeEditMB.delete}" immediate="true" ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+	</ui:define>
+</ui:composition>
