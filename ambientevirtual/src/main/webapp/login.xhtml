@@ -1,0 +1,32 @@
+<html xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view contentType="text/html" locale="#currentLocale" />
+
+<h:head>
+	<title>#{messages['main.app.title']}</title>
+	<h:outputStylesheet library="css" name="custom.css" />
+</h:head>
+
+<h:body style="background-color:#f1f1f1">
+	<h:form>
+		<p:fieldset legend="#{messages['login.label']}" styleClass="panelGridCenter">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="#{messages['login.usuario']}" />
+				<h:inputText value="#" id="username" required="true"
+					label="username" />
+
+				<h:outputLabel for="password" value="#{messages['login.senha']}" />
+				<h:inputSecret value="#" id="password" required="true"
+					label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton id="loginButton" value="#{messages['login.acesso']}" actionListener="#" />
+				</f:facet>
+			</h:panelGrid>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>

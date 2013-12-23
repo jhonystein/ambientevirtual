@@ -34,6 +34,7 @@ public class Aluno {
 	
 	public Aluno() {
 		usuario = new Usuario();
+		this.usuario.setTipoUsu("alu");
 	}
 	
 	

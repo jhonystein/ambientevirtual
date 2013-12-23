@@ -42,7 +42,15 @@ public class Usuario implements Serializable {
 	@Column(name="NR_RG", length=30)
 	private String rg;
 	@Column(name="NR_CPF", length=30)
-	private String cpf;
+	private String cpf;	
+	
+	/*
+	 * variável provisória para checar o tipo de usuário no momento do login 
+	 * e redireciona-lo para a visão apropriada. tutor, aluno ou administrador.
+	 * william
+	 */
+	@Column(name="DS_TPUSU", length=3)
+	private String tipoUsu;
 
 	@Override
 	public String toString() {
@@ -122,6 +130,14 @@ public class Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getTipoUsu() {
+		return tipoUsu;
+	}
+
+	public void setTipoUsu(String tipoUsu) {
+		this.tipoUsu = tipoUsu;
 	}
 
 }

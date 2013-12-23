@@ -28,6 +28,7 @@ public class Tutor {
 
 	public Tutor() {
 		this.usuario = new Usuario();
+		this.usuario.setTipoUsu("tut");
 	}
 	
 	public Long getId() {
