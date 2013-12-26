@@ -98,6 +98,16 @@
 						<f:setPropertyActionListener target="#{grupoAddAlunoMB.parametro}"
 							value="#{bean.id}" />
 					</h:commandLink>
+					
+					<h:commandLink action="#{grupoAddAlunoMB.outcome}">
+						<span class="ui-icon ui-icon-check" style="float: left;"
+							title="#{messages['button.add.grupo.atividade']}"></span>
+						<f:param name="id" value="#{bean.id}" />
+						
+						<f:setPropertyActionListener target="#{grupoAddAlunoMB.parametro}"
+							value="#{bean.id}" />
+					</h:commandLink>
+					
 				</p:column>
 
 			</p:dataTable>
