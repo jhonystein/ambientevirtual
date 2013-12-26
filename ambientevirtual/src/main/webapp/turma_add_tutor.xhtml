@@ -30,10 +30,12 @@
 
 					<h:outputLabel value="#{messages['turma.label.tutores']}: "
 						for="tutores" styleClass="text-input" />
-					<h:selectManyListbox id="tutores" value="#{turmaAddTutorMB.tutoresSel}"
-						style="height:100px; width:200px;" converter="tutorConverter" required="true">
+					<h:selectManyListbox id="tutores"
+						value="#{turmaAddTutorMB.tutoresSel}"
+						style="height:100px; width:200px;" converter="tutorConverter"
+						required="true">
 						<f:selectItems value="#{turmaAddTutorMB.tutores}" var="tutor"
-							itemValue="#{tutor}" itemLabel="#{tutor.usuario.nome}"/>
+							itemValue="#{tutor}" itemLabel="#{tutor.usuario.nome}" />
 					</h:selectManyListbox>
 					<p:message for="tutores" />
 
@@ -44,12 +46,19 @@
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}"
 						action="#{turmaAddTutorMB.salve()}" ajax="false" />
-						
-					<p:button value="#{messages['button.back']}" 
-						outcome="turma_list" />	
+
+					<p:button value="#{messages['button.back']}" outcome="turma_list" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
 		</h:form>
+
+		<script type="text/javascript">
+	      	$(document).ready(function() {
+		    	$('#tutores').focus();
+			});
+	    </script>
+
+
 	</ui:define>
 </ui:composition>
