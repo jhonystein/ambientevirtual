@@ -5,22 +5,34 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.edu.senai.ambientevirtual.business.AtividadeBC;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 
-@FacesConverter(forClass=Atividade.class, value="atividadeConverter")
+@FacesConverter(value="atividadeConverter")
 public class AtividadeConverter implements Converter {
-
+	private AtividadeBC atividadeBC = new AtividadeBC();
+	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		// TODO Auto-generated method stub
+			String id) {
+		try {
+			return this.atividadeBC.load(Long.parseLong(id));
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,
-			Object value) {
-		return ((Atividade)value).getNome();
+			Object obj) {
+		try {
+			Atividade a = (Atividade) obj;
+			return a.getId() != null ? String.valueOf(a.getId()) : null;
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return null;
 	}
 
 }
