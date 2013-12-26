@@ -14,7 +14,6 @@ public class AlunoDAO extends JPACrud<Aluno, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	public List<Aluno> filtrar(String filtro, String valor) {
-		System.out.println("AlunoaDAO tipo" + filtro + ", valor" + valor);
 		TypedQuery<Aluno> busca;
 		if (filtro.equals("matricula")) {
 			busca = getEntityManager().createQuery(
@@ -32,7 +31,6 @@ public class AlunoDAO extends JPACrud<Aluno, Long> {
 					getBeanClass());
 		}
 		busca.setParameter("valor", "%"+valor+"%");
-		System.out.println(busca.getResultList().size());
 		return busca.getResultList();
 	}
 }
