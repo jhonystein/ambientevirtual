@@ -25,13 +25,14 @@
 
 					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
 						for="tipoFiltro" styleClass="text-input" />
-					<h:selectOneMenu id="tipoFiltro" value="#{atividadeListMB.tipoFiltro}"
+					<h:selectOneMenu id="tipoFiltro"
+						value="#{atividadeListMB.tipoFiltro}"
 						title="#{messages['tutor.alt.tipofiltro']}">
 						<f:selectItem itemValue="" itemLabel="Todos" />
 						<f:selectItem itemValue="nome" itemLabel="Nome" />
 						<f:selectItem itemValue="tutor" itemLabel="Tutor" />
 					</h:selectOneMenu>
-					
+
 					<p:commandButton title="#{messages['button.search']}"
 						icon="ui-icon-search" actionListener="#{atividadeListMB.list()}"
 						ajax="false" />
@@ -71,15 +72,6 @@
 					</h:commandLink>
 				</p:column>
 
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['atividade.label.descricao']}</f:facet>
-					<h:commandLink action="#{atividadeListMB.getNextView}"
-						actionListener="#{atividadeListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-
 				<p:column sortBy="#{bean.tutor}">
 					<f:facet name="header">#{messages['atividade.label.tutor']}</f:facet>
 					<h:commandLink action="#{atividadeListMB.getNextView}"
@@ -88,6 +80,7 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
+
 			</p:dataTable>
 		</h:form>
 

@@ -26,10 +26,10 @@
 					<h:outputLabel value="#{messages['atividade.label.descricao']}: "
 						for="descricao" styleClass="text-input" />
 
-					<h:inputTextarea id="descricao"
-						value="#{atividadeEditMB.bean.descricao}"
-						title="#{messages['atividade.alt.descricao']}" cols="60"
+					<p:editor id="descricao" value="#{atividadeEditMB.bean.descricao}"
+						title="#{messages['atividade.alt.descricao']}" width="600"
 						required="true" />
+
 					<p:message for="descricao" />
 
 					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
@@ -63,7 +63,8 @@
 						onclick="confirmation.show()"
 						rendered="#{atividadeEditMB.updateMode}" type="button"
 						immediate="true" ajax="false" />
-					<p:button value="#{messages['button.back']}" outcome="atividade_list" />
+					<p:button value="#{messages['button.back']}"
+						outcome="atividade_list" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}"
 						showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert"
