@@ -7,7 +7,6 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.AcompanhamentoBC;
-import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
 import br.edu.senai.ambientevirtual.domain.Acompanhamento;
 import br.edu.senai.ambientevirtual.domain.Aluno;
@@ -26,9 +25,6 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 
 	@Inject
 	private AcompanhamentoBC acompanhamentoBC;
-	
-	@Inject
-	private AlunoBC alunoBC;
 	
 	@Inject
 	private TurmaBC turmaBC;
@@ -58,8 +54,11 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 		return turmaBC.findAll();
 	}
 	
-	public List<Aluno> getAlunos() {
-		return alunoBC.findAll();
+	public List<Aluno> getAlunos() {		
+		if(turma.getId() != null) {
+			return turma.getAlunos();
+		}		
+		return null;
 	}
 	
 	public AcompanhamentoEditMB() {

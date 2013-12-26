@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Aluno;
+import br.edu.senai.ambientevirtual.domain.Turma;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 

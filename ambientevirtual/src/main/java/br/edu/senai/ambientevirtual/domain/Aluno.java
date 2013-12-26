@@ -44,7 +44,6 @@ public class Aluno {
 				+ usuario + ", acompanhamentos=" + acompanhamentos + "]";
 	}
 
-
 	public Long getId() {
 		return id;
 	}
