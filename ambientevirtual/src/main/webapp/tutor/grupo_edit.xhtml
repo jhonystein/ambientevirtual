@@ -39,7 +39,7 @@
 						value="#{grupoEditMB.bean.turma}" converter="turmaConverter">
 						<f:selectItem itemLabel="Selecione turma" itemValue="" />
 						<f:selectItems value="#{grupoEditMB.turmas}" var="turma"
-							itemLabel="#{turma.curso}" itemValue="#{turma}" />
+							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
 					</h:selectOneMenu>
 					<p:message for="turma" />
 

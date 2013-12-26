@@ -12,11 +12,6 @@ public class AcompanhamentoBC extends DelegateCrud<Acompanhamento, Long, Acompan
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Override
-	public void insert(Acompanhamento bean) {
-		getDelegate().insert(bean);
-	}
-
 	public List<Acompanhamento> filtrar(String tipoFiltro, String valorFiltro) {
 		return getDelegate().filtrar(tipoFiltro, valorFiltro);
 	}
