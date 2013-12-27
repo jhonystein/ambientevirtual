@@ -15,13 +15,33 @@
 
 					<h:outputLabel value="#{messages['atividade.label.id']}: " for="id"
 						styleClass="text-input" />
-					<h:outputText id="id" value="#{grupoAddResAtividadeMB.atividade.id}" />
+					<h:outputText id="id"
+						value="#{grupoAddResAtividadeMB.atividade.id}" />
 					<p:message for="id" />
 
-					<h:outputLabel value="#{messages['atividade.label.nome']}: " for="nome"
-						styleClass="text-input" />
-					<h:outputText id="nome" value="#{grupoAddResAtividadeMB.atividade.nome}" />
+					<h:outputLabel value="#{messages['atividade.label.nome']}: "
+						for="nome" styleClass="text-input" />
+					<h:outputText id="nome"
+						value="#{grupoAddResAtividadeMB.atividade.nome}" />
 					<p:message for="nome" />
+
+					<h:outputLabel value="#{messages['atividade.label.descricao']}: "
+						for="descAtividade" styleClass="text-input" />
+					<p:editor id="descAtividade"
+						value="#{atividadeEditMB.bean.descricao}"
+						title="#{messages['atividade.alt.descricao']}" width="600" height="100"
+						disabled="true" />
+					<p:message for="descAtividade" />
+
+					<h:outputLabel
+						value="#{messages['entregaAtividade.label.resolucao']}: "
+						for="descricao" styleClass="text-input" />
+					<p:editor id="descricao"
+						value="#{entregaAtividadeEditMB.bean.resolucao}"
+						title="#{messages['entregaAtividade.alt.resolucao']}" width="600"
+						required="true" />
+					<p:message for="descricao" />
+
 				</h:panelGrid>
 			</p:fieldset>
 			<br />
@@ -30,7 +50,8 @@
 					<p:commandButton value="#{messages['button.save']}"
 						action="#{grupoAddAtividadeMB.salve()}" ajax="false" />
 
-					<p:button value="#{messages['button.back']}" outcome="atividade_list" />
+					<p:button value="#{messages['button.back']}"
+						outcome="atividade_list" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
