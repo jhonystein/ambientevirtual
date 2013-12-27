@@ -63,12 +63,12 @@
 
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<h:commandLink action="#{turmaAddTutorMB.outcome}">
+					<h:commandLink action="#{grupoAddResAtividadeMB.addResAtividade}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
 							title="#{messages['button.add.solucao.atividade']}"></span>
 						<f:param name="id" value="#{bean.id}" />
 
-						<f:setPropertyActionListener target="#{turmaAddTutorMB.parametro}"
+						<f:setPropertyActionListener target="#{grupoAddResAtividadeMB.prmIdAtividade}"
 							value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
