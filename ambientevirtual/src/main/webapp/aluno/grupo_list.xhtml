@@ -90,30 +90,30 @@
 
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<p:commandLink ajax="true" update=":listAlunos" action="#{grupoAddResAtividadeMB.outcome}">
+					<p:commandLink ajax="true" oncomplete="dlg1.show();"
+						update=":listAlunos" action="#{grupoAddResAtividadeMB.outcome}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
-							title="#{messages['button.add.solucao.atividade']}" onclick="dlg1.show();"> </span>
+							title="#{messages['button.add.solucao.atividade']}"> </span>
 						<f:param name="id" value="#{bean.id}" />
 
-						<f:setPropertyActionListener target="#{grupoAddResAtividadeMB.parametro}"
-							value="#{bean.id}" />
+						<f:setPropertyActionListener
+							target="#{grupoAddResAtividadeMB.parametro}" value="#{bean.id}" />
 					</p:commandLink>
 				</p:column>
 
 			</p:dataTable>
 		</h:form>
 
-		<p:dialog id="basicDialog" header="Integrantes do grupo" widgetVar="dlg1"
-			modal="true">
-			
-			<p:dataTable id="listAlunos" var="aluno" value="#{grupoAddResAtividadeMB.alunosGrupo}">
+		<p:dialog id="basicDialog" header="Integrantes do grupo"
+			widgetVar="dlg1" modal="true" dynamic="true">
+
+			<p:dataTable id="listAlunos" var="aluno"
+				value="#{grupoAddResAtividadeMB.alunosGrupo}">
 				<p:column>
-					<f:facet name="header">#{messages['aluno.label.usuario']}</f:facet>
-						<h:outputText value="#{aluno.usuario.nome}" />
+					<h:outputText value="#{aluno.usuario.nome}" />
 				</p:column>
 			</p:dataTable>
-			
-						
+
 		</p:dialog>
 
 	</ui:define>
