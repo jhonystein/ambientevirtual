@@ -90,11 +90,11 @@
 
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<p:commandLink ajax="true">
+					<p:commandLink ajax="true" actionListener="#{grupoListMB.outcome}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
 							title="#{messages['button.add.solucao.atividade']}" onclick="dlg1.show();"> </span>
 
-						<f:setPropertyActionListener target="#{turmaAddTutorMB.parametro}"
+						<f:setPropertyActionListener target="#{grupoListMB.parametro}"
 							value="#{bean.id}" />
 					</p:commandLink>
 				</p:column>
@@ -105,6 +105,14 @@
 		<p:dialog id="basicDialog" header="Integrantes do grupo" widgetVar="dlg1"
 			modal="true">
 			
+			<p:dataTable id="listAlunos" var="aluno" value="#{grupoListMB.alunosGrupo}">
+				<p:column>
+					<f:facet name="header">#{messages['aluno.label.usuario']}</f:facet>
+						<h:outputText value="#{aluno.usuario.nome}" />
+				</p:column>
+			</p:dataTable>
+			
+						
 		</p:dialog>
 
 	</ui:define>
