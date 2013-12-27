@@ -7,6 +7,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.AcompanhamentoBC;
+import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
 import br.edu.senai.ambientevirtual.domain.Acompanhamento;
 import br.edu.senai.ambientevirtual.domain.Aluno;
@@ -29,10 +30,14 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	@Inject
 	private TurmaBC turmaBC;
 	
-	private Aluno aluno;
+	@Inject
+	private AlunoBC alunoBC;
+	
 	private Turma turma;
 	
 	private List<SelectItem> situacoes;
+	private List<Aluno> alunos;
+	private Long idAluno;
 	
 	public Turma getTurma() {
 		return turma;
@@ -40,14 +45,15 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+		super.getBean().setTurma(turma);
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public Long getIdAluno() {
+		return idAluno;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setIdAluno(Long idAluno) {
+		this.idAluno = idAluno;
 	}
 
 	public List<Turma> getTurmas() {
@@ -55,17 +61,22 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	}
 	
 	public List<Aluno> getAlunos() {
-		
-		if(this.turma != null) {
-			return this.turma.getAlunos();
-		}		
-		return null;
+		return alunos;
+	}
+
+	public void setAlunos(Turma t) {
+		this.alunos = t.getAlunos();
 	}
 	
 	public void changeTurma() {
-		getAlunos();
+		if(turma !=null && !turma.equals("")) {  
+            alunos = turma.getAlunos();
+		}
+		else {
+			alunos = new ArrayList<Aluno>();
+		}
 	}
-	
+
 	public AcompanhamentoEditMB() {
 		situacoes = new ArrayList<SelectItem>();
 		situacoes.add(new SelectItem(Situacao.CHEGADA_TARDIA));
@@ -82,7 +93,8 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	
 	@Override
 	@Transactional
-	public String insert() {
+	public String insert() {		
+		getBean().setAluno(alunoBC.load(idAluno));		
 		this.acompanhamentoBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -90,6 +102,7 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	@Override
 	@Transactional
 	public String update() {
+		getBean().setAluno(alunoBC.load(idAluno));
 		this.acompanhamentoBC.update(getBean());
 		return getPreviousView();
 	}
