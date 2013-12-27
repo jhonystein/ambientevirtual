@@ -17,7 +17,7 @@ public class GrupoAddResAtividadeMB {
 	@Inject
 	private GrupoBC grupoBC;
 	private String parametro;
-	private Grupo grupo = new Grupo();
+	private Grupo grupo;
 
 	public Grupo getGrupo() {
 		return grupo;
@@ -37,9 +37,10 @@ public class GrupoAddResAtividadeMB {
 
 	public void outcome() {
 		this.grupo = grupoBC.load(Long.valueOf(parametro));
+		getAlunosGrupo();
 	}
 
-	public List<Aluno> alunosGrupo() {
+	public List<Aluno> getAlunosGrupo() {
 		if (this.grupo != null) {
 			return this.grupo.getAlunos();
 		}

@@ -7,7 +7,7 @@
 	template="/aluno/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form>
+		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton title="#{messages['button.new']}"
@@ -90,7 +90,7 @@
 
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<p:commandLink ajax="true" action="#{grupoAddResAtividadeMB.outcome}">
+					<p:commandLink ajax="true" update=":listAlunos" action="#{grupoAddResAtividadeMB.outcome}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
 							title="#{messages['button.add.solucao.atividade']}" onclick="dlg1.show();"> </span>
 						<f:param name="id" value="#{bean.id}" />
@@ -106,7 +106,7 @@
 		<p:dialog id="basicDialog" header="Integrantes do grupo" widgetVar="dlg1"
 			modal="true">
 			
-			<p:dataTable id="listAlunos" var="aluno" value="#{grupoAddResAtividadeMB.alunosGrupo()}">
+			<p:dataTable id="listAlunos" var="aluno" value="#{grupoAddResAtividadeMB.alunosGrupo}">
 				<p:column>
 					<f:facet name="header">#{messages['aluno.label.usuario']}</f:facet>
 						<h:outputText value="#{aluno.usuario.nome}" />
