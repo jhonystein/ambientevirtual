@@ -20,6 +20,10 @@
 						<f:selectItem itemLabel="Selecione turma" itemValue="" />
 						<f:selectItems value="#{acompanhamentoEditMB.turmas}" var="turma"
 							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
+							
+						<p:ajax update="aluno"  
+                           listener="#{acompanhamentoEditMB.changeTurma()}" />	
+							
 					</h:selectOneMenu>
 					<p:message for="turma" />
 					

@@ -54,11 +54,16 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 		return turmaBC.findAll();
 	}
 	
-	public List<Aluno> getAlunos() {		
-		if(turma.getId() != null) {
-			return turma.getAlunos();
+	public List<Aluno> getAlunos() {
+		
+		if(this.turma != null) {
+			return this.turma.getAlunos();
 		}		
 		return null;
+	}
+	
+	public void changeTurma() {
+		getAlunos();
 	}
 	
 	public AcompanhamentoEditMB() {
