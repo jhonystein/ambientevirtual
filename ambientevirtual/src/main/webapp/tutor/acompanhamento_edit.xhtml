@@ -22,12 +22,12 @@
 						for="turma" styleClass="text-input" />
 					<h:selectOneMenu id="turma" style="width:300px;" required="true"
 						value="#{acompanhamentoEditMB.turma}" converter="turmaConverter">
-						<f:selectItem itemLabel="Selecione turma" itemValue="" />
+						<f:selectItem itemLabel="Selecione turma" itemValue="-1" />
 						<f:selectItems value="#{acompanhamentoEditMB.turmas}" var="turma"
 							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
 
 						<f:ajax event="change" execute="@this" render="aluno"
-							listener="#{acompanhamentoEditMB.changeTurma()}" />
+							listener="#{acompanhamentoEditMB.changeTurma()}"/>
 
 					</h:selectOneMenu>
 					<p:message for="turma" />

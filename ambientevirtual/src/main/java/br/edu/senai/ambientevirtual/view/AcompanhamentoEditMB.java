@@ -20,25 +20,26 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./acompanhamento_list.jsf")
-public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, Long> {
+public class AcompanhamentoEditMB extends
+		AbstractEditPageBean<Acompanhamento, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private AcompanhamentoBC acompanhamentoBC;
-	
+
 	@Inject
 	private TurmaBC turmaBC;
-	
+
 	@Inject
 	private AlunoBC alunoBC;
-	
+
 	private Turma turma;
-	
+
 	private List<SelectItem> situacoes;
 	private List<Aluno> alunos;
 	private Long idAluno;
-	
+
 	public Turma getTurma() {
 		return turma;
 	}
@@ -59,7 +60,7 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	public List<Turma> getTurmas() {
 		return turmaBC.findAll();
 	}
-	
+
 	public List<Aluno> getAlunos() {
 		return alunos;
 	}
@@ -67,12 +68,11 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 	public void setAlunos(Turma t) {
 		this.alunos = t.getAlunos();
 	}
-	
+
 	public void changeTurma() {
-		if(turma !=null && !turma.equals("")) {  
-            alunos = turma.getAlunos();
-		}
-		else {
+		if (turma != null && !turma.equals("")) {
+			alunos = turma.getAlunos();
+		} else {
 			alunos = new ArrayList<Aluno>();
 		}
 	}
@@ -83,22 +83,22 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 		situacoes.add(new SelectItem(Situacao.SAIDA_ANTECIPADA));
 		situacoes.add(new SelectItem(Situacao.IRREGULAR));
 	}
-	
+
 	@Override
 	@Transactional
 	public String delete() {
 		this.acompanhamentoBC.delete(getId());
 		return getPreviousView();
 	}
-	
+
 	@Override
 	@Transactional
-	public String insert() {		
-		getBean().setAluno(alunoBC.load(idAluno));		
+	public String insert() {
+		getBean().setAluno(alunoBC.load(idAluno));
 		this.acompanhamentoBC.insert(getBean());
 		return getPreviousView();
 	}
-	
+
 	@Override
 	@Transactional
 	public String update() {
@@ -106,7 +106,7 @@ public class AcompanhamentoEditMB extends AbstractEditPageBean<Acompanhamento, L
 		this.acompanhamentoBC.update(getBean());
 		return getPreviousView();
 	}
-	
+
 	@Override
 	protected void handleLoad() {
 		setBean(this.acompanhamentoBC.load(getId()));
