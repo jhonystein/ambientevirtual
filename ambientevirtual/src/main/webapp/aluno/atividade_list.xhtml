@@ -52,15 +52,6 @@
 					</h:commandLink>
 				</p:column>
 
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['atividade.label.descricao']}</f:facet>
-					<h:commandLink action="#{atividadeListMB.getNextView}"
-						actionListener="#{atividadeListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-
 				<p:column sortBy="#{bean.tutor}">
 					<f:facet name="header">#{messages['atividade.label.tutor']}</f:facet>
 					<h:commandLink action="#{atividadeListMB.getNextView}"
@@ -70,17 +61,8 @@
 					</h:commandLink>
 				</p:column>
 
-
 				<p:column style="width:30px;">
 					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
-					<h:commandLink action="#{turmaAddAlunoMB.outcome}">
-						<span class="ui-icon ui-icon-zoomin" style="float: left;"
-							title="#{messages['button.det.atividade']}"></span>
-						<f:param name="id" value="#{bean.id}" />
-
-						<f:setPropertyActionListener target="#{turmaAddAlunoMB.parametro}"
-							value="#{bean.id}" />
-					</h:commandLink>
 					<h:commandLink action="#{turmaAddTutorMB.outcome}">
 						<span class="ui-icon ui-icon-pencil" style="float: left;"
 							title="#{messages['button.add.solucao.atividade']}"></span>
@@ -90,7 +72,6 @@
 							value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-
 
 			</p:dataTable>
 		</h:form>
