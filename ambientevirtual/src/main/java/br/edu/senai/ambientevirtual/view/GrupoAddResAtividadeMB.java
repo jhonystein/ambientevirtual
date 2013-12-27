@@ -16,7 +16,7 @@ public class GrupoAddResAtividadeMB {
 
 	@Inject
 	private GrupoBC grupoBC;
-	private String parametro;
+	private String prmIdGrupo;
 	private Grupo grupo;
 
 	public Grupo getGrupo() {
@@ -26,17 +26,17 @@ public class GrupoAddResAtividadeMB {
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
-
-	public String getParametro() {
-		return parametro;
+	
+	public String getPrmIdGrupo() {
+		return prmIdGrupo;
 	}
 
-	public void setParametro(String parametro) {
-		this.parametro = parametro;
+	public void setPrmIdGrupo(String prmIdGrupo) {
+		this.prmIdGrupo = prmIdGrupo;
 	}
 
 	public void outcome() {
-		this.grupo = grupoBC.load(Long.valueOf(parametro));
+		this.grupo = grupoBC.load(Long.valueOf(prmIdGrupo));
 		getAlunosGrupo();
 	}
 
