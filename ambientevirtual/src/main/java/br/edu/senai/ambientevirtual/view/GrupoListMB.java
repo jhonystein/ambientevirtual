@@ -8,8 +8,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.GrupoBC;
-import br.edu.senai.ambientevirtual.domain.Aluno;
-import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -29,14 +27,7 @@ public class GrupoListMB extends AbstractListPageBean<Grupo, Long> {
 
 	private String filtro;
 	private String tipoFiltro;
-	private String parametro;
-	private Grupo grupo;
-
 	private Map<String, String> params = new HashMap<String, String>();
-
-	public void setParametro(String parametro) {
-		this.parametro = parametro;
-	}
 
 	public String getFiltro() {
 		return filtro;
@@ -52,18 +43,6 @@ public class GrupoListMB extends AbstractListPageBean<Grupo, Long> {
 
 	public void setTipoFiltro(String tipoFiltro) {
 		this.tipoFiltro = tipoFiltro;
-	}
-
-	public void outcome() {
-		grupo = grupoBC.load(Long.valueOf(parametro));
-		getAlunosGrupo();
-	}
-
-	public List<Aluno> getAlunosGrupo() {
-		if(grupo != null) {
-			return grupo.getAlunos();
-		}
-		return null;
 	}
 
 	@Override

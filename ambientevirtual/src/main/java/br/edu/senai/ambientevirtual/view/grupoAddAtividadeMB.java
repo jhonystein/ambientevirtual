@@ -22,7 +22,7 @@ public class grupoAddAtividadeMB {
 	private AtividadeBC atividadeBC;
 	private String parametro;
 	private List<Atividade> atividadesSel = new ArrayList<Atividade>();
-	Grupo grupo = new Grupo();
+	private Grupo grupo = new Grupo();
 
 	public Grupo getGrupo() {
 		return grupo;
