@@ -1,13 +1,18 @@
 package br.edu.senai.ambientevirtual.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -28,6 +33,10 @@ public class Atividade {
 	@ManyToOne
 	@JoinColumn(name="ID_TUTOR", nullable=false)
 	private Tutor tutor;
+	
+	@ManyToMany(mappedBy="atividades")
+	private List<Grupo> grupos;
+	
 
 	public Long getId() {
 		return id;
@@ -59,6 +68,14 @@ public class Atividade {
 
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
+	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 
 }

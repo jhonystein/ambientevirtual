@@ -80,6 +80,28 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
+				
+				<p:column style="width:30px;">
+					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
+					<h:commandLink action="#{grupoAddAlunoMB.outcome}">
+						<span class="ui-icon ui-icon-person" style="float: left;"
+							title="#{messages['button.add.atividade.turma']}"></span>
+						<f:param name="id" value="#{bean.id}" />
+						
+						<f:setPropertyActionListener target="#{grupoAddAlunoMB.parametro}"
+							value="#{bean.id}" />
+					</h:commandLink>
+					
+					<h:commandLink action="#{atividadeAddGrupoMB.outcome}">
+						<span class="ui-icon ui-icon-check" style="float: left;"
+							title="#{messages['button.add.atividade.grupo']}"></span>
+						<f:param name="id" value="#{bean.id}" />
+						
+						<f:setPropertyActionListener target="#{atividadeAddGrupoMB.parametro}"
+							value="#{bean.id}" />
+					</h:commandLink>
+					
+				</p:column>
 
 			</p:dataTable>
 		</h:form>
