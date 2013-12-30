@@ -16,22 +16,22 @@
 					<h:outputLabel value="#{messages['atividade.label.id']}: " for="id"
 						styleClass="text-input" />
 					<h:outputText id="id"
-						value="#{grupoAddResAtividadeMB.atividade.id}" />
+						value="#{entregaAtividadeEditMB.atividade.id}" />
 					<p:message for="id" />
 
 					<h:outputLabel value="#{messages['atividade.label.nome']}: "
 						for="nome" styleClass="text-input" />
 					<h:outputText id="nome"
-						value="#{grupoAddResAtividadeMB.atividade.nome}" />
+						value="#{entregaAtividadeEditMB.atividade.nome}" />
 					<p:message for="nome" />
 					
 					<h:outputLabel value="#{messages['acompanhamento.label.aluno']}: "
 						for="aluno" styleClass="text-input" />
 					<h:selectOneMenu id="aluno" style="width:300px;" required="true"
-						value="#{entregaAtividadeEditMB.bean.aluno}">
+						value="#{entregaAtividadeEditMB.aluno}" converter="alunoConverter">
 						<f:selectItem itemLabel="Selecione aluno" itemValue="" />
 						<f:selectItems value="#{entregaAtividadeEditMB.alunos}" var="aluno"
-							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno.id}" />
+							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno}" />
 					</h:selectOneMenu>
 					<p:message for="aluno" />
 					
@@ -47,7 +47,7 @@
 						value="#{messages['entregaAtividade.label.resolucao']}: "
 						for="descricao" styleClass="text-input" />
 					<p:editor id="descricao"
-						value="#{entregaAtividadeEditMB.bean.resolucao}"
+						value="#{entregaAtividadeEditMB.resolucao}"
 						title="#{messages['entregaAtividade.alt.resolucao']}" width="600"
 						required="true" />
 					<p:message for="descricao" />
@@ -58,7 +58,7 @@
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}"
-						action="#{grupoAddAtividadeMB.salve()}" ajax="false" />
+						action="#{entregaAtividadeEditMB.salve}" ajax="false" />
 
 					<p:button value="#{messages['button.back']}"
 						outcome="atividade_list" />

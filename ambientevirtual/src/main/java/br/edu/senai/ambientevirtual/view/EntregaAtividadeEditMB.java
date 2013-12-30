@@ -1,52 +1,98 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import br.gov.frameworkdemoiselle.annotation.PreviousView;
-import br.gov.frameworkdemoiselle.stereotype.ViewController;
-import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
-import br.gov.frameworkdemoiselle.transaction.Transactional;
+
+import br.edu.senai.ambientevirtual.business.AlunoBC;
+import br.edu.senai.ambientevirtual.business.AtividadeBC;
 import br.edu.senai.ambientevirtual.business.EntregaAtividadeBC;
+import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.EntregaAtividade;
 
-@ViewController
-@PreviousView("./entregaAtividade_list.jsf")
-public class EntregaAtividadeEditMB extends AbstractEditPageBean<EntregaAtividade, Long> {
-
-	private static final long serialVersionUID = 1L;
+@ManagedBean
+@SessionScoped
+public class EntregaAtividadeEditMB {
 
 	@Inject
 	private EntregaAtividadeBC entregaAtividadeBC;
 	
-	@Override
-	@Transactional
-	public String delete() {
-		this.entregaAtividadeBC.delete(getId());
-		return getPreviousView();
-	}
+	@Inject
+	private AlunoBC alunoBC;
 	
-	@Override
-	@Transactional
-	public String insert() {
-		System.out.println(getBean().getAtividade());
-		this.entregaAtividadeBC.insert(getBean());
-		return getPreviousView();
-	}
+	@Inject
+	private AtividadeBC atividadeBC;
+	private String prmIdAtividade;
+	private Atividade atividade;
+	private Aluno aluno;
+	private String resolucao;
+	private EntregaAtividade entregaAtividade;
 	
-	@Override
-	@Transactional
-	public String update() {
-		this.entregaAtividadeBC.update(getBean());
-		return getPreviousView();
-	}
-	
-	@Override
-	protected void handleLoad() {
-		setBean(this.entregaAtividadeBC.load(getId()));
+	public String getResolucao() {
+		return resolucao;
 	}
 
-	public String encerrar(Atividade atividade) {
-		getBean().setAtividade(atividade);
-		return "entregaAtividade_edit.jsf";
+	public void setResolucao(String resolucao) {
+		this.resolucao = resolucao;
 	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public String getPrmIdAtividade() {
+		return prmIdAtividade;
+	}
+
+	public void setPrmIdAtividade(String prmIdAtividade) {
+		this.prmIdAtividade = prmIdAtividade;
+	}
+
+	public Atividade getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
+	}
+
+	public AlunoBC getAlunoBC() {
+		return alunoBC;
+	}
+
+	public void setAlunoBC(AlunoBC alunoBC) {
+		this.alunoBC = alunoBC;
+	}
+	
+	public List<Aluno> getAlunos() {
+		return alunoBC.findAll();
+	}
+	
+	public String addResAtividade() {
+		this.atividade = atividadeBC.load(Long.valueOf(prmIdAtividade));		
+		this.entregaAtividade = entregaAtividadeBC.load(Long.valueOf(prmIdAtividade));		
+		return "aluno_add_res_atividade";
+	}
+	
+	public String salve() {		
+		
+		if(entregaAtividade == null) {
+			entregaAtividade = new EntregaAtividade();
+		}
+		
+		entregaAtividade.setAluno(aluno);
+		entregaAtividade.setEntrega(new Date());
+		entregaAtividade.setAtividade(atividade);
+		entregaAtividade.setResolucao(resolucao);		
+		entregaAtividadeBC.insert(entregaAtividade);		
+		return "atividade_list";
+	}	
 }
