@@ -78,7 +78,6 @@ public class EntregaAtividadeEditMB {
 	
 	public String addResAtividade() {
 		this.atividade = atividadeBC.load(Long.valueOf(prmIdAtividade));		
-		this.entregaAtividade = entregaAtividadeBC.load(Long.valueOf(prmIdAtividade));		
 		return "aluno_add_res_atividade";
 	}
 	

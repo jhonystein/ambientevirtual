@@ -1,8 +1,12 @@
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -21,8 +25,35 @@ public class EntregaAtividadeListMB extends AbstractListPageBean<EntregaAtividad
 	@Inject
 	private EntregaAtividadeBC entregaAtividadeBC;
 	
+	private String filtro;
+	private String tipoFiltro;
+	
+	private Map<String, String> params = new HashMap<String, String>();
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
+	}
+	
+	public String getTipoFiltro() {
+		return tipoFiltro;
+	}
+
+	public void setTipoFiltro(String tipoFiltro) {
+		this.tipoFiltro = tipoFiltro;
+	}
+	
 	@Override
 	protected List<EntregaAtividade> handleResultList() {
+		
+		if (filtro != null && !filtro.isEmpty() && tipoFiltro != null && !tipoFiltro.isEmpty()) {
+			params.put(tipoFiltro, filtro);			
+			return this.entregaAtividadeBC.filtrarQuery(tipoFiltro, params);
+		}
+		
 		return this.entregaAtividadeBC.findAll();
 	}
 	

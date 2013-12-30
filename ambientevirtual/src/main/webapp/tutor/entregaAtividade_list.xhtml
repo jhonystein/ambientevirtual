@@ -1,0 +1,77 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/tutor/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<h:outputLabel value="#{messages['tutor.label.filtro']}: "
+						for="filtro" styleClass="text-input" />
+					<h:inputText id="filtro" value="#{entregaAtividadeListMB.filtro}"
+						title="#{messages['tutor.alt.filtro']}" />
+
+					<h:outputLabel value="#{messages['tutor.label.tipofitro']}: "
+						for="tipoFiltro" styleClass="text-input" />
+					<h:selectOneMenu id="tipoFiltro"
+						value="#{entregaAtividadeListMB.tipoFiltro}"
+						title="#{messages['tutor.alt.tipofiltro']}">
+						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItem itemValue="atividade" itemLabel="Atividade" />
+						<f:selectItem itemValue="aluno" itemLabel="Aluno" />
+					</h:selectOneMenu>
+
+					<p:commandButton title="#{messages['button.search']}"
+						icon="ui-icon-search" actionListener="#{entregaAtividadeListMB.list()}"
+						ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="list" var="bean"
+				value="#{entregaAtividadeListMB.resultList}">
+				<f:facet name="header">#{messages['entregaAtividade.list.table.title']}</f:facet>
+
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['entregaAtividade.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+
+				<p:column sortBy="#{bean.entrega}">
+					<f:facet name="header">#{messages['entregaAtividade.label.entrega']}</f:facet>
+					<h:commandLink action="#{entregaAtividadeListMB.getNextView}"
+						actionListener="#{entregaAtividadeListMB.clear}">
+						<h:outputText value="#{bean.entrega}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						</h:outputText>
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.atividade}">
+					<f:facet name="header">#{messages['entregaAtividade.label.atividade']}</f:facet>
+					<h:commandLink action="#{entregaAtividadeListMB.getNextView}"
+						actionListener="#{entregaAtividadeListMB.clear}">
+						<h:outputText value="#{bean.atividade.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.aluno}">
+					<f:facet name="header">#{messages['entregaAtividade.label.aluno']}</f:facet>
+					<h:commandLink action="#{entregaAtividadeListMB.getNextView}"
+						actionListener="#{entregaAtividadeListMB.clear}">
+						<h:outputText value="#{bean.aluno.usuario.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
