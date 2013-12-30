@@ -31,12 +31,6 @@ public class Grupo {
 		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_ALUNO")})
 	private List<Aluno> alunos;
 	
-	@ManyToMany
-	@JoinTable(name="TB_ATIVIDADES_TB_GRUPOS", 
-		joinColumns={@JoinColumn(referencedColumnName="ID_GRUPO")}, 
-		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_ATIVIDADE")})
-	private List<Atividade> atividades;
-	
 	@ManyToOne
 	@JoinColumn(name="ID_TUTOR", nullable=false)
 	private Tutor tutor;
@@ -68,14 +62,6 @@ public class Grupo {
 		this.alunos = alunos;
 	}
 	
-	public List<Atividade> getAtividades() {
-		return atividades;
-	}
-
-	public void setAtividades(List<Atividade> atividades) {
-		this.atividades = atividades;
-	}
-
 	public Tutor getTutor() {
 		return tutor;
 	}
