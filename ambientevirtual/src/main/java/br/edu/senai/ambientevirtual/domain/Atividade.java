@@ -36,12 +36,11 @@ public class Atividade {
 	@JoinTable(name="TB_ATIVIDADES_TB_GRUPOS", 
 		joinColumns={@JoinColumn(referencedColumnName="ID_ATIVIDADE")}, 
 		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_GRUPO")})
-	private List<Grupo> grupos;
-	
+	private List<Grupo> grupos;	
 	@ManyToMany
 	@JoinTable(name="TB_ATIVIDADES_TB_TURMAS", 
 		joinColumns={@JoinColumn(referencedColumnName="ID_ATIVIDADE")}, 
-		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_ATIVIDADE")})
+		inverseJoinColumns={@JoinColumn(referencedColumnName="ID_TURMA")})
 	private List<Turma> turmas;
 	
 	public Long getId() {
