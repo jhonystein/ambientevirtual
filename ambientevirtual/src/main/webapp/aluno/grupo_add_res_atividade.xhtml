@@ -28,7 +28,7 @@
 					<h:outputLabel value="#{messages['acompanhamento.label.aluno']}: "
 						for="aluno" styleClass="text-input" />
 					<h:selectOneMenu id="aluno" style="width:300px;" required="true"
-						value="#{entregaAtividadeEditMB.bean.aluno}">
+						value="#{entregaAtividadeEditMB.aluno}">
 						<f:selectItem itemLabel="Selecione aluno" itemValue="" />
 						<f:selectItems value="#{entregaAtividadeEditMB.alunos}" var="aluno"
 							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno.id}" />
@@ -47,7 +47,7 @@
 						value="#{messages['entregaAtividade.label.resolucao']}: "
 						for="descricao" styleClass="text-input" />
 					<p:editor id="descricao"
-						value="#{entregaAtividadeEditMB.bean.resolucao}"
+						value="#{entregaAtividadeEditMB.resolucao}"
 						title="#{messages['entregaAtividade.alt.resolucao']}" width="600"
 						required="true" />
 					<p:message for="descricao" />

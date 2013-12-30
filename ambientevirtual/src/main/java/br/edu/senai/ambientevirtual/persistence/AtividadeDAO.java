@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.persistence.Query;
 
 import br.edu.senai.ambientevirtual.domain.Atividade;
-import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 

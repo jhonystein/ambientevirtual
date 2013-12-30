@@ -6,10 +6,9 @@ import java.util.Map;
 
 import javax.persistence.Query;
 
+import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
-import br.edu.senai.ambientevirtual.domain.Grupo;
-import br.edu.senai.ambientevirtual.domain.Turma;
 
 @PersistenceController
 public class GrupoDAO extends JPACrud<Grupo, Long> {

@@ -7,14 +7,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import br.edu.senai.ambientevirtual.business.TurmaBC;
+import br.edu.senai.ambientevirtual.domain.Turma;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.edu.senai.ambientevirtual.business.TurmaBC;
-import br.edu.senai.ambientevirtual.domain.Turma;
-import br.edu.senai.ambientevirtual.domain.Tutor;
 
 @ViewController
 @NextView("./turma_edit.jsf")
