@@ -16,28 +16,52 @@
 					<h:outputText value="#{bean.id}" />
 				</p:column>
 
-				<p:column sortBy="#{bean.data}">
+				<p:column sortBy="#{bean.data}" style="width:10%;">
 					<f:facet name="header">#{messages['mensagem.label.data']}</f:facet>
-						<h:outputText value="#{bean.data}">
-							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-						</h:outputText>
-						<f:param name="id" value="#{bean.id}" />
+					<h:outputText value="#{bean.data}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<f:param name="id" value="#{bean.id}" />
 				</p:column>
-				
+
 				<p:column sortBy="#{bean.assunto}">
 					<f:facet name="header">#{messages['mensagem.label.assunto']}</f:facet>
-						<h:outputText value="#{bean.assunto}" />
-						<f:param name="id" value="#{bean.id}" />
+					<h:outputText value="#{bean.assunto}" />
+					<f:param name="id" value="#{bean.id}" />
 				</p:column>
-				
+
 				<p:column sortBy="#{bean.turma}">
 					<f:facet name="header">#{messages['mensagem.label.turma']}</f:facet>
-						<h:outputText value="#{bean.turma.codigo}" />
+					<h:outputText value="#{bean.turma.codigo}" />
+					<f:param name="id" value="#{bean.id}" />
+				</p:column>
+
+				<p:column style="width:30px;">
+					<f:facet name="header">#{messages['tutor.label.acoes']}</f:facet>
+					<p:commandLink ajax="true" oncomplete="dlg1.show();"
+						update=":mensagem"
+						action="#{mensagemListMB.loadDetalhesMensagem}">
+						<span class="ui-icon ui-icon-person" style="float: left;"
+							title="#{messages['button.det.mensagem']}"> </span>
 						<f:param name="id" value="#{bean.id}" />
+
+						<f:setPropertyActionListener
+							target="#{mensagemListMB.prmIdMensagem}" value="#{bean.id}" />
+					</p:commandLink>
 				</p:column>
 
 			</p:dataTable>
 		</h:form>
+
+		<p:dialog id="basicDialog" header="Detalhes da mensagem"
+			widgetVar="dlg1" modal="true" dynamic="true">
+
+			<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
+				for="mensagem" styleClass="text-input" />
+			<p:editor id="mensagem" value="#{mensagemListMB.mensagem.mensagem}"
+				width="600" height="150" disabled="true" />
+
+		</p:dialog>
 
 	</ui:define>
 </ui:composition>
