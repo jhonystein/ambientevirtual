@@ -49,4 +49,52 @@ public class Mensagem {
 	 * */
 	@Column(name="FL_TUTOR", nullable=false)
 	private Integer flTutor;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getAssunto() {
+		return assunto;
+	}
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
+	}
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+	public Tutor getTutor() {
+		return tutor;
+	}
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
+	public Turma getTurma() {
+		return turma;
+	}
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public Integer getFlTutor() {
+		return flTutor;
+	}
+	public void setFlTutor(Integer flTutor) {
+		this.flTutor = flTutor;
+	}
 }
