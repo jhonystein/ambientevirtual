@@ -16,6 +16,7 @@
 		<class>br.edu.senai.ambientevirtual.domain.Turma</class>
 		<class>br.edu.senai.ambientevirtual.domain.Tutor</class>
 		<class>br.edu.senai.ambientevirtual.domain.Usuario</class>
+		<class>br.edu.senai.ambientevirtual.domain.Mensagem</class>
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />

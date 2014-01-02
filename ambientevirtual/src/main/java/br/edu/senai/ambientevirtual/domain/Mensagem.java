@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -42,6 +43,10 @@ public class Mensagem {
 	private Grupo grupo;
 	@Column(name="DT_MENSAGEM", nullable=false)
 	private Date data;	
+	@Lob
+	@Column(name="DS_MENSAGEM", nullable=false)
+	private String mensagem;
+	
 	/** 
 	 * FLAG PARA INFORMAR SE MENSAGEM FOI ENVIADO POR TUTOR OU ALUNO. 
 	 * SE VALOR = 1 FOI ENVIADA POR TUTOR PARA ALUNO(S) OU TURMA OU GRUPO
@@ -97,4 +102,11 @@ public class Mensagem {
 	public void setFlTutor(Integer flTutor) {
 		this.flTutor = flTutor;
 	}
+	public String getMensagem() {
+		return mensagem;
+	}
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+	
 }
