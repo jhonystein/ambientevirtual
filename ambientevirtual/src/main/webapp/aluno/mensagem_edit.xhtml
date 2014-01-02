@@ -27,7 +27,6 @@
 						<f:selectItem itemLabel="Selecione turma" itemValue="-1" />
 						<f:selectItems value="#{mensagemEditMB.turmas}" var="turma"
 							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
-
 					</h:selectOneMenu>
 					<p:message for="turma" />
 
@@ -47,12 +46,8 @@
 					<p:editor id="mensagem" value="#{mensagemEditMB.mensagem.mensagem}"
 						width="600" height="150" required="true" />
 					<p:message for="mensagem" />
-				</h:panelGrid>
 
-				<div class="ui-messages-info ui-corner-all" style="font-size: 10px;">
-					<span class="ui-messages-info-icon"></span>
-					#{messages['mensagem.label.instrucoes']}
-				</div>
+				</h:panelGrid>
 			</p:fieldset>
 
 			<br />
@@ -61,8 +56,6 @@
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.enviar']}"
 						action="#{mensagemEditMB.enviar}" ajax="false" />
-					<p:button value="#{messages['button.back']}"
-						outcome="mensagem_list" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
