@@ -71,6 +71,7 @@ public class MensagemEditMB {
 	}
 	
 	public String enviar() {
+		this.mensagem.setFlTutor(1);
 		this.mensagem.setTurma(this.turma);
 		this.mensagem.setData(new Date());
 		this.mensagemBC.insert(this.mensagem);		

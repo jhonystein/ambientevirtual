@@ -58,7 +58,7 @@
 					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
 						for="tutor" styleClass="text-input" />
 					<h:selectOneMenu id="tutor" style="width:300px;"
-						value="#{mensagemEditMB.mensagem.tutor}" converter="tutorConverter">
+						value="#{mensagemEditMB.mensagem.tutor}" converter="tutorConverter" required="true">
 						<f:selectItem itemLabel="Selecione tutor" itemValue="" />
 						<f:selectItems value="#{grupoEditMB.tutores}" var="tutor"
 							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
