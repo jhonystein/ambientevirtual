@@ -1,0 +1,72 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/aluno/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+
+			<p:fieldset legend="#{messages['mensagem.label']}" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+
+					<h:outputLabel value="#{messages['mensagem.label.assunto']}: "
+						for="assunto" styleClass="text-input" />
+					<h:inputText id="assunto"
+						value="#{mensagemEditMB.mensagem.assunto}" required="true"
+						style="width:300px;" />
+					<p:message for="assunto" />
+
+					<h:outputLabel value="#{messages['acompanhamento.label.turma']}: "
+						for="turma" styleClass="text-input" />
+					<h:selectOneMenu id="turma" style="width:300px;" required="true"
+						value="#{mensagemEditMB.turma}" converter="turmaConverter">
+						<f:selectItem itemLabel="Selecione turma" itemValue="-1" />
+						<f:selectItems value="#{mensagemEditMB.turmas}" var="turma"
+							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
+
+					</h:selectOneMenu>
+					<p:message for="turma" />
+
+					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
+						for="tutor" styleClass="text-input" />
+					<h:selectOneMenu id="tutor" style="width:300px;"
+						value="#{mensagemEditMB.mensagem.tutor}"
+						converter="tutorConverter" required="true">
+						<f:selectItem itemLabel="Selecione tutor" itemValue="" />
+						<f:selectItems value="#{grupoEditMB.tutores}" var="tutor"
+							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
+					</h:selectOneMenu>
+					<p:message for="tutor" />
+
+					<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
+						for="mensagem" styleClass="text-input" />
+					<p:editor id="mensagem" value="#{mensagemEditMB.mensagem.mensagem}"
+						width="600" height="150" required="true" />
+					<p:message for="mensagem" />
+				</h:panelGrid>
+
+				<div class="ui-messages-info ui-corner-all" style="font-size: 10px;">
+					<span class="ui-messages-info-icon"></span>
+					#{messages['mensagem.label.instrucoes']}
+				</div>
+			</p:fieldset>
+
+			<br />
+
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.enviar']}"
+						action="#{mensagemEditMB.enviar}" ajax="false" />
+					<p:button value="#{messages['button.back']}"
+						outcome="mensagem_list" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -30,7 +30,7 @@
 					<f:param name="id" value="#{bean.id}" />
 				</p:column>
 
-				<p:column sortBy="#{bean.turma}">
+				<p:column sortBy="#{bean.turma}" style="width:10%;">
 					<f:facet name="header">#{messages['mensagem.label.turma']}</f:facet>
 					<h:outputText value="#{bean.turma.codigo}" />
 					<f:param name="id" value="#{bean.id}" />
@@ -41,7 +41,7 @@
 					<p:commandLink ajax="true" oncomplete="dlg1.show();"
 						update=":mensagem"
 						action="#{mensagemListMB.loadDetalhesMensagem}">
-						<span class="ui-icon ui-icon-person" style="float: left;"
+						<span class="ui-icon ui-icon-zoomin" style="float: left;"
 							title="#{messages['button.det.mensagem']}"> </span>
 						<f:param name="id" value="#{bean.id}" />
 
