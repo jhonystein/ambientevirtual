@@ -28,7 +28,7 @@
 						<f:selectItems value="#{mensagemEditMB.turmas}" var="turma"
 							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
 
-						<f:ajax event="change" execute="@this" render="aluno grupo"
+						<f:ajax render="aluno grupo"
 							listener="#{mensagemEditMB.changeTurma()}" />
 
 					</h:selectOneMenu>
@@ -37,7 +37,8 @@
 					<h:outputLabel value="#{messages['mensagem.label.grupo']}: "
 						for="grupo" styleClass="text-input" />
 					<h:selectOneMenu id="grupo" style="width:300px;"
-						value="#{mensagemEditMB.grupo}" onchange="teste()" converter="grupoConverter">
+						converter="grupoConverter"
+						value="#{mensagemEditMB.mensagem.grupo}" onchange="teste()">
 						<f:selectItem itemLabel="Selecione grupo" itemValue="-1" />
 						<f:selectItems value="#{mensagemEditMB.grupos}" var="grupo"
 							itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
@@ -47,7 +48,7 @@
 					<h:outputLabel value="#{messages['acompanhamento.label.aluno']}: "
 						for="aluno" styleClass="text-input" />
 					<h:selectManyListbox id="aluno"
-						value="#{mensagemEditMB.alunosSel}"
+						value="#{mensagemEditMB.mensagem.alunos}"
 						style="height:100px; width:300px;" converter="alunoConverter">
 						<f:selectItems value="#{mensagemEditMB.alunos}" var="aluno"
 							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno}" />

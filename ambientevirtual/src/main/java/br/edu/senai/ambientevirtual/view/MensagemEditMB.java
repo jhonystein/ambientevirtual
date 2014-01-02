@@ -22,9 +22,7 @@ public class MensagemEditMB {
 	private TurmaBC turmaBC;
 	private List<Aluno> alunos;
 	private List<Grupo> grupos;
-	private Turma turma;
-	private Grupo grupo;
-	private List<Aluno> alunosSel;
+	private Turma turma;	
 	
 	@Inject
 	private MensagemBC mensagemBC;
@@ -37,18 +35,6 @@ public class MensagemEditMB {
 	}
 	public void setTurma(Turma turma) {
 		this.turma = turma;
-	}
-	public Grupo getGrupo() {
-		return grupo;
-	}
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-	public List<Aluno> getAlunosSel() {
-		return alunosSel;
-	}
-	public void setAlunosSel(List<Aluno> alunosSel) {
-		this.alunosSel = alunosSel;
 	}
 	public List<Aluno> getAlunos() {
 		return alunos;
@@ -84,8 +70,6 @@ public class MensagemEditMB {
 	public String enviar() {
 		this.mensagem.setFlTutor(1);
 		this.mensagem.setTurma(this.turma);
-		this.mensagem.setGrupo(this.grupo);
-		this.mensagem.setAlunos(this.alunosSel);
 		this.mensagem.setData(new Date());
 		this.mensagemBC.insert(this.mensagem);		
 		return "mensagem_list";
