@@ -7,10 +7,37 @@
 	template="/tutor/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form prependId="false">
+		<h:form>
+			<p:dataTable id="list" var="bean"
+				value="#{mensagemListMB.resultList}">
+				<f:facet name="header">#{messages['mensagem.list.table.title']}</f:facet>
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['atividade.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
 
-			caraio !! salvou !!!!!!!!!!!
+				<p:column sortBy="#{bean.data}">
+					<f:facet name="header">#{messages['mensagem.label.data']}</f:facet>
+						<h:outputText value="#{bean.data}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						<f:param name="id" value="#{bean.id}" />
+				</p:column>
+				
+				<p:column sortBy="#{bean.assunto}">
+					<f:facet name="header">#{messages['mensagem.label.assunto']}</f:facet>
+						<h:outputText value="#{bean.assunto}" />
+						<f:param name="id" value="#{bean.id}" />
+				</p:column>
+				
+				<p:column sortBy="#{bean.turma}">
+					<f:facet name="header">#{messages['mensagem.label.turma']}</f:facet>
+						<h:outputText value="#{bean.turma.codigo}" />
+						<f:param name="id" value="#{bean.id}" />
+				</p:column>
 
+			</p:dataTable>
 		</h:form>
+
 	</ui:define>
 </ui:composition>
