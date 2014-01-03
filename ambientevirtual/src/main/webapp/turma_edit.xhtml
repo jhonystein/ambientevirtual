@@ -20,13 +20,13 @@
 					<h:outputLabel value="#{messages['turma.label.codigo']}: "
 						for="codigo" styleClass="text-input" />
 					<h:inputText id="codigo" value="#{turmaEditMB.bean.codigo}"
-						title="#{messages['turma.alt.curso']}" required="true" />
+						title="#{messages['turma.alt.curso']}" required="true" maxlength="50"/>
 					<p:message for="codigo" />
 
 					<h:outputLabel value="#{messages['turma.label.curso']}: "
 						for="curso" styleClass="text-input" />
 					<h:inputText id="curso" value="#{turmaEditMB.bean.curso}"
-						title="#{messages['turma.alt.curso']}" required="true" />
+						title="#{messages['turma.alt.curso']}" required="true" maxlength="50"/>
 					<p:message for="curso" />
 
 					<h:outputLabel value="#{messages['turma.label.semestre']}: "

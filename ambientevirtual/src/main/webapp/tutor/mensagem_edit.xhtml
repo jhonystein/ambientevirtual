@@ -17,7 +17,7 @@
 						for="assunto" styleClass="text-input" />
 					<h:inputText id="assunto"
 						value="#{mensagemEditMB.mensagem.assunto}" required="true"
-						style="width:300px;" />
+						style="width:300px;" maxlength="100"/>
 					<p:message for="assunto" />
 
 					<h:outputLabel value="#{messages['acompanhamento.label.turma']}: "

@@ -20,7 +20,7 @@
 					<h:outputLabel value="#{messages['atividade.label.nome']}: "
 						for="nome" styleClass="text-input" />
 					<h:inputText id="nome" value="#{atividadeEditMB.bean.nome}"
-						title="#{messages['atividade.alt.nome']}" required="true" />
+						title="#{messages['atividade.alt.nome']}" required="true" maxlength="100"/>
 					<p:message for="nome" />
 
 					<h:outputLabel value="#{messages['atividade.label.descricao']}: "

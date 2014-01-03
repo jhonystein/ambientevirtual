@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -33,8 +34,9 @@ public class Acompanhamento {
 	private Aluno aluno;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DT_OCORRENCIA", nullable=false)
-	private Date ocorrencia;
-	@Column(name="DS_ACOMPANHAMENTO", length=250 ,nullable=false)
+	private Date ocorrencia;	
+	@Lob
+	@Column(name="DS_ACOMPANHAMENTO", nullable=false)
 	private String acompanhamento;
 	@Enumerated(EnumType.STRING)
 	private Situacao situacao;

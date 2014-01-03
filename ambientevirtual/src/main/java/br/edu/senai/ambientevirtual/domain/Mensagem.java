@@ -25,7 +25,7 @@ public class Mensagem {
 	@Column(name="ID_MENSAGEM")
 	@GeneratedValue(generator="MensagenGen", strategy=GenerationType.TABLE)
 	private Long id;	
-	@Column(name="DS_ASSUNTO", length=50, nullable=false)
+	@Column(name="DS_ASSUNTO", length=100, nullable=false)
 	private String assunto;	
 	@ManyToMany
 	@JoinTable(name="TB_ALUNOS_TB_MENSAGENS", 
@@ -45,7 +45,11 @@ public class Mensagem {
 	private Date data;	
 	@Lob
 	@Column(name="DS_MENSAGEM", nullable=false)
-	private String mensagem;
+	private String mensagem;	
+	@Column(name="DS_REMETENTE", nullable=true, length=50)
+	private String remetente;
+	@Column(name="DS_DESTINATARIO", nullable=true, length=255)
+	private String destinatario;
 	
 	/** 
 	 * FLAG PARA INFORMAR SE MENSAGEM FOI ENVIADO POR TUTOR OU ALUNO. 
@@ -107,6 +111,18 @@ public class Mensagem {
 	}
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
+	}
+	public String getRemetente() {
+		return remetente;
+	}
+	public void setRemetente(String remetente) {
+		this.remetente = remetente;
+	}
+	public String getDestinatario() {
+		return destinatario;
+	}
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
 	}
 	
 }

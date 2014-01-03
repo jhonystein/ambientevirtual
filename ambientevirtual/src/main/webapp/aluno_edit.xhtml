@@ -16,32 +16,32 @@
 					
 					<h:outputLabel value="#{messages['aluno.label.matricula']}: " for="matricula" styleClass="text-input" />
 					<h:inputText id="matricula" value="#{alunoEditMB.bean.matricula}"
-						title="#{messages['aluno.alt.matricula']}" />
+						title="#{messages['aluno.alt.matricula']}" maxlength="20"/>
 					<p:message for="matricula" />
 					
 					<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome" styleClass="text-input" />
 					<h:inputText id="nome" value="#{alunoEditMB.bean.usuario.nome}"
-						title="#{messages['usuario.label.nome']}" />
+						title="#{messages['usuario.label.nome']}" maxlength="100"/>
 					<p:message for="nome" />
 
 					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
 					<h:inputText id="login" value="#{alunoEditMB.bean.usuario.login}"
-						title="#{messages['usuario.alt.login']}" />
+						title="#{messages['usuario.alt.login']}" maxlength="20"/>
 					<p:message for="login" />
 					
 					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
 					<h:inputSecret id="senha" value="#{alunoEditMB.bean.usuario.senha}"
-						title="#{messages['usuario.alt.senha']}" />
+						title="#{messages['usuario.alt.senha']}" maxlength="20"/>
 					<p:message for="senha" />
 					
 					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
 					<h:inputText id="email" value="#{alunoEditMB.bean.usuario.email}"
-						title="#{messages['usuario.alt.email']}" />
+						title="#{messages['usuario.alt.email']}" maxlength="100"/>
 					<p:message for="email" />
 					
 					<h:outputLabel value="#{messages['usuario.label.telefone']}: " for="telefone" styleClass="text-input" />
 					<h:inputText id="telefone" value="#{alunoEditMB.bean.usuario.telefone}"
-						title="#{messages['usuario.alt.telefone']}" />
+						title="#{messages['usuario.alt.telefone']}" maxlength="20"/>
 					<p:message for="telefone" />
 					
 					<h:outputLabel value="#{messages['usuario.label.sexo']}: " for="sexo" styleClass="text-input" />
@@ -54,21 +54,13 @@
 					
 					<h:outputLabel value="#{messages['usuario.label.rg']}: " for="rg" styleClass="text-input" />
 					<h:inputText id="rg" value="#{alunoEditMB.bean.usuario.rg}"
-						title="#{messages['usuario.alt.rg']}" />
+						title="#{messages['usuario.alt.rg']}" maxlength="30"/>
 					<p:message for="rg" />
 					
 					<h:outputLabel value="#{messages['usuario.label.cpf']}: " for="cpf" styleClass="text-input" />
 					<h:inputText id="cpf" value="#{alunoEditMB.bean.usuario.cpf}"
-						title="#{messages['usuario.alt.cpf']}" />
-					<p:message for="cpf" />
-					
-					<!-- 
-					<h:outputLabel value="#{messages['aluno.label.acompanhamentos']}: " for="acompanhamentos" styleClass="text-input" />
-					<h:inputText id="acompanhamentos" value="#{alunoEditMB.bean.acompanhamentos}"
-						title="#{messages['aluno.alt.acompanhamentos']}" />
-					<p:message for="acompanhamentos" />
-					-->
-					
+						title="#{messages['usuario.alt.cpf']}" maxlength="30"/>
+					<p:message for="cpf" />					
 				</h:panelGrid>
 			</p:fieldset>
 			

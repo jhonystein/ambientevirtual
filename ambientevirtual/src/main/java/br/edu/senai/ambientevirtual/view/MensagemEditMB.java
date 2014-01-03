@@ -68,6 +68,10 @@ public class MensagemEditMB {
 	}
 	
 	public String enviar() {
+		/** 
+		 * falta informar o remetente e os destinatarios.
+		 * aguardando implementar o login
+		 */
 		this.mensagem.setFlTutor(1);
 		this.mensagem.setTurma(this.turma);
 		this.mensagem.setData(new Date());
