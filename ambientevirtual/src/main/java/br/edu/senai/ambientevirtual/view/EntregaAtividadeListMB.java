@@ -27,6 +27,9 @@ public class EntregaAtividadeListMB extends AbstractListPageBean<EntregaAtividad
 	
 	private String filtro;
 	private String tipoFiltro;
+	private String prmIdEntrega;
+	
+	private EntregaAtividade entregaAtividade;
 	
 	private Map<String, String> params = new HashMap<String, String>();
 
@@ -46,6 +49,26 @@ public class EntregaAtividadeListMB extends AbstractListPageBean<EntregaAtividad
 		this.tipoFiltro = tipoFiltro;
 	}
 	
+	public String getPrmIdEntrega() {
+		return prmIdEntrega;
+	}
+
+	public void setPrmIdEntrega(String prmIdEntrega) {
+		this.prmIdEntrega = prmIdEntrega;
+	}
+	
+	public EntregaAtividade getEntregaAtividade() {
+		return entregaAtividade;
+	}
+
+	public void setEntregaAtividade(EntregaAtividade entregaAtividade) {
+		this.entregaAtividade = entregaAtividade;
+	}
+	
+	public void loadDetalhesEntrega() {
+		entregaAtividade = entregaAtividadeBC.load(Long.valueOf(prmIdEntrega));
+	}	
+
 	@Override
 	protected List<EntregaAtividade> handleResultList() {
 		

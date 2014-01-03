@@ -55,12 +55,8 @@
 
 		<p:dialog id="basicDialog" header="Detalhes da mensagem"
 			widgetVar="dlg1" modal="true" dynamic="true">
-
-			<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
-				for="mensagem" styleClass="text-input" />
 			<p:editor id="mensagem" value="#{mensagemListMB.mensagem.mensagem}"
 				width="600" height="150" disabled="true" />
-
 		</p:dialog>
 
 	</ui:define>
