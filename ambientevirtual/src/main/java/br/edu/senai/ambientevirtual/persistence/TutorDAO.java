@@ -25,7 +25,9 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 			query = "Select t from Tutor t where upper(t.nucleo) like upper(:nucleo)";
 		}
 		if ("todos".equals(tpFiltro)) {
-			query = "";
+			query = "Select t from Tutor t where (upper(t.usuario.nome) like upper(:todos) or "
+					+ "upper(t.usuario.email) like upper(:todos) or "
+					+ "upper(t.nucleo) like upper(:todos))";
 		}
 		
 		Query filtro = createQuery(query);
