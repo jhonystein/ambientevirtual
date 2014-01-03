@@ -27,7 +27,8 @@
 						for="tipoFiltro" styleClass="text-input" />
 					<h:selectOneMenu id="tipoFiltro" value="#{turmaListMB.tipoFiltro}"
 						title="#{messages['tutor.alt.tipofiltro']}">
-						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItem itemValue="todos" itemLabel="Todos" />
+						<f:selectItem itemValue="codigo" itemLabel="Código" />
 						<f:selectItem itemValue="curso" itemLabel="Curso" />
 						<f:selectItem itemValue="semestre" itemLabel="Semestre" />
 					</h:selectOneMenu>

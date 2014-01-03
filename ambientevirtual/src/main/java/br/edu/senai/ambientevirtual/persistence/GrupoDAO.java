@@ -16,14 +16,18 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 	private static final long serialVersionUID = 1L;
 
 	public List<Grupo> filtrarQuery(String tpFiltro, Map<String, String> params) {
-		String query = "Select g from Grupo g where g.nome = :nome";
+		String query = "Select g from Grupo g where upper(g.nome) like upper(:nome)";
 		
 		if ("turma".equals(tpFiltro)) {
-			query = "Select g from Grupo g where g.turma.codigo = :turma";
-		}
-		
+			query = "Select g from Grupo g where upper(g.turma.codigo) like upper(:turma)";
+		}		
 		if ("tutor".equals(tpFiltro)) {
-			query = "Select g from Grupo g where g.tutor.usuario.nome = :tutor";
+			query = "Select g from Grupo g where upper(g.tutor.usuario.nome) like upper(:tutor)";
+		}		
+		if ("todos".equals(tpFiltro)) {
+			query = "Select g from Grupo g where (upper(g.nome) like upper(:todos) or "
+					+ "upper(g.tutor.usuario.nome) like upper(:todos) or "
+					+ "upper(g.turma.codigo) like upper(:todos))";
 		}
 		
 		Query filtro = createQuery(query);
@@ -35,7 +39,7 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 				filtro.setParameter(chave, Integer.parseInt(params.get(chave)));
 			}
 			else {
-				filtro.setParameter(chave, params.get(chave));
+				filtro.setParameter(chave, "%" + params.get(chave) + "%");
 			}
 		}
 		

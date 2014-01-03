@@ -16,21 +16,23 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 	private static final long serialVersionUID = 1L;
 
 	public List<Tutor> filtrarQuery(String tpFiltro, Map<String, String> params) {
-		String query = "Select t from Tutor t where t.usuario.nome = :nome";
+		String query = "Select t from Tutor t where upper(t.usuario.nome) like upper(:nome)";
 		
 		if ("email".equals(tpFiltro)) {
-			query = "Select t from Tutor t where t.usuario.email = :email";
-		}
-		
-		if ("nucleo".equals(tpFiltro)) {
-			query = "Select t from Tutor t where t.nucleo = :nucleo";
+			query = "Select t from Tutor t where upper(t.usuario.email) like upper(:email)";
 		}		
+		if ("nucleo".equals(tpFiltro)) {
+			query = "Select t from Tutor t where upper(t.nucleo) like upper(:nucleo)";
+		}
+		if ("todos".equals(tpFiltro)) {
+			query = "";
+		}
 		
 		Query filtro = createQuery(query);
 		
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator.hasNext();) {
 			String chave = iterator.next();
-			filtro.setParameter(chave, params.get(chave));
+			filtro.setParameter(chave, "%" + params.get(chave) + "%");
 		}
 		
 		params.clear();

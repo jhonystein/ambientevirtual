@@ -16,11 +16,18 @@ public class TurmaDAO extends JPACrud<Turma, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	public List<Turma> filtrarQuery(String tpFiltro, Map<String, String> params) {
-		String query = "Select t from Turma t where t.curso = :curso";
+		String query = "Select t from Turma t where upper(t.curso) like upper(:curso)";
 		
 		if ("semestre".equals(tpFiltro)) {
 			query = "Select t from Turma t where t.semestre = :semestre";
-		}		
+		}
+		if ("codigo".equals(tpFiltro)) {
+			query = "Select t from Turma t where upper(t.codigo) like upper(:codigo)";
+		}
+		if ("todos".equals(tpFiltro)) {
+			query = "Select t from Turma t where upper(t.curso) like upper(:todos) or "
+					+ "upper(t.codigo) like upper(:todos)";
+		}
 		
 		Query filtro = createQuery(query);
 		
@@ -28,10 +35,16 @@ public class TurmaDAO extends JPACrud<Turma, Long> {
 			String chave = iterator.next();
 			
 			if ("semestre".equals(tpFiltro)) {
-				filtro.setParameter(chave, Integer.parseInt(params.get(chave)));
+				try {
+					filtro.setParameter(chave, Integer.parseInt(params.get(chave)));
+				}
+				catch(NumberFormatException n) {
+					params.clear();
+					return null;
+				}
 			}
 			else {
-				filtro.setParameter(chave, params.get(chave));
+				filtro.setParameter(chave, "%" + params.get(chave) + "%");
 			}
 		}
 		
