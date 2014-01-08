@@ -12,21 +12,25 @@
 
 <h:body style="background-color:#f1f1f1">
 	<h:form>
-		<p:fieldset legend="#{messages['login.label']}" styleClass="panelGridCenter">
+		<p:fieldset legend="#{messages['login.label']}"
+			styleClass="panelGridCenter">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="#{messages['login.usuario']}" />
-				<h:inputText value="#" id="username" required="true"
-					label="username" />
+				<h:inputText value="#{loginMB.credenciais.nome}" id="username"
+					required="true" label="username" />
 
 				<h:outputLabel for="password" value="#{messages['login.senha']}" />
-				<h:inputSecret value="#" id="password" required="true"
-					label="password" />
+				<h:inputSecret value="#{loginMB.credenciais.senha}" id="password"
+					required="true" label="password" />
 
 				<f:facet name="footer">
-					<p:commandButton id="loginButton" value="#{messages['login.acesso']}" actionListener="#" />
+					<p:commandButton ajax="false" id="loginButton"
+						value="#{messages['login.acesso']}"
+						actionListener="#{loginMB.logar()}" />
 				</f:facet>
 			</h:panelGrid>
-		</p:fieldset>
+			<p:messages />
+		</p:fieldset>			
 	</h:form>
 </h:body>
 </html>

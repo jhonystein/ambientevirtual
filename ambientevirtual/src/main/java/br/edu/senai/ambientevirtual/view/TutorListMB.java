@@ -30,7 +30,7 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 	private String firstname;
 	
 	private Map<String, String> params = new HashMap<String, String>();
-
+	
 	public String getFiltro() {
 		return filtro;
 	}
@@ -55,7 +55,7 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 			return this.tutorBC.filtrarQuery(tipoFiltro, params);
 		}
 		
-		return this.tutorBC.findAll();
+		return this.tutorBC.listTutor();
 	}
 	
 	@Transactional

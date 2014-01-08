@@ -5,6 +5,7 @@ import java.util.Map;
 
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.edu.senai.ambientevirtual.persistence.TutorDAO;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
@@ -15,6 +16,11 @@ public class TutorBC extends DelegateCrud<Tutor, Long, TutorDAO> {
 	
 	public List<Tutor> filtrarQuery(String filtro, Map<String, String> params) {
 		return getDelegate().filtrarQuery(filtro, params);
+	}
+	
+	@RequiredRole("administrador")
+	public List<Tutor> listTutor() {
+		return this.findAll();
 	}
 		
 }
