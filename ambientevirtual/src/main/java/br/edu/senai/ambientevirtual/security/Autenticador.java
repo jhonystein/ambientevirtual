@@ -71,14 +71,11 @@ public class Autenticador implements Authenticator {
 			public void setAttribute(Object arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				
-			}			
+			}
 		};
 	}
 
 	@Override
-	public void unAuthenticate() {
-		// TODO Auto-generated method stub
-		System.out.println("passou logout!!");
-	}
+	public void unAuthenticate() {}
 	
 }
