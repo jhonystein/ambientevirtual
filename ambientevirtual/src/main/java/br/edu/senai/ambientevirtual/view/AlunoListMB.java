@@ -26,7 +26,6 @@ public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 	
 	@Override
 	protected List<Aluno> handleResultList() {
-		System.out.println("tipo" + tipoFiltro + ", valor" + filtro);
 		if (filtro != null) {
 			return alunoBC.filtrar(tipoFiltro, filtro);
 		}

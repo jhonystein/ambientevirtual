@@ -33,4 +33,5 @@ public class AlunoDAO extends JPACrud<Aluno, Long> {
 		busca.setParameter("valor", "%"+valor+"%");
 		return busca.getResultList();
 	}
+	
 }

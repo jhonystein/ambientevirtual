@@ -3,10 +3,13 @@ package br.edu.senai.ambientevirtual.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.AlunoBC;
+import br.edu.senai.ambientevirtual.business.UsuarioBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Sexo;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -23,6 +26,12 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Inject
 	private AlunoBC alunoBC;
 
+	@Inject
+	private UsuarioBC usuarioBC;
+	
+	@Inject
+	private FacesContext facesContext;
+	
 	private List<SelectItem> sexos;
 	
 	public AlunoEditMB() {
@@ -59,6 +68,16 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		setBean(this.alunoBC.load(getId()));
 	}
 
+	@Transactional
+	public void checaLogin() {
+		if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())) {
+			facesContext.addMessage("login", new FacesMessage(
+					FacesMessage.SEVERITY_WARN, "Login já exitente. Tente um login diferente.", null));
+		} else {
+			facesContext.addMessage("login", new FacesMessage("OK"));
+		}
+	}
+	
 	public List<SelectItem> getSexos() {
 		return sexos;
 	}

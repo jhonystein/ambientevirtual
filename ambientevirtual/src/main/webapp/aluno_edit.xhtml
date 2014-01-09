@@ -16,22 +16,24 @@
 					
 					<h:outputLabel value="#{messages['aluno.label.matricula']}: " for="matricula" styleClass="text-input" />
 					<h:inputText id="matricula" value="#{alunoEditMB.bean.matricula}"
-						title="#{messages['aluno.alt.matricula']}" maxlength="20"/>
+						title="#{messages['aluno.alt.matricula']}" maxlength="20" required="true" />
 					<p:message for="matricula" />
 					
 					<h:outputLabel value="#{messages['usuario.label.nome']}: " for="nome" styleClass="text-input" />
 					<h:inputText id="nome" value="#{alunoEditMB.bean.usuario.nome}"
-						title="#{messages['usuario.label.nome']}" maxlength="100"/>
+						title="#{messages['usuario.label.nome']}" maxlength="100" required="true" />
 					<p:message for="nome" />
 
 					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
 					<h:inputText id="login" value="#{alunoEditMB.bean.usuario.login}"
-						title="#{messages['usuario.alt.login']}" maxlength="20"/>
-					<p:message for="login" />
+						title="#{messages['usuario.alt.login']}" maxlength="20" required="true">
+						<p:ajax event="blur" listener="#{alunoEditMB.checaLogin()}" update="login_message" />
+					</h:inputText>
+					<p:message id="login_message" for="login" />
 					
 					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
 					<h:inputSecret id="senha" value="#{alunoEditMB.bean.usuario.senha}"
-						title="#{messages['usuario.alt.senha']}" maxlength="20"/>
+						title="#{messages['usuario.alt.senha']}" maxlength="20" required="true" />
 					<p:message for="senha" />
 					
 					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
@@ -45,7 +47,7 @@
 					<p:message for="telefone" />
 					
 					<h:outputLabel value="#{messages['usuario.label.sexo']}: " for="sexo" styleClass="text-input" />
-			        <p:selectOneRadio id="sexo" value="#{alunoEditMB.bean.usuario.sexo}" title="#{messages['usuario.alt.sexo']}">  
+			        <p:selectOneRadio id="sexo" value="#{alunoEditMB.bean.usuario.sexo}" title="#{messages['usuario.alt.sexo']}" required="true" >  
 			            <f:selectItems value="#{alunoEditMB.sexos}" var="sexo"
                                    itemLabel="#{sexo.label}" 
                                    itemValue="#{sexo.value}" />

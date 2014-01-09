@@ -34,5 +34,10 @@ public class UsuarioBC extends DelegateCrud<Usuario, Long, UsuarioDAO> {
 			usu.setSexo(Sexo.MASCULINO);
 			insert(usu);
 		}
-	}	
+	}
+	
+	public Boolean existeLogin(String login) {
+		return getDelegate().existeLogin(login);
+	}
+	
 }
