@@ -26,7 +26,7 @@
 					<h:outputLabel value="#{messages['usuario.label.login']}: " for="login" styleClass="text-input" />
 					<h:inputText id="login" value="#{alunoEditMB.bean.usuario.login}"
 						title="#{messages['usuario.alt.login']}" maxlength="20" required="true">
-						<p:ajax event="blur" listener="#{alunoEditMB.checaLogin()}" update="login_message,login" />
+						<p:ajax event="blur" listener="#{alunoEditMB.checaLogin()}" update="login,login_message" />
 					</h:inputText>
 					<p:message id="login_message" for="login" />
 					

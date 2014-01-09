@@ -72,7 +72,7 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	public void checaLogin() {
 		if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())) {
 			facesContext.addMessage("login", new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "Login já exitente. Tente um login diferente.", null));
+					FacesMessage.SEVERITY_WARN, "Login já existente. Tente um login diferente.", null));
 			getBean().getUsuario().setLogin("");
 		} else {
 			facesContext.addMessage("login", new FacesMessage("OK"));
