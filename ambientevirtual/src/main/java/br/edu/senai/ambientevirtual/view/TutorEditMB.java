@@ -38,6 +38,7 @@ public class TutorEditMB extends AbstractEditPageBean<Tutor, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		getBean().getUsuario().setTipoUsu("tut");
 		this.tutorBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -45,6 +46,7 @@ public class TutorEditMB extends AbstractEditPageBean<Tutor, Long> {
 	@Override
 	@Transactional
 	public String update() {
+		getBean().getUsuario().setTipoUsu("tut");
 		this.tutorBC.update(getBean());
 		return getPreviousView();
 	}
