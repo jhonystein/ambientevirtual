@@ -55,7 +55,7 @@ public class TutorListMB extends AbstractListPageBean<Tutor, Long> {
 			return this.tutorBC.filtrarQuery(tipoFiltro, params);
 		}
 		
-		return this.tutorBC.listTutor();
+		return this.tutorBC.findAll();
 	}
 	
 	@Transactional

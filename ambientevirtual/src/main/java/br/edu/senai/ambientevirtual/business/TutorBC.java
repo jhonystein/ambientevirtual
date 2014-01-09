@@ -3,12 +3,8 @@ package br.edu.senai.ambientevirtual.business;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.edu.senai.ambientevirtual.persistence.TutorDAO;
-import br.gov.frameworkdemoiselle.security.RequiredRole;
-import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
@@ -16,23 +12,8 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 public class TutorBC extends DelegateCrud<Tutor, Long, TutorDAO> {
 	
 	private static final long serialVersionUID = 1L;
-	@Inject
-	private SecurityContext securityContext;
 	
 	public List<Tutor> filtrarQuery(String filtro, Map<String, String> params) {
 		return getDelegate().filtrarQuery(filtro, params);
-	}
-	
-	@RequiredRole("adm")
-	public List<Tutor> listTutor() {
-		return this.findAll();
-	}
-
-	public SecurityContext getSecurityContext() {
-		return securityContext;
-	}
-
-	public void setSecurityContext(SecurityContext securityContext) {
-		this.securityContext = securityContext;
 	}	
 }

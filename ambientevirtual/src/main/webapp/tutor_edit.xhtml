@@ -79,11 +79,10 @@
 						required="true" />
 					<p:message for="senha" />
 					
+					<h:inputHidden value="#{securityContext.hasRole('adm')}" />
 				</h:panelGrid>
 			</p:fieldset>
-
 			<br />
-
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}"
@@ -111,7 +110,5 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 		</h:form>
-		
-		Usuário logado atualmente: <h:outputText value="#{tutorEditMB.printIdUsuario()}" />
 	</ui:define>
 </ui:composition>
