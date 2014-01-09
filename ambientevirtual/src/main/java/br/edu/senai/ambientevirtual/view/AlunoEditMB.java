@@ -13,12 +13,14 @@ import br.edu.senai.ambientevirtual.business.UsuarioBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Sexo;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./aluno_list.jsf")
+@RequiredRole("adm")
 public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;

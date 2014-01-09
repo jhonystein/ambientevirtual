@@ -5,11 +5,10 @@
 
 	<ui:define name="body">
 		<h:form>
-			<h:inputHidden value="#{securityContext.hasRole('adm')}" />
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{alunoListMB.getNextView}"
-						actionListener="#{alunoListMB.clear}" ajax="false" />
+						actionListener="#{alunoListMB.clear}" ajax="false"/>
 
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
 						type="button" immediate="true" ajax="false" />

@@ -2,9 +2,12 @@ package br.edu.senai.ambientevirtual.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -14,6 +17,7 @@ import br.edu.senai.ambientevirtual.domain.Aluno;
 @ViewController
 @NextView("./aluno_edit.jsf")
 @PreviousView("./aluno_list.jsf")
+@RequiredRole("adm")
 public class AlunoListMB extends AbstractListPageBean<Aluno, Long> {
 
 	private static final long serialVersionUID = 1L;
