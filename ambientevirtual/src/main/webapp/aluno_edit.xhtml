@@ -73,6 +73,8 @@
 						rendered="#{!alunoEditMB.updateMode}" ajax="false" />
 					<p:commandButton value="#{messages['button.save']}" action="#{alunoEditMB.update}"
 						rendered="#{alunoEditMB.updateMode}" ajax="false" />
+					<p:button value="#{messages['button.back']}" 
+						outcome="aluno_list" />
 					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
 						rendered="#{alunoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
