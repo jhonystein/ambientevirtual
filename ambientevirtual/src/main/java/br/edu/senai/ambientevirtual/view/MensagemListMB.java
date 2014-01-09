@@ -6,10 +6,12 @@ import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.MensagemBC;
 import br.edu.senai.ambientevirtual.domain.Mensagem;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 
 @ViewController
+@RequiredRole("adm")
 public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 
 	private static final long serialVersionUID = 1L;

@@ -11,6 +11,7 @@ import br.edu.senai.ambientevirtual.business.GrupoBC;
 import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -18,6 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 @ViewController
 @NextView("./grupo_edit.jsf")
 @PreviousView("./grupo_list.jsf")
+@RequiredRole("adm")
 public class GrupoListMB extends AbstractListPageBean<Grupo, Long> {
 
 	private static final long serialVersionUID = 1L;

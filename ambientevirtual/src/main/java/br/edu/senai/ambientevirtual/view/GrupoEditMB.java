@@ -11,12 +11,14 @@ import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./grupo_list.jsf")
+@RequiredRole("adm")
 public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 
 	private static final long serialVersionUID = 1L;

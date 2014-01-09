@@ -13,9 +13,11 @@ import br.edu.senai.ambientevirtual.business.EntregaAtividadeBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.EntregaAtividade;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
 @SessionScoped
+@RequiredRole("adm")
 public class EntregaAtividadeEditMB {
 
 	@Inject

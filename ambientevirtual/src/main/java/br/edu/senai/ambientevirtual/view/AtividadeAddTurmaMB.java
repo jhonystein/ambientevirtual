@@ -11,9 +11,11 @@ import br.edu.senai.ambientevirtual.business.AtividadeBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
 @SessionScoped
+@RequiredRole("adm")
 public class AtividadeAddTurmaMB {
 	
 	@Inject

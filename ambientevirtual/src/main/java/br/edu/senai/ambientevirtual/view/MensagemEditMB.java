@@ -13,8 +13,10 @@ import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.edu.senai.ambientevirtual.domain.Mensagem;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
+@RequiredRole("adm")
 public class MensagemEditMB {
 
 	private Mensagem mensagem;

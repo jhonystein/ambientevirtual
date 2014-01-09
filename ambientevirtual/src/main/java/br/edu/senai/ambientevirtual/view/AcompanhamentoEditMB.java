@@ -14,12 +14,14 @@ import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Situacao;
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./acompanhamento_list.jsf")
+@RequiredRole("adm")
 public class AcompanhamentoEditMB extends
 		AbstractEditPageBean<Acompanhamento, Long> {
 

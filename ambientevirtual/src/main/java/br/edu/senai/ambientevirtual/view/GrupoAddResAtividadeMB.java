@@ -11,9 +11,11 @@ import br.edu.senai.ambientevirtual.business.GrupoBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Grupo;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
 @SessionScoped
+@RequiredRole("adm")
 public class GrupoAddResAtividadeMB {
 
 	@Inject

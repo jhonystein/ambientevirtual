@@ -5,7 +5,6 @@
 
 	<ui:define name="body">
 		<h:form>
-			<h:inputHidden value="#{securityContext.hasRole('adm')}" />
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{usuarioListMB.getNextView}"

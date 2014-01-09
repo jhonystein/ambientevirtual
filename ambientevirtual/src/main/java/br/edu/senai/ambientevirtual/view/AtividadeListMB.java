@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -18,6 +19,7 @@ import br.edu.senai.ambientevirtual.domain.Atividade;
 @ViewController
 @NextView("./atividade_edit.jsf")
 @PreviousView("./atividade_list.jsf")
+@RequiredRole("adm")
 public class AtividadeListMB extends AbstractListPageBean<Atividade, Long> {
 
 	private static final long serialVersionUID = 1L;

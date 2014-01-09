@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -15,6 +16,7 @@ import br.edu.senai.ambientevirtual.domain.Tutor;
 
 @ViewController
 @PreviousView("./turma_list.jsf")
+@RequiredRole("adm")
 public class TurmaEditMB extends AbstractEditPageBean<Turma, Long> {
 
 	private static final long serialVersionUID = 1L;
