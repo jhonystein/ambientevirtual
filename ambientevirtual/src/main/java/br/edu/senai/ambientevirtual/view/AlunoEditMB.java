@@ -41,6 +41,7 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		getBean().getUsuario().setTipoUsu("alu");
 		this.alunoBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -48,6 +49,7 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	@Override
 	@Transactional
 	public String update() {
+		getBean().getUsuario().setTipoUsu("alu");
 		this.alunoBC.update(getBean());
 		return getPreviousView();
 	}
