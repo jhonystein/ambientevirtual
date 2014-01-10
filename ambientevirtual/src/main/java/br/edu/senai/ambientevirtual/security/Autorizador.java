@@ -23,13 +23,14 @@ public class Autorizador implements Authorizer {
 
 	@Override
 	public boolean hasRole(String arg0) {
-		boolean autorizado = true;
+		boolean autorizado = false;
 
 		Long id = Long.valueOf(securityContext.getUser().getId());
 		Usuario usuario = usuarioDAO.load(id);
 		
-		if (!arg0.equals(usuario.getTipoUsu())) {
-			throw new AccessException();
+		if (arg0.equals(usuario.getTipoUsu())) {
+			autorizado = true;
+			//throw new AccessException();
 		}
 		
 		return autorizado;

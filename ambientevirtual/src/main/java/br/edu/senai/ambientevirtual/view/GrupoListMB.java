@@ -19,7 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 @ViewController
 @NextView("./grupo_edit.jsf")
 @PreviousView("./grupo_list.jsf")
-@RequiredRole("tut")
+@RequiredRole({"tut","alu"})
 public class GrupoListMB extends AbstractListPageBean<Grupo, Long> {
 
 	private static final long serialVersionUID = 1L;
