@@ -21,7 +21,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./acompanhamento_list.jsf")
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class AcompanhamentoEditMB extends
 		AbstractEditPageBean<Acompanhamento, Long> {
 

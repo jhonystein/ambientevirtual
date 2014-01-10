@@ -11,7 +11,7 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 
 @ViewController
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 
 	private static final long serialVersionUID = 1L;

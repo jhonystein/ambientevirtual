@@ -19,7 +19,7 @@ import br.edu.senai.ambientevirtual.domain.EntregaAtividade;
 @ViewController
 @NextView("./entregaAtividade_edit.jsf")
 @PreviousView("./entregaAtividade_list.jsf")
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class EntregaAtividadeListMB extends AbstractListPageBean<EntregaAtividade, Long> {
 
 	private static final long serialVersionUID = 1L;

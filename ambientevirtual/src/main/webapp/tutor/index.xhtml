@@ -6,6 +6,7 @@
 		<p:panel>
 			#{messages['main.app.welcome']}
 		</p:panel>
+		<h:inputHidden value="#{securityContext.hasRole('tut')}" />
 	</ui:define>
 
 </ui:composition>

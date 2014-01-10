@@ -16,7 +16,7 @@ import br.edu.senai.ambientevirtual.domain.Turma;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class MensagemEditMB {
 
 	private Mensagem mensagem;

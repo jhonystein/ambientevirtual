@@ -15,7 +15,7 @@ import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
 @SessionScoped
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class GrupoAddResAtividadeMB {
 
 	@Inject

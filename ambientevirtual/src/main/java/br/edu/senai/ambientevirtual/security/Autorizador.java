@@ -18,12 +18,7 @@ public class Autorizador implements Authorizer {
 
 	@Override
 	public boolean hasPermission(String arg0, String arg1) {
-		boolean autorizado = true;
-
-		if (arg0.equals("bookmark") && arg1.equals("delete")) {
-			autorizado = false;
-		}
-		return autorizado;
+		return true;		
 	}
 
 	@Override

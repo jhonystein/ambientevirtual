@@ -17,7 +17,7 @@ import br.edu.senai.ambientevirtual.domain.Acompanhamento;
 @ViewController
 @NextView("./acompanhamento_edit.jsf")
 @PreviousView("./acompanhamento_list.jsf")
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class AcompanhamentoListMB extends AbstractListPageBean<Acompanhamento, Long> {
 
 	private static final long serialVersionUID = 1L;

@@ -18,7 +18,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./grupo_list.jsf")
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 
 	private static final long serialVersionUID = 1L;

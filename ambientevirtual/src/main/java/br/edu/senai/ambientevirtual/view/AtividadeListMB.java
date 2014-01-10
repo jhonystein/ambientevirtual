@@ -19,7 +19,7 @@ import br.edu.senai.ambientevirtual.domain.Atividade;
 @ViewController
 @NextView("./atividade_edit.jsf")
 @PreviousView("./atividade_list.jsf")
-@RequiredRole("adm")
+@RequiredRole("tut")
 public class AtividadeListMB extends AbstractListPageBean<Atividade, Long> {
 
 	private static final long serialVersionUID = 1L;
