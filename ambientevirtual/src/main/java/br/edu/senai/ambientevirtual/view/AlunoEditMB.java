@@ -14,6 +14,7 @@ import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Sexo;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -33,6 +34,9 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 	
 	@Inject
 	private FacesContext facesContext;
+	
+	@Inject
+	private SecurityContext securityContext;
 	
 	private List<SelectItem> sexos;
 	
@@ -70,14 +74,51 @@ public class AlunoEditMB extends AbstractEditPageBean<Aluno, Long> {
 		setBean(this.alunoBC.load(getId()));
 	}
 
+	/**
+	 * Se estiver em modo de inserção / cadastro, checa apenas se 
+	 * o login já existe.
+	 * 
+	 * Se estiver em modo update confere primeiramente a role do usuário.
+	 * Se for adm checa se o login já existe ou se ele é diferente do login 
+	 * atual do usuário a ter os dados atualizados.
+	 * Se não for adm checa se o login já existe ou se ele é diferente do login
+	 * do usuário logado.
+	 * 
+	 * Se alguma das condições for verdadeira então exibe uma mensagem de 
+	 * alerta e limpa o campo de login.
+	 */
 	@Transactional
 	public void checaLogin() {
-		if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())) {
-			facesContext.addMessage("login", new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "Login já existente. Tente um login diferente.", null));
-			getBean().getUsuario().setLogin("");
+		if (!isUpdateMode()) {
+			if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())) {
+				facesContext.addMessage("login", new FacesMessage(
+						FacesMessage.SEVERITY_WARN, "Login já existente. Tente um login diferente.", null));
+				getBean().getUsuario().setLogin("");
+			} else {
+				facesContext.addMessage("login", new FacesMessage("OK"));
+			}
 		} else {
-			facesContext.addMessage("login", new FacesMessage("OK"));
+			if (securityContext.hasRole("adm")) {
+				if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())
+						&& !getBean().getUsuario().getLogin().equals(
+								usuarioBC.load(getBean().getUsuario().getId()).getLogin())) {
+					facesContext.addMessage("login", new FacesMessage(
+							FacesMessage.SEVERITY_WARN, "Login já existente. Tente um login diferente.", null));
+					getBean().getUsuario().setLogin("");
+				} else {
+					facesContext.addMessage("login", new FacesMessage("OK"));
+				}
+			} else {
+				if (usuarioBC.existeLogin(this.getBean().getUsuario().getLogin())
+						&& !getBean().getUsuario().getLogin().equals(
+								((String) securityContext.getUser().getAttribute("login")))) {
+					facesContext.addMessage("login", new FacesMessage(
+							FacesMessage.SEVERITY_WARN, "Login já existente. Tente um login diferente.", null));
+					getBean().getUsuario().setLogin("");
+				} else {
+					facesContext.addMessage("login", new FacesMessage("OK"));
+				}
+			}
 		}
 	}
 	

@@ -47,6 +47,7 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 			return false;
 		} catch (NonUniqueResultException nure) {
 			// TODO: handle exception
+			nure.printStackTrace();
 		}
 		return true;
 	}
