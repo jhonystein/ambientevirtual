@@ -3,7 +3,6 @@ package br.edu.senai.ambientevirtual.security;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.domain.Usuario;
-import br.edu.senai.ambientevirtual.exception.AccessException;
 import br.edu.senai.ambientevirtual.persistence.UsuarioDAO;
 import br.gov.frameworkdemoiselle.security.Authorizer;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
