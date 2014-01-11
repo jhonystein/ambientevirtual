@@ -9,10 +9,12 @@ import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.MensagemBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
+import br.edu.senai.ambientevirtual.business.TutorBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.edu.senai.ambientevirtual.domain.Mensagem;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
@@ -22,6 +24,8 @@ public class MensagemEditMB {
 	private Mensagem mensagem;
 	@Inject
 	private TurmaBC turmaBC;
+	@Inject
+	private TutorBC tutorBC;
 	private List<Aluno> alunos;
 	private List<Grupo> grupos;
 	private Turma turma;	
@@ -40,6 +44,9 @@ public class MensagemEditMB {
 	}
 	public List<Aluno> getAlunos() {
 		return alunos;
+	}
+	public List<Tutor> getTutores() {
+		return tutorBC.findAll();
 	}
 	public void setAlunos(Turma t) {
 		this.alunos = t.getAlunos();

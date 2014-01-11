@@ -36,7 +36,7 @@
 						value="#{mensagemEditMB.mensagem.tutor}"
 						converter="tutorConverter" required="true">
 						<f:selectItem itemLabel="Selecione tutor" itemValue="" />
-						<f:selectItems value="#{grupoEditMB.tutores}" var="tutor"
+						<f:selectItems value="#{mensagemEditMB.tutores}" var="tutor"
 							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
 					</h:selectOneMenu>
 					<p:message for="tutor" />
