@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Usuario;
-import br.gov.frameworkdemoiselle.security.SecurityContext;
+import br.edu.senai.ambientevirtual.security.InfoUsuario;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
@@ -17,18 +17,15 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 public class AtividadeDAO extends JPACrud<Atividade, Long> {
 
 	private static final long serialVersionUID = 1L;
-	@Inject
-	SecurityContext securityContext;
 	
 	@Inject
-	UsuarioDAO usuarioDAO; 
+	InfoUsuario infoUsuario;	 
 	
 	public List<Atividade> filtrarQuery(String tpFiltro,
 			Map<String, String> params) {
 
 		String queryCompl = "";
-		Long id = Long.valueOf(securityContext.getUser().getId());
-		Usuario usuario = usuarioDAO.load(id);
+		Usuario usuario = infoUsuario.retInfo();
 		
 		if(usuario.getTipoUsu().equals("tut")) {
 			queryCompl = "1=1 and a.tutor.usuario.id = :id";
@@ -60,7 +57,7 @@ public class AtividadeDAO extends JPACrud<Atividade, Long> {
 		}
 		
 		if(usuario.getTipoUsu().equals("tut")) {
-			filtro.setParameter("id", id);
+			filtro.setParameter("id", usuario.getId());
 		}
 
 		params.clear();

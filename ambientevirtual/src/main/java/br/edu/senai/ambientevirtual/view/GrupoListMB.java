@@ -56,7 +56,7 @@ public class GrupoListMB extends AbstractListPageBean<Grupo, Long> {
 			return this.grupoBC.filtrarQuery(tipoFiltro, params);
 		}
 
-		return this.grupoBC.findAll();
+		return this.grupoBC.filtrarQuery("", params);
 	}
 
 	@Transactional

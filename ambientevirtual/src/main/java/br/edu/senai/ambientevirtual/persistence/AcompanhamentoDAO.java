@@ -17,6 +17,7 @@ public class AcompanhamentoDAO extends JPACrud<Acompanhamento, Long> {
 	
 	public List<Acompanhamento> filtrar(String tipoFiltro, String valorFiltro) {
 		TypedQuery<Acompanhamento> busca;
+		
 		if (tipoFiltro.equals("ocorrencia")) {
 			busca = getEntityManager().createQuery(
 					"select a from Acompanhamento a"
