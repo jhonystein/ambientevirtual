@@ -20,6 +20,7 @@ public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 	private MensagemBC mensagemBC;
 	private String prmIdMensagem;
 	private Mensagem mensagem;
+	//private Map<String, String> params = new HashMap<String, String>();
 	
 	public Mensagem getMensagem() {
 		return mensagem;
@@ -39,6 +40,7 @@ public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 
 	@Override
 	protected List<Mensagem> handleResultList() {
+		//return mensagemBC.filtrarQuery("", params);
 		return mensagemBC.findAll();
 	}
 	

@@ -16,6 +16,7 @@ import br.edu.senai.ambientevirtual.domain.Mensagem;
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 
 @ManagedBean
 @RequiredRole({"tut","alu"})
@@ -32,6 +33,9 @@ public class MensagemEditMB {
 	
 	@Inject
 	private MensagemBC mensagemBC;
+	
+	@Inject
+	private SecurityContext securityContext;
 	
 	public MensagemEditMB() {
 		this.mensagem = new Mensagem();
@@ -81,6 +85,10 @@ public class MensagemEditMB {
 		 * falta informar o remetente e os destinatarios.
 		 * aguardando implementar o login
 		 */
+		
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		this.mensagem.setTutor(tutor);
 		this.mensagem.setFlTutor(1);
 		this.mensagem.setTurma(this.turma);
 		this.mensagem.setData(new Date());

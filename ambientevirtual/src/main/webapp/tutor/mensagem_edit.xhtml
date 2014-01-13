@@ -55,17 +55,6 @@
 					</h:selectManyListbox>
 					<p:message for="aluno" />
 
-					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
-						for="tutor" styleClass="text-input" />
-					<h:selectOneMenu id="tutor" style="width:300px;"
-						value="#{mensagemEditMB.mensagem.tutor}"
-						converter="tutorConverter" required="true">
-						<f:selectItem itemLabel="Selecione tutor" itemValue="" />
-						<f:selectItems value="#{grupoEditMB.tutores}" var="tutor"
-							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
-					</h:selectOneMenu>
-					<p:message for="tutor" />
-
 					<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
 						for="mensagem" styleClass="text-input" />
 					<p:editor id="mensagem" value="#{mensagemEditMB.mensagem.mensagem}"

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
@@ -29,7 +29,8 @@ public class TurmaDAO extends JPACrud<Turma, Long> {
 					+ "upper(t.codigo) like upper(:todos)";
 		}
 		
-		Query filtro = createQuery(query);
+		TypedQuery<Turma> filtro = getEntityManager().createQuery(query,
+				getBeanClass());
 		
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator.hasNext();) {
 			String chave = iterator.next();
@@ -50,7 +51,7 @@ public class TurmaDAO extends JPACrud<Turma, Long> {
 		
 		params.clear();
 		
-		return (List<Turma>) filtro.getResultList();
+		return filtro.getResultList();
 	}
 	
 }
