@@ -1,7 +1,5 @@
 package br.edu.senai.ambientevirtual.view;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.AtividadeBC;
@@ -31,10 +29,6 @@ public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 	@Inject
 	private SecurityContext securityContext;
 	
-	public List<Tutor> getGetListTutores() {
-		return tutorBC.findAll();
-	}
-
 	@Override
 	@Transactional
 	public String delete() {

@@ -12,6 +12,7 @@ import br.edu.senai.ambientevirtual.domain.Turma;
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -30,11 +31,10 @@ public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 	private TutorBC tutorBC;
 	
 	@Inject
-	private TurmaBC turmaBC;	
+	private TurmaBC turmaBC;
 	
-	public List<Tutor> getTutores() {
-		return tutorBC.findAll();
-	}
+	@Inject
+	private SecurityContext securityContext;
 	
 	public List<Turma> getTurmas() {
 		return turmaBC.findAll();
@@ -50,6 +50,9 @@ public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);
 		this.grupoBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -57,6 +60,9 @@ public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 	@Override
 	@Transactional
 	public String update() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);
 		this.grupoBC.update(getBean());
 		return getPreviousView();
 	}

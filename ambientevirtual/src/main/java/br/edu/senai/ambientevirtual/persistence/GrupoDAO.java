@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
@@ -30,7 +30,8 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 					+ "upper(g.turma.codigo) like upper(:todos))";
 		}
 		
-		Query filtro = createQuery(query);
+		TypedQuery<Grupo> filtro = getEntityManager().createQuery(query,
+				getBeanClass());
 		
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator.hasNext();) {
 			String chave = iterator.next();
@@ -45,7 +46,7 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 		
 		params.clear();
 		
-		return (List<Grupo>) filtro.getResultList();
+		return filtro.getResultList();
 	}
 
 }

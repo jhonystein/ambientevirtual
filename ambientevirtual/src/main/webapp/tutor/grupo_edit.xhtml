@@ -23,16 +23,6 @@
 						title="#{messages['grupo.alt.nome']}" />
 					<p:message for="nome" />
 
-					<h:outputLabel value="#{messages['atividade.label.tutor']}: "
-						for="tutor" styleClass="text-input" />
-					<h:selectOneMenu id="tutor" style="width:300px;"
-						value="#{grupoEditMB.bean.tutor}" converter="tutorConverter">
-						<f:selectItem itemLabel="Selecione tutor" itemValue="" />
-						<f:selectItems value="#{grupoEditMB.tutores}" var="tutor"
-							itemLabel="#{tutor.usuario.nome}" itemValue="#{tutor}" />
-					</h:selectOneMenu>
-					<p:message for="tutor" />
-
 					<h:outputLabel value="#{messages['grupo.label.turma']}: "
 						for="turma" styleClass="text-input" />
 					<h:selectOneMenu id="turma" style="width:300px;"
