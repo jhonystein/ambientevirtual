@@ -10,6 +10,7 @@ import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -27,6 +28,9 @@ public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 	@Inject
 	private TutorBC tutorBC;
 	
+	@Inject
+	private SecurityContext securityContext;
+	
 	public List<Tutor> getGetListTutores() {
 		return tutorBC.findAll();
 	}
@@ -41,6 +45,9 @@ public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);
 		this.atividadeBC.insert(getBean());
 		return getPreviousView();
 	}
@@ -48,6 +55,9 @@ public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 	@Override
 	@Transactional
 	public String update() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);
 		this.atividadeBC.update(getBean());
 		return getPreviousView();
 	}

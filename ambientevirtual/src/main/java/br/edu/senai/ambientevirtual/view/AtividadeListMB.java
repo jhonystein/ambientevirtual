@@ -56,7 +56,7 @@ public class AtividadeListMB extends AbstractListPageBean<Atividade, Long> {
 			return this.atividadeBC.filtrarQuery(tipoFiltro, params);
 		}
 		
-		return this.atividadeBC.findAll();
+		return this.atividadeBC.filtrarQuery("", params);
 	}
 	
 	@Transactional

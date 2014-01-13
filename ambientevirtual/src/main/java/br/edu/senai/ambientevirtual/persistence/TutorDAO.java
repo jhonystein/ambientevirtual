@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
@@ -30,7 +30,8 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 					+ "upper(t.nucleo) like upper(:todos))";
 		}
 		
-		Query filtro = createQuery(query);
+		TypedQuery<Tutor> filtro = getEntityManager().createQuery(query,
+				getBeanClass());
 		
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator.hasNext();) {
 			String chave = iterator.next();
@@ -39,6 +40,16 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 		
 		params.clear();
 		
-		return (List<Tutor>) filtro.getResultList();
+		return filtro.getResultList();
+	}
+	
+	public Tutor loadTutor(Long id) {
+		String query = "Select t from Tutor t where upper(t.usuario.id) = :id";
+		TypedQuery<Tutor> filtro = getEntityManager().createQuery(query,
+				getBeanClass());
+		
+		filtro.setParameter("id", id);
+		
+		return filtro.getSingleResult();
 	}
 }

@@ -16,4 +16,8 @@ public class TutorBC extends DelegateCrud<Tutor, Long, TutorDAO> {
 	public List<Tutor> filtrarQuery(String filtro, Map<String, String> params) {
 		return getDelegate().filtrarQuery(filtro, params);
 	}	
+	
+	public Tutor loadTutor(Long id) {
+		return getDelegate().loadTutor(id);
+	}
 }
