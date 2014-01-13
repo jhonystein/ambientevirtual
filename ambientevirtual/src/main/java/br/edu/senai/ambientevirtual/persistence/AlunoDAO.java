@@ -34,4 +34,14 @@ public class AlunoDAO extends JPACrud<Aluno, Long> {
 		return busca.getResultList();
 	}
 	
+	public Aluno loadAluno(Long id) {
+		String query = "Select a from Aluno a where a.usuario.id = :id";
+		TypedQuery<Aluno> filtro = getEntityManager().createQuery(query,
+				getBeanClass());
+		
+		filtro.setParameter("id", id);
+		
+		return filtro.getSingleResult();
+	}
+	
 }

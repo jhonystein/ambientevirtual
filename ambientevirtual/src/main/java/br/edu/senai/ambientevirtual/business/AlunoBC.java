@@ -21,4 +21,7 @@ public class AlunoBC extends DelegateCrud<Aluno, Long, AlunoDAO> {
 		return getDelegate().filtrar(filtro, valor);
 	}
 	
+	public Aluno loadAluno(Long id) {
+		return getDelegate().loadAluno(id);
+	}	
 }

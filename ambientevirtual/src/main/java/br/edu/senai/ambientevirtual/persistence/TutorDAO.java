@@ -44,7 +44,7 @@ public class TutorDAO extends JPACrud<Tutor, Long> {
 	}
 	
 	public Tutor loadTutor(Long id) {
-		String query = "Select t from Tutor t where upper(t.usuario.id) = :id";
+		String query = "Select t from Tutor t where t.usuario.id = :id";
 		TypedQuery<Tutor> filtro = getEntityManager().createQuery(query,
 				getBeanClass());
 		
