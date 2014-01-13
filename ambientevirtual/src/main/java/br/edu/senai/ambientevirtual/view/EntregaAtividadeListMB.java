@@ -79,7 +79,7 @@ public class EntregaAtividadeListMB extends AbstractListPageBean<EntregaAtividad
 			return this.entregaAtividadeBC.filtrarQuery(tipoFiltro, params);
 		}
 		
-		return this.entregaAtividadeBC.findAll();
+		return this.entregaAtividadeBC.filtrarQuery("", params);
 	}
 	
 	@Transactional

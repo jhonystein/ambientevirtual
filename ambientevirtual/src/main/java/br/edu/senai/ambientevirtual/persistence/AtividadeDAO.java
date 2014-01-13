@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 
 import br.edu.senai.ambientevirtual.domain.Atividade;
+import br.edu.senai.ambientevirtual.domain.Usuario;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
@@ -19,17 +20,34 @@ public class AtividadeDAO extends JPACrud<Atividade, Long> {
 	@Inject
 	SecurityContext securityContext;
 	
+	@Inject
+	UsuarioDAO usuarioDAO; 
+	
 	public List<Atividade> filtrarQuery(String tpFiltro,
 			Map<String, String> params) {
 
-		String query = "Select a from Atividade a where a.tutor.usuario.id = :id";
+		String queryCompl = "";
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Usuario usuario = usuarioDAO.load(id);
+		
+		if(usuario.getTipoUsu().equals("tut")) {
+			queryCompl = "1=1 and a.tutor.usuario.id = :id";
+		}
+		if(usuario.getTipoUsu().equals("alu")) {
+			queryCompl = "1=1";
+		}
+		
+		String query = "Select a from Atividade a where " + queryCompl;
 
+		if ("nome".equals(tpFiltro)) {
+			query = "Select a from Atividade a where upper(a.nome) like upper(:nome) and " + queryCompl;
+		}
 		if ("tutor".equals(tpFiltro)) {
-			query = "Select a from Atividade a where upper(a.tutor.usuario.nome) like upper(:tutor) and a.tutor.usuario.id = :id";
+			query = "Select a from Atividade a where upper(a.tutor.usuario.nome) like upper(:tutor) and " + queryCompl;
 		}
 		if ("todos".equals(tpFiltro)) {
 			query = "Select a from Atividade a where (upper(a.tutor.usuario.nome) like upper(:todos) "
-					+ "or upper(a.nome) like upper(:todos)) and a.tutor.usuario.id = :id";
+					+ "or upper(a.nome) like upper(:todos)) and " + queryCompl;
 		}
 
 		TypedQuery<Atividade> filtro = getEntityManager().createQuery(query,
@@ -41,9 +59,9 @@ public class AtividadeDAO extends JPACrud<Atividade, Long> {
 			filtro.setParameter(chave, "%" + params.get(chave) + "%");
 		}
 		
-		Long id = Long.valueOf(securityContext.getUser().getId());
-		
-		filtro.setParameter("id", id);
+		if(usuario.getTipoUsu().equals("tut")) {
+			filtro.setParameter("id", id);
+		}
 
 		params.clear();
 

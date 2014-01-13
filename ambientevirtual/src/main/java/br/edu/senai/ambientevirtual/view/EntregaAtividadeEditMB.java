@@ -17,7 +17,7 @@ import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
 @SessionScoped
-@RequiredRole("tut")
+@RequiredRole({"tut","alu"})
 public class EntregaAtividadeEditMB {
 
 	@Inject

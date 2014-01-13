@@ -17,7 +17,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./atividade_list.jsf")
-@RequiredRole("tut")
+@RequiredRole({"tut","alu"})
 public class AtividadeEditMB extends AbstractEditPageBean<Atividade, Long> {
 
 	private static final long serialVersionUID = 1L;
