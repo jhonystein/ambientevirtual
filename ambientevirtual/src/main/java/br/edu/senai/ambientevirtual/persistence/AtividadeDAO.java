@@ -17,30 +17,32 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 public class AtividadeDAO extends JPACrud<Atividade, Long> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
-	InfoUsuario infoUsuario;	 
-	
+	InfoUsuario infoUsuario;
+
 	public List<Atividade> filtrarQuery(String tpFiltro,
 			Map<String, String> params) {
 
 		String queryCompl = "";
 		Usuario usuario = infoUsuario.retInfo();
-		
-		if(usuario.getTipoUsu().equals("tut")) {
+
+		if (usuario.getTipoUsu().equals("tut")) {
 			queryCompl = "1=1 and a.tutor.usuario.id = :id";
 		}
-		if(usuario.getTipoUsu().equals("alu")) {
+		if (usuario.getTipoUsu().equals("alu")) {
 			queryCompl = "1=1";
 		}
-		
+
 		String query = "Select a from Atividade a where " + queryCompl;
 
 		if ("nome".equals(tpFiltro)) {
-			query = "Select a from Atividade a where upper(a.nome) like upper(:nome) and " + queryCompl;
+			query = "Select a from Atividade a where upper(a.nome) like upper(:nome) and "
+					+ queryCompl;
 		}
 		if ("tutor".equals(tpFiltro)) {
-			query = "Select a from Atividade a where upper(a.tutor.usuario.nome) like upper(:tutor) and " + queryCompl;
+			query = "Select a from Atividade a where upper(a.tutor.usuario.nome) like upper(:tutor) and "
+					+ queryCompl;
 		}
 		if ("todos".equals(tpFiltro)) {
 			query = "Select a from Atividade a where (upper(a.tutor.usuario.nome) like upper(:todos) "
@@ -49,14 +51,14 @@ public class AtividadeDAO extends JPACrud<Atividade, Long> {
 
 		TypedQuery<Atividade> filtro = getEntityManager().createQuery(query,
 				getBeanClass());
-		
+
 		for (Iterator<String> iterator = params.keySet().iterator(); iterator
 				.hasNext();) {
 			String chave = iterator.next();
 			filtro.setParameter(chave, "%" + params.get(chave) + "%");
 		}
-		
-		if(usuario.getTipoUsu().equals("tut")) {
+
+		if (usuario.getTipoUsu().equals("tut")) {
 			filtro.setParameter("id", usuario.getId());
 		}
 
