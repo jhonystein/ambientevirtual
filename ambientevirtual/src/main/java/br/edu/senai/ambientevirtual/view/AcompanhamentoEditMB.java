@@ -9,12 +9,15 @@ import javax.inject.Inject;
 import br.edu.senai.ambientevirtual.business.AcompanhamentoBC;
 import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
+import br.edu.senai.ambientevirtual.business.TutorBC;
 import br.edu.senai.ambientevirtual.domain.Acompanhamento;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Situacao;
 import br.edu.senai.ambientevirtual.domain.Turma;
+import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -35,6 +38,12 @@ public class AcompanhamentoEditMB extends
 
 	@Inject
 	private AlunoBC alunoBC;
+	
+	@Inject
+	private SecurityContext securityContext;
+	
+	@Inject
+	private TutorBC tutorBC;
 
 	private Turma turma;
 
@@ -96,6 +105,9 @@ public class AcompanhamentoEditMB extends
 	@Override
 	@Transactional
 	public String insert() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);		
 		getBean().setAluno(alunoBC.load(idAluno));
 		this.acompanhamentoBC.insert(getBean());
 		return getPreviousView();
@@ -104,6 +116,9 @@ public class AcompanhamentoEditMB extends
 	@Override
 	@Transactional
 	public String update() {
+		Long id = Long.valueOf(securityContext.getUser().getId());
+		Tutor tutor = tutorBC.loadTutor(id);
+		getBean().setTutor(tutor);
 		getBean().setAluno(alunoBC.load(idAluno));
 		this.acompanhamentoBC.update(getBean());
 		return getPreviousView();

@@ -34,7 +34,7 @@ public class AcompanhamentoListMB extends AbstractListPageBean<Acompanhamento, L
 		if (filtro != null) {
 			return this.acompanhamentoBC.filtrar(tipoFiltro, filtro);
 		}
-		return this.acompanhamentoBC.findAll();
+		return this.acompanhamentoBC.filtrar("", "");
 	}
 	
 	@Transactional

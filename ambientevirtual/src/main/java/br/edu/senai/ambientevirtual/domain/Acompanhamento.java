@@ -31,7 +31,10 @@ public class Acompanhamento {
 	private Turma turma;
 	@ManyToOne
 	@JoinColumn(name="ID_ALUNO", nullable=false)
-	private Aluno aluno;
+	private Aluno aluno;	
+	@ManyToOne
+	@JoinColumn(name="ID_TUTOR", nullable=false)
+	private Tutor tutor;	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DT_OCORRENCIA", nullable=false)
 	private Date ocorrencia;	
@@ -87,6 +90,14 @@ public class Acompanhamento {
 
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
+	}
+
+	public Tutor getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
 	}
 
 }
