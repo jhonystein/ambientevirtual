@@ -12,7 +12,10 @@
 <h:body style="background-color:#f1f1f1">
 	<table style="width: 100%">
 		<tr>
-			<td height="70" align="left"><a href="index.jsf"><img src="../images/logo.png" border="0" /></a>Visão do tutor</td>
+			<td height="70" align="left"
+				style="background-image: url('../images/faixaCabecalho.jpg'); background-repeat: repeat; height: 70px;"><a
+				href="index.jsf"><img src="../images/logoCabecalho.png"
+					border="0" /></a></td>
 		</tr>
 		<tr>
 			<td height="20"><ui:include src="/tutor/menu_tutor.xhtml" /></td>
@@ -20,8 +23,17 @@
 		<tr valign="top">
 			<td height="400"><ui:insert name="body" /></td>
 		</tr>
-		<tr align="center">
-			<td height="20" align="center" class="text-input">#{messages['main.footer.text']}</td>
+		<tr align="left">
+			<td height="20"><footer style="background-color: #2d5c89;">
+					<img src="../images/logoRodape.png" alt="SENAI INTERATIVO"
+						style="float: right;" />
+					<address
+						style="color: #ffffff; font-style: normal; font-family: Arial; font-size: 11pt; padding: 1em; width: 50%;">
+						<b><span id="senai">SENAI</span> Blumenau</b> - Serviço Nacional
+						de Aprendizagem Industrial<br /> Rua São Paulo, 1147 - Victor
+						Konder<br /> Blumenau/SC - Brasil<br /> Fone: (47) 3321-9601<br />
+					</address>
+				</footer></td>
 		</tr>
 	</table>
 

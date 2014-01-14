@@ -12,25 +12,30 @@
 
 <h:body style="background-color:#f1f1f1">
 	<h:form>
-		<p:fieldset legend="#{messages['login.label']}"
-			styleClass="panelGridCenter">
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="username" value="#{messages['login.usuario']}" />
-				<h:inputText value="#{loginMB.credenciais.nome}" id="username"
-					required="true" label="username" />
 
-				<h:outputLabel for="password" value="#{messages['login.senha']}" />
-				<h:inputSecret value="#{loginMB.credenciais.senha}" id="password"
-					required="true" label="password" />
+		<div id="login">
+			<img src="images/logoLogin.png" alt="SENAI INTERATIVO" />
+			
 
-				<f:facet name="footer">
-					<p:commandButton ajax="false" id="loginButton"
-						value="#{messages['login.acesso']}"
-						actionListener="#{loginMB.logar()}" />
-				</f:facet>
-			</h:panelGrid>
-			<p:messages />
-		</p:fieldset>			
+			<p:fieldset legend="#{messages['login.label']}">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="username" value="#{messages['login.usuario']}" />
+					<h:inputText value="#{loginMB.credenciais.nome}" id="username"
+						required="true" label="username" />
+
+					<h:outputLabel for="password" value="#{messages['login.senha']}" />
+					<h:inputSecret value="#{loginMB.credenciais.senha}" id="password"
+						required="true" label="password" />
+
+					<f:facet name="footer">
+						<p:commandButton ajax="false" id="loginButton"
+							value="#{messages['login.acesso']}"
+							actionListener="#{loginMB.logar()}" />
+					</f:facet>
+				</h:panelGrid>
+				<p:messages />
+			</p:fieldset>
+		</div>
 	</h:form>
 </h:body>
 </html>

@@ -1,4 +1,14 @@
-.panelGridCenter {
-	margin: 20% auto;
-	width:300px;
+#login {
+	margin: 18% auto;
+	width:350px;
+	background-color:#476583;
+	padding-bottom:1em;
+	border-radius:1em;
+}
+
+#login img {
+	display: block;
+	margin-right:auto;
+	margin-left:auto;
+	margin-bottom:1em;
 }
