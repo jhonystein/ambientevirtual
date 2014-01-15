@@ -1,3 +1,12 @@
+/*
+* Ambiente Virtual
+* Copyright (C) 2014 SENAI
+* ----------------------------------------------------------------------------
+* Este arquivo é parte do Sistema Ambiente Virtual.
+* Finalidade - Controller de usuários
+* 
+* Criado por - William Chenta
+*/
 package br.edu.senai.ambientevirtual.business;
 
 import br.gov.frameworkdemoiselle.lifecycle.Startup;

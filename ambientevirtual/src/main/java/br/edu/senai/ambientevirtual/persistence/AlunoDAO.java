@@ -1,3 +1,12 @@
+/*
+* Ambiente Virtual
+* Copyright (C) 2014 SENAI
+* ----------------------------------------------------------------------------
+* Este arquivo é parte do Sistema Ambiente Virtual.
+* Finalidade - DAO de alunos
+* 
+* Criado por - William Chenta
+*/
 package br.edu.senai.ambientevirtual.persistence;
 
 import java.util.List;

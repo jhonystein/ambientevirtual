@@ -1,3 +1,12 @@
+/*
+* Ambiente Virtual
+* Copyright (C) 2014 SENAI
+* ----------------------------------------------------------------------------
+* Este arquivo é parte do Sistema Ambiente Virtual.
+* Finalidade - Converter de alunos
+* 
+* Criado por - William Chenta
+*/
 package br.edu.senai.ambientevirtual.view.converters;
 
 import javax.faces.component.UIComponent;

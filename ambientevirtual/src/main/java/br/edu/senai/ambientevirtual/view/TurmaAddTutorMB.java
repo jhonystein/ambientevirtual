@@ -1,3 +1,12 @@
+/*
+* Ambiente Virtual
+* Copyright (C) 2014 SENAI
+* ----------------------------------------------------------------------------
+* Este arquivo é parte do Sistema Ambiente Virtual.
+* Finalidade - Bean de turma/tutor
+* 
+* Criado por - William Chenta
+*/
 package br.edu.senai.ambientevirtual.view;
 
 import java.util.ArrayList;
