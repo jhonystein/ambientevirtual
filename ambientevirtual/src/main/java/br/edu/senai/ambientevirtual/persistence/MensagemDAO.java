@@ -25,15 +25,19 @@ public class MensagemDAO extends JPACrud<Mensagem, Long> {
 	public List<Mensagem> filtrarQuery(String tpFiltro,
 			Map<String, String> params) {
 
-		String queryCompl = "";
+		String query = "";
 		Usuario usuario = infoUsuario.retInfo();
 
 		if (usuario.getTipoUsu().equals("tut")) {
-			queryCompl = "1=1 and m.tutor.usuario.id = :id";
+			query = "Select m from Mensagem m where m.tutor.usuario.id = :id";
+		}
+		if(usuario.getTipoUsu().equals("alu")) {
+			query = "Select distinct m from Mensagem m, Grupo g, Turma t, Aluno a where "
+					+ "((g member of m.grupo and g member of a.grupos)"
+					+ " or (t member of m.turma and t member of a.turmas))"
+					+ " and a.usuario.id = :id";
 		}
 		
-		String query = "Select m from Mensagem m where " + queryCompl;
-
 		TypedQuery<Mensagem> filtro = getEntityManager().createQuery(query,
 				getBeanClass());
 

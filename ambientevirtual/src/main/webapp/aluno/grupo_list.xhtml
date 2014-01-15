@@ -10,14 +10,6 @@
 		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}"
-						icon="ui-icon-document" action="#{grupoListMB.getNextView}"
-						actionListener="#{grupoListMB.clear}" ajax="false" />
-
-					<p:commandButton title="#{messages['button.delete']}"
-						icon="ui-icon-trash" onclick="confirmation.show()" type="button"
-						immediate="true" ajax="false" />
-
 					<h:outputLabel value="#{messages['grupo.label.filtro']}: "
 						for="filtro" styleClass="text-input" />
 					<h:inputText id="filtro" value="#{grupoListMB.filtro}"
@@ -36,18 +28,6 @@
 					<p:commandButton title="#{messages['button.search']}"
 						icon="ui-icon-search" actionListener="#{grupoListMB.list()}"
 						ajax="false" />
-
-					<p:confirmDialog message="#{messages['label.confirm.delete']}"
-						showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert"
-						widgetVar="confirmation">
-
-						<h:commandButton value="#{messages['button.dialog.yes']}"
-							action="#{grupoListMB.deleteSelection}"
-							actionListener="#{grupoListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}"
-							onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 			<p:dataTable id="list" var="bean" value="#{grupoListMB.resultList}">

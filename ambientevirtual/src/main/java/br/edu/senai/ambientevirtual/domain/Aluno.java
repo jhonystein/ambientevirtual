@@ -36,6 +36,8 @@ public class Aluno {
 	private List<Grupo> grupos;	
 	@ManyToMany(mappedBy="alunos")
 	private List<Turma> turmas;
+	@ManyToMany(mappedBy="alunos")
+	private List<Mensagem> mensagens;
 	
 	public Aluno() {
 		usuario = new Usuario();
