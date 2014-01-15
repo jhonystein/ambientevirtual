@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,12 +32,13 @@ public class Aluno {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="aluno")
 	@Column(name="ID_ACOMPANHAMENTO", nullable=true)
 	private List<Acompanhamento> acompanhamentos;
+	@ManyToMany(mappedBy="alunos")
+	private List<Grupo> grupos;
 	
 	public Aluno() {
 		usuario = new Usuario();
 		this.usuario.setTipoUsu("alu");
-	}
-	
+	}	
 	
 	@Override
 	public String toString() {
@@ -75,5 +77,12 @@ public class Aluno {
 	public void setAcompanhamentos(List<Acompanhamento> acompanhamentos) {
 		this.acompanhamentos = acompanhamentos;
 	}
-	
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
 }

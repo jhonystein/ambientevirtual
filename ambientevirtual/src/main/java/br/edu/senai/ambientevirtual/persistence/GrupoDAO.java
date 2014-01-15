@@ -23,31 +23,29 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 
 	public List<Grupo> filtrarQuery(String tpFiltro, Map<String, String> params) {
 		
-		String queryCompl = "";
+		String query = "";
 		Usuario usuario = infoUsuario.retInfo();
 		
 		if(usuario.getTipoUsu().equals("tut")) {
-			queryCompl = "1=1 and g.tutor.usuario.id = :id";
+			query = "Select g from Grupo g where g.tutor.usuario.id = :id";
 		}
 		if(usuario.getTipoUsu().equals("alu")) {
-			queryCompl = "1=1";
-		}
-		
-		String query = "Select g from Grupo g where " + queryCompl;
+			query = "Select g from Grupo g, Aluno a where g member of a.grupos and a.usuario.id = :id";
+		}		
 		
 		if ("nome".equals(tpFiltro)) {
-			query = "Select g from Grupo g where upper(g.nome) like upper(:nome) and " + queryCompl;
+			query += " and upper(g.nome) like upper(:nome)";
 		}
 		if ("turma".equals(tpFiltro)) {
-			query = "Select g from Grupo g where upper(g.turma.codigo) like upper(:turma) and " + queryCompl;
+			query += " and upper(g.turma.codigo) like upper(:turma)";
 		}		
 		if ("tutor".equals(tpFiltro)) {
-			query = "Select g from Grupo g where upper(g.tutor.usuario.nome) like upper(:tutor) and " + queryCompl;
+			query += " and upper(g.tutor.usuario.nome) like upper(:tutor)";
 		}		
 		if ("todos".equals(tpFiltro)) {
-			query = "Select g from Grupo g where (upper(g.nome) like upper(:todos) or "
+			query += " and (upper(g.nome) like upper(:todos) or "
 					+ "upper(g.tutor.usuario.nome) like upper(:todos) or "
-					+ "upper(g.turma.codigo) like upper(:todos)) and " + queryCompl;
+					+ "upper(g.turma.codigo) like upper(:todos))";
 		}
 		
 		TypedQuery<Grupo> filtro = getEntityManager().createQuery(query,
@@ -64,9 +62,7 @@ public class GrupoDAO extends JPACrud<Grupo, Long> {
 			}
 		}
 		
-		if(usuario.getTipoUsu().equals("tut")) {
-			filtro.setParameter("id", usuario.getId());
-		}
+		filtro.setParameter("id", usuario.getId());
 		
 		params.clear();
 		
