@@ -33,7 +33,9 @@ public class Aluno {
 	@Column(name="ID_ACOMPANHAMENTO", nullable=true)
 	private List<Acompanhamento> acompanhamentos;
 	@ManyToMany(mappedBy="alunos")
-	private List<Grupo> grupos;
+	private List<Grupo> grupos;	
+	@ManyToMany(mappedBy="alunos")
+	private List<Turma> turmas;
 	
 	public Aluno() {
 		usuario = new Usuario();
