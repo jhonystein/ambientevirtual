@@ -16,6 +16,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import br.edu.senai.ambientevirtual.business.AlunoBC;
 import br.edu.senai.ambientevirtual.business.MensagemBC;
 import br.edu.senai.ambientevirtual.business.TurmaBC;
 import br.edu.senai.ambientevirtual.business.TutorBC;
@@ -24,8 +25,9 @@ import br.edu.senai.ambientevirtual.domain.Grupo;
 import br.edu.senai.ambientevirtual.domain.Mensagem;
 import br.edu.senai.ambientevirtual.domain.Turma;
 import br.edu.senai.ambientevirtual.domain.Tutor;
+import br.edu.senai.ambientevirtual.domain.Usuario;
+import br.edu.senai.ambientevirtual.security.InfoUsuario;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
-import br.gov.frameworkdemoiselle.security.SecurityContext;
 
 @ManagedBean
 @RequiredRole({"tut","alu"})
@@ -36,15 +38,18 @@ public class MensagemEditMB {
 	private TurmaBC turmaBC;
 	@Inject
 	private TutorBC tutorBC;
+	@Inject
+	private AlunoBC alunoBC;
 	private List<Aluno> alunos;
 	private List<Grupo> grupos;
-	private Turma turma;	
+	private Turma turma;
+	private Tutor tutor;
 	
 	@Inject
 	private MensagemBC mensagemBC;
 	
 	@Inject
-	private SecurityContext securityContext;
+	private InfoUsuario infoUsuario;
 	
 	public MensagemEditMB() {
 		this.mensagem = new Mensagem();
@@ -79,6 +84,12 @@ public class MensagemEditMB {
 	public List<Turma> getTurmas() {
 		return turmaBC.findAll();
 	}
+	public Tutor getTutor() {
+		return tutor;
+	}
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
 	public void changeTurma() {
 		if (turma != null && !turma.equals("")) {
 			alunos = turma.getAlunos();
@@ -90,15 +101,22 @@ public class MensagemEditMB {
 	}
 	
 	public String enviar() {
-		/** 
-		 * falta informar o remetente e os destinatarios.
-		 * aguardando implementar o login
-		 */
+		Usuario usuario = infoUsuario.retInfo();
 		
-		Long id = Long.valueOf(securityContext.getUser().getId());
-		Tutor tutor = tutorBC.loadTutor(id);
-		this.mensagem.setTutor(tutor);
-		this.mensagem.setFlTutor(1);
+		if(usuario.getTipoUsu().equals("tut")) {
+			Tutor tutor = tutorBC.loadTutor(usuario.getId());
+			this.mensagem.setTutor(tutor);
+			this.mensagem.setFlTutor(1);
+		}
+		if(usuario.getTipoUsu().equals("alu")) {
+			List<Aluno> lAlunos = new ArrayList<Aluno>();
+			Aluno aluno = alunoBC.loadAluno(usuario.getId());
+			lAlunos.add(aluno);
+			this.mensagem.setAlunos(lAlunos);
+			this.mensagem.setTutor(this.tutor);
+			this.mensagem.setFlTutor(0);
+		}
+		
 		this.mensagem.setTurma(this.turma);
 		this.mensagem.setData(new Date());
 		this.mensagemBC.insert(this.mensagem);		

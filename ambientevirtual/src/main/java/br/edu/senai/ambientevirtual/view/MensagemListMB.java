@@ -9,7 +9,9 @@
 */
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,7 +31,7 @@ public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 	private MensagemBC mensagemBC;
 	private String prmIdMensagem;
 	private Mensagem mensagem;
-	//private Map<String, String> params = new HashMap<String, String>();
+	private Map<String, String> params = new HashMap<String, String>();
 	
 	public Mensagem getMensagem() {
 		return mensagem;
@@ -49,8 +51,7 @@ public class MensagemListMB extends AbstractListPageBean<Mensagem, Long> {
 
 	@Override
 	protected List<Mensagem> handleResultList() {
-		//return mensagemBC.filtrarQuery("", params);
-		return mensagemBC.findAll();
+		return mensagemBC.filtrarQuery("", params);
 	}
 	
 	public void loadDetalhesMensagem() {
