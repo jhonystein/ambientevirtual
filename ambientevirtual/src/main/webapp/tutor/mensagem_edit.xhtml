@@ -16,7 +16,7 @@
 					<h:outputLabel value="#{messages['mensagem.label.assunto']}: "
 						for="assunto" styleClass="text-input" />
 					<h:inputText id="assunto"
-						value="#{mensagemEditMB.mensagem.assunto}" required="true"
+						value="#{mensagemEditMB.bean.assunto}" required="true"
 						style="width:300px;" maxlength="100"/>
 					<p:message for="assunto" />
 
@@ -38,7 +38,7 @@
 						for="grupo" styleClass="text-input" />
 					<h:selectOneMenu id="grupo" style="width:300px;"
 						converter="grupoConverter"
-						value="#{mensagemEditMB.mensagem.grupo}" onchange="teste()">
+						value="#{mensagemEditMB.grupo}" onchange="teste()">
 						<f:selectItem itemLabel="Selecione grupo" itemValue="-1" />
 						<f:selectItems value="#{mensagemEditMB.grupos}" var="grupo"
 							itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
@@ -48,7 +48,7 @@
 					<h:outputLabel value="#{messages['acompanhamento.label.aluno']}: "
 						for="aluno" styleClass="text-input" />
 					<h:selectManyListbox id="aluno"
-						value="#{mensagemEditMB.mensagem.alunos}"
+						value="#{mensagemEditMB.lAlunos}"
 						style="height:100px; width:300px;" converter="alunoConverter">
 						<f:selectItems value="#{mensagemEditMB.alunos}" var="aluno"
 							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno}" />
@@ -57,7 +57,7 @@
 
 					<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
 						for="mensagem" styleClass="text-input" />
-					<p:editor id="mensagem" value="#{mensagemEditMB.mensagem.mensagem}"
+					<p:editor id="mensagem" value="#{mensagemEditMB.bean.mensagem}"
 						width="600" height="150" required="true" />
 					<p:message for="mensagem" />
 				</h:panelGrid>
@@ -72,8 +72,13 @@
 
 			<p:toolbar>
 				<p:toolbarGroup align="left">
+						
+						
+						
 					<p:commandButton value="#{messages['button.enviar']}"
 						action="#{mensagemEditMB.enviar}" ajax="false" />
+						
+						
 					<p:button value="#{messages['button.back']}"
 						outcome="mensagem_list" />
 				</p:toolbarGroup>

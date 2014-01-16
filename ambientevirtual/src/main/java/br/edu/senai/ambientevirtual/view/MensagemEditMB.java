@@ -28,12 +28,13 @@ import br.edu.senai.ambientevirtual.domain.Tutor;
 import br.edu.senai.ambientevirtual.domain.Usuario;
 import br.edu.senai.ambientevirtual.security.InfoUsuario;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 
 @ManagedBean
 @RequiredRole({"tut","alu"})
-public class MensagemEditMB {
+public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 
-	private Mensagem mensagem;
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private TurmaBC turmaBC;
 	@Inject
@@ -44,6 +45,8 @@ public class MensagemEditMB {
 	private List<Grupo> grupos;
 	private Turma turma;
 	private Tutor tutor;
+	private Grupo grupo;
+	private List<Aluno> lAlunos;
 	
 	@Inject
 	private MensagemBC mensagemBC;
@@ -51,9 +54,6 @@ public class MensagemEditMB {
 	@Inject
 	private InfoUsuario infoUsuario;
 	
-	public MensagemEditMB() {
-		this.mensagem = new Mensagem();
-	}	
 	public Turma getTurma() {
 		return turma;
 	}
@@ -75,12 +75,6 @@ public class MensagemEditMB {
 	public void setGrupos(Turma t) {
 		this.grupos = t.getGrupos();
 	}	
-	public Mensagem getMensagem() {
-		return mensagem;
-	}
-	public void setMensagem(Mensagem mensagem) {
-		this.mensagem = mensagem;
-	}
 	public List<Turma> getTurmas() {
 		return turmaBC.findAll();
 	}
@@ -89,6 +83,21 @@ public class MensagemEditMB {
 	}
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
+	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+	public List<Aluno> getlAlunos() {
+		return lAlunos;
+	}
+	public void setlAlunos(List<Aluno> lAlunos) {
+		this.lAlunos = lAlunos;
 	}
 	public void changeTurma() {
 		if (turma != null && !turma.equals("")) {
@@ -105,22 +114,50 @@ public class MensagemEditMB {
 		
 		if(usuario.getTipoUsu().equals("tut")) {
 			Tutor tutor = tutorBC.loadTutor(usuario.getId());
-			this.mensagem.setTutor(tutor);
-			this.mensagem.setFlTutor(1);
+			getBean().setTutor(tutor);
+			getBean().setFlTutor(1);
+			getBean().setAlunos(lAlunos);
 		}
 		if(usuario.getTipoUsu().equals("alu")) {
 			List<Aluno> lAlunos = new ArrayList<Aluno>();
 			Aluno aluno = alunoBC.loadAluno(usuario.getId());
 			lAlunos.add(aluno);
-			this.mensagem.setAlunos(lAlunos);
-			this.mensagem.setTutor(this.tutor);
-			this.mensagem.setFlTutor(0);
+			getBean().setAlunos(lAlunos);
+			getBean().setTutor(this.tutor);
+			getBean().setFlTutor(0);
 		}
 		
-		this.mensagem.setTurma(this.turma);
-		this.mensagem.setData(new Date());
-		this.mensagemBC.insert(this.mensagem);		
+		getBean().setTurma(this.turma);
+		getBean().setGrupo(this.grupo);
+		
+		getBean().setData(new Date());
+		this.mensagemBC.insert(getBean());		
 		return "mensagem_list";
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public String delete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String insert() {
+		// TODO Auto-generated method stub
+		return this.enviar();
+	}
+	@Override
+	public String update() {
+		// TODO Auto-generated method stub
+		return this.enviar();
+	}
+	@Override
+	protected void handleLoad() {
+		// TODO Auto-generated method stub		
 	}
 	
 }
