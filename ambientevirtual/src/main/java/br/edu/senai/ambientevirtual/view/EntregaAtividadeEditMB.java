@@ -22,6 +22,8 @@ import br.edu.senai.ambientevirtual.business.EntregaAtividadeBC;
 import br.edu.senai.ambientevirtual.domain.Aluno;
 import br.edu.senai.ambientevirtual.domain.Atividade;
 import br.edu.senai.ambientevirtual.domain.EntregaAtividade;
+import br.edu.senai.ambientevirtual.domain.Usuario;
+import br.edu.senai.ambientevirtual.security.InfoUsuario;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 
 @ManagedBean
@@ -43,20 +45,15 @@ public class EntregaAtividadeEditMB {
 	private String resolucao;
 	private EntregaAtividade entregaAtividade;
 	
+	@Inject
+	private InfoUsuario infoUsuario;
+	
 	public String getResolucao() {
 		return resolucao;
 	}
 
 	public void setResolucao(String resolucao) {
 		this.resolucao = resolucao;
-	}
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
 	}
 
 	public String getPrmIdAtividade() {
@@ -98,6 +95,8 @@ public class EntregaAtividadeEditMB {
 			entregaAtividade = new EntregaAtividade();
 		}
 		
+		Usuario usuario = infoUsuario.retInfo();
+		aluno = alunoBC.loadAluno(usuario.getId());		
 		entregaAtividade.setAluno(aluno);
 		entregaAtividade.setEntrega(new Date());
 		entregaAtividade.setAtividade(atividade);
