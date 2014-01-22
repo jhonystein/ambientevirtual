@@ -31,7 +31,7 @@
 					
 					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
 					<h:inputSecret id="senha" value="#{alunoEditMB.bean.usuario.senha}"
-						title="#{messages['usuario.alt.senha']}" maxlength="20" required="true" />
+						title="#{messages['usuario.alt.senha']}" maxlength="20" required="true" redisplay="true" />
 					<p:message for="senha" />
 					
 					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
