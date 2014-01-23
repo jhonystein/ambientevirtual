@@ -11,6 +11,7 @@ package br.edu.senai.ambientevirtual.view;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -76,7 +77,7 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 		this.grupos = t.getGrupos();
 	}	
 	public List<Turma> getTurmas() {
-		return turmaBC.findAll();
+		return turmaBC.filtrarQuery("", new HashMap<String, String>());
 	}
 	public Tutor getTutor() {
 		return tutor;

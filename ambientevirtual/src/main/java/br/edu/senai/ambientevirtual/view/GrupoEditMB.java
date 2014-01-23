@@ -9,6 +9,7 @@
 */
 package br.edu.senai.ambientevirtual.view;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,7 +47,7 @@ public class GrupoEditMB extends AbstractEditPageBean<Grupo, Long> {
 	private SecurityContext securityContext;
 	
 	public List<Turma> getTurmas() {
-		return turmaBC.findAll();
+		return turmaBC.filtrarQuery("", new HashMap<String, String>());
 	}
 	
 	@Override
