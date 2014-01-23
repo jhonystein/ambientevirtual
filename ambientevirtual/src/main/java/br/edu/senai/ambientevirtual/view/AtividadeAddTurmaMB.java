@@ -10,6 +10,7 @@
 package br.edu.senai.ambientevirtual.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -66,7 +67,7 @@ public class AtividadeAddTurmaMB {
 	}
 	
 	public List<Turma> getturmas() {
-		return turmaBC.findAll();
+		return turmaBC.filtrarQuery("", new HashMap<String, String>());
 	}
 	
 	public String salve() {		
