@@ -13,13 +13,6 @@
 				toggleSpeed="500">
 				<h:panelGrid id="fields" columns="3">
 
-					<h:outputLabel value="#{messages['mensagem.label.assunto']}: "
-						for="assunto" styleClass="text-input" />
-					<h:inputText id="assunto"
-						value="#{mensagemEditMB.bean.assunto}" required="true"
-						style="width:300px;" maxlength="100"/>
-					<p:message for="assunto" />
-
 					<h:outputLabel value="#{messages['acompanhamento.label.turma']}: "
 						for="turma" styleClass="text-input" />
 					<h:selectOneMenu id="turma" style="width:300px;" required="true"
@@ -28,32 +21,45 @@
 						<f:selectItems value="#{mensagemEditMB.turmas}" var="turma"
 							itemLabel="#{turma.codigo}" itemValue="#{turma}" />
 
-						<f:ajax render="aluno grupo"
+						<f:ajax execute="alunos" render="alunos grupos"
 							listener="#{mensagemEditMB.changeTurma()}" />
 
 					</h:selectOneMenu>
 					<p:message for="turma" />
 
 					<h:outputLabel value="#{messages['mensagem.label.grupo']}: "
-						for="grupo" styleClass="text-input" />
-					<h:selectOneMenu id="grupo" style="width:300px;"
-						converter="grupoConverter"
-						value="#{mensagemEditMB.grupo}" onchange="teste()">
-						<f:selectItem itemLabel="Selecione grupo" itemValue="-1" />
-						<f:selectItems value="#{mensagemEditMB.grupos}" var="grupo"
-							itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
-					</h:selectOneMenu>
-					<p:message for="grupo" />
+						for="grupos" styleClass="text-input" />
+					<p:selectCheckboxMenu id="grupos" label="Grupos"
+						value="#{mensagemEditMB.grupos}" panelStyle="width:220px">
+						<f:attribute name="collectionType" value="java.util.ArrayList" />
+						<f:selectItems value="#{mensagemEditMB.turma.grupos}" 
+							var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
+						<p:ajax event="change" process="turma @this alunos" update="alunos"
+							listener="#{mensagemEditMB.grupoSelected()}" />
+					</p:selectCheckboxMenu>
+					<p:message for="grupos" />
 
 					<h:outputLabel value="#{messages['acompanhamento.label.aluno']}: "
-						for="aluno" styleClass="text-input" />
-					<h:selectManyListbox id="aluno"
-						value="#{mensagemEditMB.lAlunos}"
-						style="height:100px; width:300px;" converter="alunoConverter">
-						<f:selectItems value="#{mensagemEditMB.alunos}" var="aluno"
-							itemLabel="#{aluno.usuario.nome}" itemValue="#{aluno}" />
-					</h:selectManyListbox>
-					<p:message for="aluno" />
+						for="alunos" styleClass="text-input" />
+					<p:dataTable id="alunos" value="#{mensagemEditMB.alunosTableModel}" var="aluno"
+						selection="#{mensagemEditMB.alunosSelecionados}">
+						<f:facet name="header">Alunos Destinatários</f:facet>
+						<p:column selectionMode="multiple" style="width:2%" />
+						<p:column headerText="ID" style="width:2%">
+							<h:outputText value="#{aluno.id}" />
+						</p:column>
+						<p:column headerText="Aluno">
+							<h:outputText value="#{aluno.usuario.nome}" />
+						</p:column>
+					</p:dataTable>
+					<p:message for="alunos" />
+
+					<h:outputLabel value="#{messages['mensagem.label.assunto']}: "
+						for="assunto" styleClass="text-input" />
+					<h:inputText id="assunto"
+						value="#{mensagemEditMB.bean.assunto}" required="true"
+						style="width:300px;" maxlength="100"/>
+					<p:message for="assunto" />
 
 					<h:outputLabel value="#{messages['mensagem.label.mensagem']}: "
 						for="mensagem" styleClass="text-input" />
@@ -89,10 +95,10 @@
 		<script type="text/javascript">
 			function teste() {
 				if($('#grupo').val() != 'Selecione grupo') {
-					$('#aluno').prop('disabled', 'disabled');
+					$('#alunos').prop('disabled', 'disabled');
 				}
 				else {
-					$('#aluno').prop('disabled', false);
+					$('#alunos').prop('disabled', false);
 				}				
 			}
 		</script>
