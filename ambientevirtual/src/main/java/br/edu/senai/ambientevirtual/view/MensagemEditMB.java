@@ -10,11 +10,12 @@
 package br.edu.senai.ambientevirtual.view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import br.edu.senai.ambientevirtual.business.AlunoBC;
@@ -30,8 +31,10 @@ import br.edu.senai.ambientevirtual.domain.Usuario;
 import br.edu.senai.ambientevirtual.security.InfoUsuario;
 import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ManagedBean
+@ViewScoped
 @RequiredRole({"tut","alu"})
 public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 
@@ -46,14 +49,18 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 	private List<Grupo> grupos;
 	private Turma turma;
 	private Tutor tutor;
-	private Grupo grupo;
-	private List<Aluno> lAlunos;
+	private Aluno[] alunosSelecionados;
+	private AlunosMensagemTableModel alunosTableModel;	
 	
 	@Inject
 	private MensagemBC mensagemBC;
 	
 	@Inject
 	private InfoUsuario infoUsuario;
+	
+	public MensagemEditMB() {
+		this.alunosTableModel = new AlunosMensagemTableModel();
+	}
 	
 	public Turma getTurma() {
 		return turma;
@@ -73,11 +80,13 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
-	public void setGrupos(Turma t) {
-		this.grupos = t.getGrupos();
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}	
+	@Transactional
 	public List<Turma> getTurmas() {
-		return turmaBC.filtrarQuery("", new HashMap<String, String>());
+		return turmaBC.findAll();
+		//return turmaBC.filtrarQuery("", new HashMap<String, String>());
 	}
 	public Tutor getTutor() {
 		return tutor;
@@ -85,31 +94,40 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}
-	public Grupo getGrupo() {
-		return grupo;
-	}
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
 	}
-	public List<Aluno> getlAlunos() {
-		return lAlunos;
+	public Aluno[] getAlunosSelecionados() {
+		return alunosSelecionados;
 	}
-	public void setlAlunos(List<Aluno> lAlunos) {
-		this.lAlunos = lAlunos;
+	public void setAlunosSelecionados(Aluno[] alunosSelecionados) {
+		this.alunosSelecionados = alunosSelecionados;
+	}
+	public AlunosMensagemTableModel getAlunosTableModel() {
+		return alunosTableModel;
+	}
+	public void setAlunosTableModel(AlunosMensagemTableModel alunosTableModel) {
+		this.alunosTableModel = alunosTableModel;
 	}
 	public void changeTurma() {
 		if (turma != null && !turma.equals("")) {
 			alunos = turma.getAlunos();
 			grupos = turma.getGrupos();
+			alunosTableModel.setWrappedData(turma.getAlunos());
 		} else {
 			alunos = new ArrayList<Aluno>();
 			grupos = new ArrayList<Grupo>();
 		}
 	}
 	
+	@Transactional
+	public void grupoSelected() {
+		//Neste momento da execução os grupos em this.grupos não possuiem seus alunos.
+		System.err.println(this.grupos);
+		//System.err.println(this.grupos.get(0).getAlunos());
+	}
+	
+	@Transactional
 	public String enviar() {
 		Usuario usuario = infoUsuario.retInfo();
 		
@@ -117,19 +135,18 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 			Tutor tutor = tutorBC.loadTutor(usuario.getId());
 			getBean().setTutor(tutor);
 			getBean().setFlTutor(1);
-			getBean().setAlunos(lAlunos);
+			getBean().setAlunos(Arrays.asList(alunosSelecionados));
 		}
 		if(usuario.getTipoUsu().equals("alu")) {
 			List<Aluno> lAlunos = new ArrayList<Aluno>();
 			Aluno aluno = alunoBC.loadAluno(usuario.getId());
 			lAlunos.add(aluno);
-			getBean().setAlunos(lAlunos);
+			getBean().setAlunos(Arrays.asList(alunosSelecionados));
 			getBean().setTutor(this.tutor);
 			getBean().setFlTutor(0);
 		}
 		
 		getBean().setTurma(this.turma);
-		getBean().setGrupo(this.grupo);
 		
 		getBean().setData(new Date());
 		this.mensagemBC.insert(getBean());		
@@ -138,7 +155,7 @@ public class MensagemEditMB extends AbstractEditPageBean<Mensagem, Long> {
 	
 	
 	
-	
+
 	
 	
 	@Override
